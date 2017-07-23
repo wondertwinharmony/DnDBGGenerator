@@ -7,7 +7,8 @@
 - React Hot loader
 - React Router configuration
 - React, Redux configuration
-- Testing environment configured with Mocha and Chai
+- Immutable and Redux DevTools
+- Testing environment configured with Jest and Enzyme
 - Linting with Airbnb eslint configuration
 
 ### Start development server with hot reloading
