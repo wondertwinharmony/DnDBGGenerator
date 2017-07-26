@@ -9,13 +9,13 @@ import App from './components/App';
 import Home from './components/home/Home';
 import About from './components/about/About';
 
-import reducers from './reducers';
+import combinedReducers from './reducers/combineReducers.js';
 
 import './components/bundle.scss';
 
 const createStoreWithMiddleware = applyMiddleware()(createStore);
 const store = createStoreWithMiddleware(
-  reducers,
+  combinedReducers,
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
   applyMiddleware(thunk)
 );

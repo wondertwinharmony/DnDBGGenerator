@@ -1,11 +1,27 @@
 import React from 'react';
+import { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
 
-function Home() {
-  return (
-    <div className="container home">
-      <h1>Home</h1>
-    </div>
-  )
+function mapStateToProps(state) {
+  return {
+    triMet: state.getIn(['example', 'triMet']),
+  };
 }
 
-export default Home;
+@connect(mapStateToProps, null)
+export default class Home extends Component {
+  static PropTypes = {
+    triMet: PropTypes.string,
+  }
+
+  render() {
+    const { triMet } = this.props;
+
+    return (
+      <div className="container home">
+        <h1>Home</h1>
+        <h1>{ triMet ? triMet.get('name') : 'nope' }</h1>
+      </div>
+    )
+  };
+}

@@ -19,16 +19,16 @@ npm run dev
 
 ### Testing
 
-Run test once
+Run jest testing
 
 ````
-npm run test
+npm test
 ````
 
-Test watch
+Update jest snapshots
 
 ````
-npm run test:watch
+npm test -- -u
 ````
 
 ### Linting
@@ -52,9 +52,6 @@ Start production server
 ````
 npm run start
 ````
-
-Note: I'm using pm2 for production server, you should install it on server via 'npm install pm2 -g'.
-if you don't want to use pm2, just change pm2 with node in package.json file in scripts section.
 
 ### Contributing
 
