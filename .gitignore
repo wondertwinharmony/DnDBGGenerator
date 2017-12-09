@@ -3,3 +3,4 @@
 .DS_Store
 bundle.js
 npm-debug.log
+src/app/data

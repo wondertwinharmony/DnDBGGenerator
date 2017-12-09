@@ -1,11 +1,9 @@
 import { incrementCounter } from '../actions/exampleActionCreators.js';
 import Immutable from 'immutable';
+import { rollInfo } from '../data/initialStateData.js';
 
 export const initialState = Immutable.fromJS({
-  triMet: {
-    name: 'a man needs a name',
-    count: 0,
-  },
+  rollInfo,
 });
 
 export const exampleReducer = (state = initialState, action) => {
