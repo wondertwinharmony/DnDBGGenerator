@@ -1,10 +1,3 @@
-export function incrementCounter({ count }) {
-  return({
-    type: 'incrementCounter',
-    count,
-  });
-};
-
 export function parentsResult({ parents }) {
   return({
     type: 'parentsResult',

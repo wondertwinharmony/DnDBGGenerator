@@ -1,4 +1,4 @@
-import * as actionCreators from '../actions/exampleActionCreators.js';
+import * as actionCreators from '../actions/parentsActionCreators.js';
 import { numberOfSiblings } from '../utils/origins/numberOfSiblings.js';
 import { parents } from '../utils/origins/parents.js';
 import { alignment } from '../utils/supplemental/alignment.js';

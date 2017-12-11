@@ -3,58 +3,39 @@ import { Component, PropTypes } from 'react';
 import { Button } from 'semantic-ui-react'
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { incrementCounter } from '../../actions/exampleActionCreators.js';
-import { exampleThunk, getParents } from '../../thunks/thunks.js';
-import { familyLifestyle } from '../../utils/origins/familyAndFriends/familyLifestyle.js';
+import { getParents } from '../../thunks/parentsThunks.js';
+import { getSiblings } from '../../thunks/siblingsThunks.js';
+import { numberOfSiblings } from '../../utils/origins/numberOfSiblings.js';
 import { home } from '../../utils/origins/familyAndFriends/home.js';
-
-function mapStateToProps(state) {
-  return {
-    count: state.getIn(['example', 'triMet', 'count']),
-  };
-}
 
 function mapDispatchToProps(dispatch) {
   return {
-    incrementCount: bindActionCreators(incrementCounter, dispatch),
-    thunk: bindActionCreators(exampleThunk, dispatch),
     getCharacterParents: bindActionCreators(getParents, dispatch),
+    getCharacterSiblings: bindActionCreators(getSiblings, dispatch),
   };
 }
 
-@connect(mapStateToProps, mapDispatchToProps)
+@connect(null, mapDispatchToProps)
 export default class About extends Component {
   static PropTypes = {
-    incrementCount: PropTypes.func,
-    count: PropTypes.string,
-    thunk: PropTypes.func,
     getCharacterParents: PropTypes.func,
+    getCharacterSiblings: PropTypes.func,
   }
 
   handleButtonClick = () => {
     const {
-      count,
-      incrementCount,
-      thunk,
       getCharacterParents,
+      getCharacterSiblings,
     } = this.props;
-    const incrementedCount = count + 1;
-
-    // incrementCount({
-    //   count: incrementedCount,
-    // });
 
     getCharacterParents();
-
-    thunk({
-      count: incrementedCount,
-    });
+    getCharacterSiblings();
   }
 
   render() {
     const { count } = this.props;
     // console.log('this is familyLifestyle: ', familyLifestyle());
-    console.log('this is home: ', home(familyLifestyle()));
+    console.log('amount of siblings: ', numberOfSiblings());
 
     return (
       <div className="container about">
