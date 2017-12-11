@@ -1,11 +1,15 @@
 import { combineReducers } from 'redux-immutable';
 
 // Reducers
-import { exampleReducer } from './exampleReducer.js';
+import { coreReducer } from './coreReducer.js';
+import { parentsReducer } from './parentsReducer.js';
+import { siblingsReducer } from './siblingsReducer.js';
 // import routeReducer from './route-reducer.js';
 
 const combinedReducers = combineReducers({
-  example: exampleReducer,
+  example: coreReducer,
+  parents: parentsReducer,
+  siblings: siblingsReducer,
   // routing: routeReducer,
 });
 

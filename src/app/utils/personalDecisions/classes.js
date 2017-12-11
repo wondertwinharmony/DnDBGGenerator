@@ -1,8 +1,8 @@
 import Roll from 'roll';
 
-export function class(classTitle) {
+export function classes(classesTitle) {
   const roll = new Roll();
-  const classRoll = roll.roll('d6');
-  
-  return ({ classRoll: classRoll.result.toString(), classTitle });
+  const classesRoll = roll.roll('d6');
+
+  return ({ classesRoll: classesRoll.result.toString(), classesTitle });
 };

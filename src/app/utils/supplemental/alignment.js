@@ -8,6 +8,10 @@ export function alignment() {
     return '3';
   }
 
+  if (alignmentRoll.result === 4 || alignmentRoll.result === 5) {
+    return '45';
+  }
+
   if (alignmentRoll.result >= 6 && alignmentRoll.result <= 8) {
     return '68';
   }

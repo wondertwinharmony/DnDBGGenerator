@@ -1,27 +1,31 @@
 import Roll from 'roll';
 
 export function numberOfSiblings() {
+  //TODO: race is hardcoded until we handle inputs
+  const race = 'human';
   const roll = new Roll();
   const numberOfSiblingsRoll = roll.roll('d10');
+  let numberOfSiblingsResultRoll;
 
-  if (numberOfSiblingsRoll.result >= 0 && numberOfSiblingsRoll.result <= 2) {
-    return '02';
+  if (numberOfSiblingsRoll.result <= 2) {
+    return 0;
   }
 
   if (numberOfSiblingsRoll.result === 3 || numberOfSiblingsRoll.result === 4) {
-    return '34';
+    numberOfSiblingsResultRoll = roll.roll('1d3');
   }
 
   if (numberOfSiblingsRoll.result === 5 || numberOfSiblingsRoll.result === 6) {
-    return '56';
+    numberOfSiblingsResultRoll = roll.roll('1d4+1');
   }
 
   if (numberOfSiblingsRoll.result === 7 || numberOfSiblingsRoll.result === 8) {
-    return '78';
+    numberOfSiblingsResultRoll = roll.roll('1d6+2');
   }
 
   if (numberOfSiblingsRoll.result === 9 || numberOfSiblingsRoll.result === 10) {
-    return '910';
+    numberOfSiblingsResultRoll = roll.roll('1d8+3');
   }
 
+  return numberOfSiblingsResultRoll.result;
 };
