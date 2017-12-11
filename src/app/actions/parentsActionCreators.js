@@ -5,6 +5,14 @@ export function parentsResult({ parents }) {
   });
 };
 
+export function birthplaceResult({ birthplace }) {
+  return({
+    type: 'birthplaceResult',
+    birthplace,
+  });
+};
+
+
 export function parentsAlignmentResult({ parentAlignment, parent }) {
   return({
     type: 'parentsAlignmentResult',

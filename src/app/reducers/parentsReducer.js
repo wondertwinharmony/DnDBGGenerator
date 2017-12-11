@@ -3,6 +3,7 @@ import { rollInfo } from '../data/initialStateData.js';
 
 export const initialState = Immutable.fromJS({
   Parents: {},
+  Birthplace: {},
   Alignment: {},
   Occupation: {},
   Class: {},
@@ -12,6 +13,8 @@ export const parentsReducer = (state = initialState, action) => {
   switch(action.type) {
     case ('parentsResult'):
       return state.setIn(['Parents'], Immutable.fromJS(action.parents));
+    case ('birthplaceResult'):
+      return state.setIn(['Birthplace'], Immutable.fromJS(action.birthplace));
     case ('parentsAlignmentResult'):
       return state.setIn(['Alignment', action.parent], Immutable.fromJS(action.parentAlignment));
     case ('parentsOccupationResult'):
