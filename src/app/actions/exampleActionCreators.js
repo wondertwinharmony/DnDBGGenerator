@@ -19,3 +19,19 @@ export function parentsAlignmentResult({ parentAlignment, parent }) {
     parent,
   });
 };
+
+export function parentsOccupationResult({ parentOccupation, parent }) {
+  return({
+    type: 'parentsOccupationResult',
+    parentOccupation,
+    parent,
+  });
+};
+
+export function parentsClassResult({ parentClass, parent }) {
+  return({
+    type: 'parentsClassResult',
+    parentClass,
+    parent,
+  });
+};

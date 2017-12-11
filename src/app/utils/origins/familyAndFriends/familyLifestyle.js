@@ -1,10 +1,3 @@
-// '3': 'Wretched (–40)',
-// '45': 'Squalid (–20)',
-// '68': 'Poor (–10)',
-// '912': 'Modest (+0)',
-// '1315': 'Comfortable (+10)',
-// '1617': 'Wealthy (+20)',
-// '18': 'Aristocratic (+40)',
 import Roll from 'roll';
 
 export function familyLifestyle() {

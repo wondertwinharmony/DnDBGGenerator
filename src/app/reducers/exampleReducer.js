@@ -12,6 +12,8 @@ export const initialState = Immutable.fromJS({
     Origins: {
       Parents: {},
       Alignment: {},
+      Occupation: {},
+      Class: {},
     },
   },
   triMet: {
@@ -28,6 +30,10 @@ export const exampleReducer = (state = initialState, action) => {
       return state.setIn(['rollResults', 'Origins', 'Parents'], Immutable.fromJS(action.parents));
     case ('parentsAlignmentResult'):
       return state.setIn(['rollResults', 'Origins', 'Alignment', action.parent], Immutable.fromJS(action.parentAlignment));
+    case ('parentsOccupationResult'):
+      return state.setIn(['rollResults', 'Origins', 'Occupation', action.parent], Immutable.fromJS(action.parentOccupation));
+    case ('parentsClassResult'):
+      return state.setIn(['rollResults', 'Origins', 'Class', action.parent], Immutable.fromJS(action.parentClass));
     default: return state;
   }
 };
