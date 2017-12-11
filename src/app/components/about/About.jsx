@@ -5,7 +5,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { incrementCounter } from '../../actions/exampleActionCreators.js';
 import { exampleThunk, getParents } from '../../thunks/thunks.js';
-import { numberOfSiblings } from '../../utils/origins/numberOfSiblings.js';
+import { familyLifestyle } from '../../utils/origins/familyAndFriends/familyLifestyle.js';
+import { home } from '../../utils/origins/familyAndFriends/home.js';
 
 function mapStateToProps(state) {
   return {
@@ -52,7 +53,8 @@ export default class About extends Component {
 
   render() {
     const { count } = this.props;
-    // console.log('this is numberOfSiblings: ', numberOfSiblings());
+    // console.log('this is familyLifestyle: ', familyLifestyle());
+    console.log('this is home: ', home(familyLifestyle()));
 
     return (
       <div className="container about">

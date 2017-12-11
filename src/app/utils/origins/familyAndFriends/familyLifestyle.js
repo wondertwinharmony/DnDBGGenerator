@@ -1,3 +1,10 @@
+// '3': 'Wretched (–40)',
+// '45': 'Squalid (–20)',
+// '68': 'Poor (–10)',
+// '912': 'Modest (+0)',
+// '1315': 'Comfortable (+10)',
+// '1617': 'Wealthy (+20)',
+// '18': 'Aristocratic (+40)',
 import Roll from 'roll';
 
 export function familyLifestyle() {
@@ -5,30 +12,30 @@ export function familyLifestyle() {
   const familyLifestyleRoll = roll.roll('3d6');
 
   if (familyLifestyleRoll.result === 3) {
-    return '3';
+    return {familyLifestyleResults: '3', familyLifestyleModifier: -40};
   }
 
   if (familyLifestyleRoll.result === 4 || familyLifestyleRoll.result === 5) {
-    return '37';
+    return {familyLifestyleResults: '45', familyLifestyleModifier: -20};
   }
 
   if (familyLifestyleRoll.result >= 6 && familyLifestyleRoll.result <= 8) {
-    return '68';
+    return {familyLifestyleResults: '68', familyLifestyleModifier: -10};
   }
 
   if (familyLifestyleRoll.result >= 9 && familyLifestyleRoll.result <= 12) {
-    return '912';
+    return {familyLifestyleResults: '912', familyLifestyleModifier: 0};
   }
 
   if (familyLifestyleRoll.result >= 13 && familyLifestyleRoll.result <= 15) {
-    return '1315';
+    return {familyLifestyleResults: '1315', familyLifestyleModifier: 10};
   }
 
   if (familyLifestyleRoll.result === 16 || familyLifestyleRoll.result === 17) {
-    return '1617';
+    return {familyLifestyleResults: '1617', familyLifestyleModifier: 20};
   }
 
   if (familyLifestyleRoll.result === 18) {
-    return '18';
+    return {familyLifestyleResults: '18', familyLifestyleModifier: 40};
   }
 };
