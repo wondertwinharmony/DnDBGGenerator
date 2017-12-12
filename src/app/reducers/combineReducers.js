@@ -7,7 +7,7 @@ import { siblingsReducer } from './siblingsReducer.js';
 // import routeReducer from './route-reducer.js';
 
 const combinedReducers = combineReducers({
-  example: coreReducer,
+  core: coreReducer,
   parents: parentsReducer,
   siblings: siblingsReducer,
   // routing: routeReducer,

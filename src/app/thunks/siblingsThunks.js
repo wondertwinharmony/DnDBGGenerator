@@ -22,23 +22,23 @@ export function getSiblings() {
     if (numberOfSiblingsResults >= 1) {
       for (let i = 0; i < numberOfSiblingsResults; i++){
         const siblingsOccupation = occupation();
-        const siblingsOccupationString = getState().getIn(['example', 'rollInfo', 'Supplemental Tables', 'Occupation', siblingsOccupation]);
+        const siblingsOccupationString = getState().getIn(['core', 'rollInfo', 'Supplemental Tables', 'Occupation', siblingsOccupation]);
         dispatch(actionCreators.siblingsOccupationResult({ siblingsOccupation: siblingsOccupationString, sibling: i+1 }));
 
         const siblingsAlignment = alignment();
-        const siblingsAlignmentString = getState().getIn(['example', 'rollInfo', 'Supplemental Tables', 'Alignment', siblingsAlignment]);
+        const siblingsAlignmentString = getState().getIn(['core', 'rollInfo', 'Supplemental Tables', 'Alignment', siblingsAlignment]);
         dispatch(actionCreators.siblingsAlignmentResult({ siblingsAlignment: siblingsAlignmentString, sibling: i+1 }));
 
         const siblingsStatus = status();
-        const siblingsStatusString = getState().getIn(['example', 'rollInfo', 'Supplemental Tables', 'Status', siblingsStatus]);
+        const siblingsStatusString = getState().getIn(['core', 'rollInfo', 'Supplemental Tables', 'Status', siblingsStatus]);
         dispatch(actionCreators.siblingsStatusResult({ siblingsStatus: siblingsStatusString, sibling: i+1 }));
 
         const siblingsAttitude = attitude();
-        const siblingsAttitudeString = getState().getIn(['example', 'rollInfo', 'Supplemental Tables', 'Attitude', siblingsAttitude]);
+        const siblingsAttitudeString = getState().getIn(['core', 'rollInfo', 'Supplemental Tables', 'Attitude', siblingsAttitude]);
         dispatch(actionCreators.siblingsAttitudeResult({ siblingsAttitude: siblingsAttitudeString, sibling: i+1 }));
 
         const siblingsClass = supplementalClass();
-        const siblingsClassString = getState().getIn(['example', 'rollInfo', 'Supplemental Tables', 'Class', siblingsClass]);
+        const siblingsClassString = getState().getIn(['core', 'rollInfo', 'Supplemental Tables', 'Class', siblingsClass]);
         dispatch(actionCreators.siblingsClassResult({ siblingsClass: siblingsClassString, sibling: i+1 }));
       }
     }
