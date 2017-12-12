@@ -5,31 +5,31 @@ export function childhoodMemories(charismaModifier) {
   const childhoodMemoriesRoll = roll.roll('3d6');
   const childhoodMemoriesTotal = childhoodMemoriesRoll.result + charismaModifier;
 
-  if (childhoodMemoriesTotal.result <= 3) {
+  if (childhoodMemoriesTotal <= 3) {
     return '3';
   }
 
-  if (childhoodMemoriesTotal.result === 4 || childhoodMemoriesTotal.result === 5) {
+  if (childhoodMemoriesTotal === 4 || childhoodMemoriesTotal === 5) {
     return '45';
   }
 
-  if (childhoodMemoriesTotal.result >= 6 && childhoodMemoriesTotal.result <= 8) {
+  if (childhoodMemoriesTotal >= 6 && childhoodMemoriesTotal <= 8) {
     return '68';
   }
 
-  if (childhoodMemoriesTotal.result >= 9 && childhoodMemoriesTotal.result <= 12) {
+  if (childhoodMemoriesTotal >= 9 && childhoodMemoriesTotal <= 12) {
     return '912';
   }
 
-  if (childhoodMemoriesTotal.result >= 13 && childhoodMemoriesTotal.result <= 15) {
+  if (childhoodMemoriesTotal >= 13 && childhoodMemoriesTotal <= 15) {
     return '1315';
   }
 
-  if (childhoodMemoriesTotal.result === 16 || childhoodMemoriesTotal.result === 17) {
+  if (childhoodMemoriesTotal === 16 || childhoodMemoriesTotal === 17) {
     return '1617';
   }
 
-  if (childhoodMemoriesTotal.result >= 18) {
+  if (childhoodMemoriesTotal >= 18) {
     return '18';
   }
 };

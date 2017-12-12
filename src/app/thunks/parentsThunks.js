@@ -6,13 +6,6 @@ import { occupation } from '../utils/supplemental/occupation.js';
 import { supplementalClass } from '../utils/supplemental/supplementalClass.js';
 import Immutable from 'immutable';
 
-export function exampleThunk({ count }) {
-  const resultNumberOfSiblings = numberOfSiblings();
-  return function(dispatch, getState) {
-    dispatch(actionCreators.incrementCounter({ count }));
-  };
-};
-
 export function getParents() {
   return function(dispatch, getState) {
     const parentsResult = parents();

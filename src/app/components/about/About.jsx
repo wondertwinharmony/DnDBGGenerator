@@ -5,13 +5,13 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { getParents } from '../../thunks/parentsThunks.js';
 import { getSiblings } from '../../thunks/siblingsThunks.js';
-import { numberOfSiblings } from '../../utils/origins/numberOfSiblings.js';
-import { home } from '../../utils/origins/familyAndFriends/home.js';
+import { getFamilyAndFriends } from '../../thunks/familyAndFriendsThunk.js';
 
 function mapDispatchToProps(dispatch) {
   return {
     getCharacterParents: bindActionCreators(getParents, dispatch),
     getCharacterSiblings: bindActionCreators(getSiblings, dispatch),
+    getCharacterFamilyAndFriends: bindActionCreators(getFamilyAndFriends, dispatch),
   };
 }
 
@@ -20,22 +20,22 @@ export default class About extends Component {
   static PropTypes = {
     getCharacterParents: PropTypes.func,
     getCharacterSiblings: PropTypes.func,
+    getCharacterFamilyAndFriends: PropTypes.func,
   }
 
   handleButtonClick = () => {
     const {
       getCharacterParents,
       getCharacterSiblings,
+      getCharacterFamilyAndFriends,
     } = this.props;
 
     getCharacterParents();
     getCharacterSiblings();
+    getCharacterFamilyAndFriends();
   }
 
   render() {
-    const { count } = this.props;
-    // console.log('this is familyLifestyle: ', familyLifestyle());
-    console.log('amount of siblings: ', numberOfSiblings());
 
     return (
       <div className="container about">
@@ -43,7 +43,6 @@ export default class About extends Component {
         <Button onClick={ this.handleButtonClick }>
           Click
         </Button>
-        <h1>{ count }</h1>
       </div>
     )
   };

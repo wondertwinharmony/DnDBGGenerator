@@ -9,11 +9,6 @@ import Immutable from 'immutable';
 
 export function getSiblings() {
   return function(dispatch, getState) {
-    // const parentsResult = parents();
-    // const parentsString = getState().getIn(['example', 'rollInfo', 'Origins', 'Parents', parentsResult]);
-    //
-    // dispatch(actionCreators.parentsResult({ parents: parentsString }));
-
     const numberOfSiblingsResults = numberOfSiblings();
 
     dispatch(actionCreators.resetStore({}));
