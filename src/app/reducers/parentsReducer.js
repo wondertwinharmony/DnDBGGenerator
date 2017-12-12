@@ -1,5 +1,4 @@
 import Immutable from 'immutable';
-import { rollInfo } from '../data/initialStateData.js';
 
 export const initialState = Immutable.fromJS({
   Parents: {},
