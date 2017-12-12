@@ -3,7 +3,6 @@ import Roll from 'roll';
 export function birthplace() {
   const roll = new Roll();
   const birthplaceRoll = roll.roll('d100');
-  console.log(birthplaceRoll.result);
 
   if (birthplaceRoll.result >= 1 && birthplaceRoll.result <= 50) {
     return '0150';
