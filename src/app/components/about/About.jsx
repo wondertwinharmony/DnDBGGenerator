@@ -6,12 +6,14 @@ import { bindActionCreators } from 'redux';
 import { getParents } from '../../thunks/parentsThunks.js';
 import { getSiblings } from '../../thunks/siblingsThunks.js';
 import { getFamilyAndFriends } from '../../thunks/familyAndFriendsThunk.js';
+import { getLifeEvents } from '../../thunks/lifeEventsThunks.js';
 
 function mapDispatchToProps(dispatch) {
   return {
     getCharacterParents: bindActionCreators(getParents, dispatch),
     getCharacterSiblings: bindActionCreators(getSiblings, dispatch),
     getCharacterFamilyAndFriends: bindActionCreators(getFamilyAndFriends, dispatch),
+    getCharacterLifeEvents: bindActionCreators(getLifeEvents, dispatch),
   };
 }
 
@@ -21,6 +23,7 @@ export default class About extends Component {
     getCharacterParents: PropTypes.func,
     getCharacterSiblings: PropTypes.func,
     getCharacterFamilyAndFriends: PropTypes.func,
+    getCharacterLifeEvents: PropTypes.func,
   }
 
   handleButtonClick = () => {
@@ -28,11 +31,13 @@ export default class About extends Component {
       getCharacterParents,
       getCharacterSiblings,
       getCharacterFamilyAndFriends,
+      getCharacterLifeEvents,
     } = this.props;
 
     getCharacterParents();
     getCharacterSiblings();
     getCharacterFamilyAndFriends();
+    getCharacterLifeEvents();
   }
 
   render() {
