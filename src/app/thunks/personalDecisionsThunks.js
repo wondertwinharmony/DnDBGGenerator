@@ -1,16 +1,19 @@
 import * as actionCreators from '../actions/personalDecisionsActionCreators.js';
 import { background } from '../utils/personalDecisions/background.js';
 import { classTraining } from '../utils/personalDecisions/classTraining.js';
+import { supplementalClass } from '../utils/supplemental/supplementalClass.js';
 import Immutable from 'immutable';
 
 export function getPersonalDecisions() {
   return function(dispatch, getState) {
-    //TODO: background and classTraining hardcoded until inputs implemented
-    const backgroundResult = background('Acolyte');
-    const backgroundString = getState().getIn(['core', 'rollInfo', 'Personal Decisions', 'Background', backgroundResult.backgroundTitle, backgroundResult.backgroundRoll]);
+    const backgroundResult = background();
+    const backgroundString = getState().getIn(['core', 'rollInfo', 'Personal Decisions', 'Background', backgroundResult.title, backgroundResult.backgroundRoll]);
 
-    const classTrainingResult = classTraining('Barbarian');
-    const classTrainingString = getState().getIn(['core', 'rollInfo', 'Personal Decisions', 'Class', classTrainingResult.classTrainingTitle, classTrainingResult.classTrainingRoll]);
+    const classTrainingResult = classTraining();
+    const classTitle = classTrainingResult.randomTitle ? getState().getIn(['core', 'rollInfo', 'Supplemental Tables', 'Class', classTrainingResult.randomTitle]) :
+    classTrainingResult.title;
+
+    const classTrainingString = getState().getIn(['core', 'rollInfo', 'Personal Decisions', 'Class', classTitle, classTrainingResult.classTrainingRoll]);
 
     dispatch(actionCreators.backgroundResult({ background: backgroundString }));
     dispatch(actionCreators.classTrainingResult({ classTraining: classTrainingString }));
