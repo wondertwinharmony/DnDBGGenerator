@@ -5,6 +5,7 @@ import { coreReducer } from './coreReducer.js';
 import { parentsReducer } from './parentsReducer.js';
 import { siblingsReducer } from './siblingsReducer.js';
 import { familyAndFriendsReducer } from './familyAndFriendsReducer.js';
+import { personalDecisionsReducer } from './personalDecisionsReducer.js';
 // import routeReducer from './route-reducer.js';
 
 const combinedReducers = combineReducers({
@@ -12,6 +13,7 @@ const combinedReducers = combineReducers({
   parents: parentsReducer,
   siblings: siblingsReducer,
   familyAndFriends: familyAndFriendsReducer,
+  personalDecisions: personalDecisionsReducer,
   // routing: routeReducer,
 });
 
