@@ -36,12 +36,6 @@ export function getLifeEvents() {
           dispatch(actionCreators.eventResult({ lifeEvent: eventResultString, lifeEventId: i+1 }));
         }
       }
-
-      // if (eventResult.crimeAndPunishmentTableResult) {
-      //   const crimeResultString = getState().getIn(['core', 'rollInfo', 'Secondary Tables', 'Crime', eventResult.crimeAndPunishmentTableResult.crime]);
-      //   const punishmentResultString = getState().getIn(['core', 'rollInfo', 'Secondary Tables', 'Punishment', eventResult.crimeAndPunishmentTableResult.punishment]);
-      //   console.log(crimeResultString, punishmentResultString);
-      // }
     }
   };
 };

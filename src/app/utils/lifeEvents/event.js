@@ -33,27 +33,22 @@ export function event() {
   }
 
   if (eventRoll.result >= 21 && eventRoll.result <= 30) {
-    //TODO: '2130':	'You fell in love or got married. If you get this result more than once, you can choose to have a child instead. Work with your DM to determine the identity of your love interest.',
     return { outcome: '2130', secondaryTable: null, multiTable: false };
   }
 
   if (eventRoll.result >= 31 && eventRoll.result <= 40) {
-    //TODO: '3140':	'You made an enemy of an adventurer. Roll a d6. An odd number indicates you are to blame for the rift, and an even number indicates you are blameless. Use the supplemental tables and work with your DM to determine this hostile character’s identity and the danger this enemy poses to you.',
     return { outcome: '3140', secondaryTable: null, multiTable: false };
   }
 
   if (eventRoll.result >= 41 && eventRoll.result <= 50) {
-    //TODO: '4150':	'You made a friend of an adventurer. Use the supplemental tables and work with your DM to add more detail to this friendly character and establish how your friendship began.',
     return { outcome: '4150', secondaryTable: null, multiTable: false };
   }
 
   if (eventRoll.result >= 51 && eventRoll.result <= 70) {
-    //TODO: '5170':	'You spent time working in a job related to your background. Start the game with an extra 2d6 gp.',
     return { outcome: '5170', secondaryTable: null, multiTable: false };
   }
 
   if (eventRoll.result >= 71 && eventRoll.result <= 75) {
-    //TODO: '7175':	'You met someone important. Use the supplemental tables to determine this character’s identity and how this individual feels about you. Work out additional details with your DM as needed to fit this character into your backstory.',
     return { outcome: '7175', secondaryTable: null, multiTable: false };
   }
 
@@ -76,7 +71,6 @@ export function event() {
     crimeId = crime();
     punishmentId = punishment();
     return { outcome: '9195', secondaryTable: { one: 'Crime', two: 'Punishment' }, secondaryTableResult: { one: crimeId, two: punishmentId }, multiTable: true };
-    // return { outcome: '9195', crimeAndPunishmentTableResult: { crime: crimeId, punishment: punishmentId } };
   }
 
   if (eventRoll.result >= 96 && eventRoll.result <= 99) {
