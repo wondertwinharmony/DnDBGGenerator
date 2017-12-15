@@ -1,4 +1,5 @@
 import Roll from 'roll';
+import { adventurerBackgrounds } from '../creators/adventurerBackgrounds.js';
 
 const backgrounds = {
   1: 'Acolyte',
@@ -19,8 +20,8 @@ const backgrounds = {
 export function background(backgroundTitle) {
   const roll = new Roll();
   const backgroundRoll = roll.roll('d6');
-  const randomBackgroundRoll = Math.floor(Math.random() * 13) + 1;
-  const title = backgroundTitle || backgrounds[randomBackgroundRoll];
+  const randomBackgroundRoll = adventurerBackgrounds();
+  const title = backgroundTitle || randomBackgroundRoll;
 
   return ({ backgroundRoll: backgroundRoll.result.toString(), title });
 };

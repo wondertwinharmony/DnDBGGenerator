@@ -45,6 +45,14 @@ export function siblingsClassResult ({ siblingsClass, sibling }) {
   });
 };
 
+export function siblingsBirthOrderResult ({ siblingsBirthOrder, sibling }) {
+  return({
+    type: 'siblingsBirthOrderResult',
+    siblingsBirthOrder,
+    sibling
+  });
+};
+
 export function resetStore ({}) {
   return({
     type: 'resetStore',
