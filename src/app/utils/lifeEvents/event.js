@@ -42,29 +42,34 @@ export function event() {
 
   if (eventRoll.result >= 31 && eventRoll.result <= 40) {
     secondDieRoll = roll.roll('1d6').result;
-    outcomeResultString = secondDieRoll%2 === 0 ? 'You did not cause the rift between you and the adventurer.' : 'You caused the rift between you and the adventurer.'
+    outcomeResultString = secondDieRoll%2 === 0 ? '\nEVENT SUPPLEMENTAL CHARACTER RESULTS: You did not cause the rift between you and the adventurer. Your enemy adventurer is a(n) ' : '\nEVENT SUPPLEMENTAL CHARACTER: You caused the rift between you and the adventurer.  Your enemy adventurer is a(n) '
     newAdventurer = createAdventurer();
 
-    console.log(outcomeResultString);
-    console.log(newAdventurer);
+    // console.log(outcomeResultString);
+    // console.log(newAdventurer);
+
     return { outcome: '3140', outcomeResult: outcomeResultString, characterEncounter: newAdventurer, secondaryTable: null, multiTable: false };
   }
 
   if (eventRoll.result >= 41 && eventRoll.result <= 50) {
     newAdventurer = createAdventurer();
-    return { outcome: '4150', outcomeResult: null, characterEncounter: newAdventurer, secondaryTable: null, multiTable: false };
+    outcomeResultString = '\nEVENT SUPPLEMENTAL CHARACTER: Your adventurer friend is a(n) ';
+    return { outcome: '4150', outcomeResult: outcomeResultString, characterEncounter: newAdventurer, secondaryTable: null, multiTable: false };
   }
 
   if (eventRoll.result >= 51 && eventRoll.result <= 70) {
     secondDieRoll = roll.roll('2d6').result;
-    outcomeResultString = 'This event gives you an extra ' + secondDieRoll + ' gp.';
-    console.log(outcomeResultString);
+    outcomeResultString = ' (Roll Results) This event gives you an extra ' + secondDieRoll + ' gp.';
+
+    // console.log(outcomeResultString);
+
     return { outcome: '5170', outcomeResult: outcomeResultString, characterEncounter: null, secondaryTable: null, multiTable: false };
   }
 
   if (eventRoll.result >= 71 && eventRoll.result <= 75) {
     newAdventurer = createAdventurer();
-    return { outcome: '7175', outcomeResult: null , secondaryTable: null, characterEncounter: newAdventurer, multiTable: false };
+    outcomeResultString = '\nEVENT SUPPLEMENTAL CHARACTER: This important person is a(n) '
+    return { outcome: '7175', outcomeResult: outcomeResultString , secondaryTable: null, characterEncounter: newAdventurer, multiTable: false };
   }
 
   if (eventRoll.result >= 76 && eventRoll.result <= 80) {
