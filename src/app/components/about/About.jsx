@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { getParents } from '../../thunks/parentsThunks.js';
 import { getSiblings } from '../../thunks/siblingsThunks.js';
+import { getLifeEvents } from '../../thunks/lifeEventsThunks.js';
 import { getFamilyAndFriends } from '../../thunks/familyAndFriendsThunks.js';
 import { getPersonalDecisions } from '../../thunks/personalDecisionsThunks.js'
 
@@ -13,6 +14,7 @@ function mapDispatchToProps(dispatch) {
     getCharacterParents: bindActionCreators(getParents, dispatch),
     getCharacterSiblings: bindActionCreators(getSiblings, dispatch),
     getCharacterFamilyAndFriends: bindActionCreators(getFamilyAndFriends, dispatch),
+    getCharacterLifeEvents: bindActionCreators(getLifeEvents, dispatch),
     getCharacterPersonalDecisions: bindActionCreators(getPersonalDecisions, dispatch),
   };
 }
@@ -23,6 +25,7 @@ export default class About extends Component {
     getCharacterParents: PropTypes.func,
     getCharacterSiblings: PropTypes.func,
     getCharacterFamilyAndFriends: PropTypes.func,
+    getCharacterLifeEvents: PropTypes.func,
     getCharacterPersonalDecisions: PropTypes.func,
   }
 
@@ -31,12 +34,14 @@ export default class About extends Component {
       getCharacterParents,
       getCharacterSiblings,
       getCharacterFamilyAndFriends,
+      getCharacterLifeEvents,
       getCharacterPersonalDecisions,
     } = this.props;
 
     getCharacterParents();
     getCharacterSiblings();
     getCharacterFamilyAndFriends();
+    getCharacterLifeEvents();
     getCharacterPersonalDecisions();
   }
 
