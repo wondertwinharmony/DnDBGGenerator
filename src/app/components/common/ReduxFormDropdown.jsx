@@ -15,10 +15,9 @@ export const ReduxFormDropdown = ({
   const errorMessage = (
     <div style={{ color: '#E20000', paddingTop: '.3rem', fontSize: '12px' }} >
       <Icon name="warning" />
-      {error}
+      { error }
     </div>
   )
-  // onChange={(param, data) => input.onChange(data.value)}
   return (
     <div>
       <Dropdown

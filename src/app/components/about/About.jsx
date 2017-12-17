@@ -67,6 +67,7 @@ export default class About extends Component {
     const { randomToggle } = this.state;
 
     this.setState({ randomToggle: !randomToggle });
+    this.props.reset();
   }
 
   handleButtonClick = () => {
