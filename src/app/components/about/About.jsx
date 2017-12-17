@@ -6,9 +6,6 @@ import {
   Field,
   reduxForm,
   initialize,
-  destroy,
-  touch,
-  untouch,
 } from 'redux-form/immutable';
 import {
   Form,
@@ -46,10 +43,7 @@ function mapDispatchToProps(dispatch) {
     getCharacterFamilyAndFriends: bindActionCreators(getFamilyAndFriends, dispatch),
     getCharacterLifeEvents: bindActionCreators(getLifeEvents, dispatch),
     getCharacterPersonalDecisions: bindActionCreators(getPersonalDecisions, dispatch),
-    tryDestroy: bindActionCreators(destroy, dispatch),
-    tryTouch: bindActionCreators(touch, dispatch),
-    tryUntouch: bindActionCreators(untouch, dispatch),
-    tryInitialize: bindActionCreators(initialize, dispatch),
+    initializeForm: bindActionCreators(initialize, dispatch),
   };
 }
 
@@ -72,10 +66,7 @@ export default class About extends Component {
     handleSubmit: PropTypes.func,
     submitting: PropTypes.bool,
     invalid: PropTypes.bool,
-    tryDestroy: PropTypes.func,
-    tryTouch: PropTypes.func,
-    tryUntouch: PropTypes.func,
-    tryInitialize: PropTypes.func,
+    initializeForm: PropTypes.func,
   }
   constructor(props) {
     super(props);
@@ -86,12 +77,7 @@ export default class About extends Component {
     const { randomToggle } = this.state;
 
     this.setState({ randomToggle: !randomToggle });
-    this.props.tryInitialize({form:'About', object:{}, keepDirty: false});
-    if (randomToggle) {
-      this.props.tryUntouch({form:'About', fields:['Race', 'Class', 'Background', 'Charisma Modifier', 'Age']});
-    } else {
-      this.props.tryTouch({form:'About', fields:['Race', 'Class', 'Background', 'Charisma Modifier', 'Age']});
-    }
+    this.props.initializeForm({form:'About', object:{}, keepDirty: false});
   }
 
   onSubmit = () => {
@@ -103,10 +89,10 @@ export default class About extends Component {
       getCharacterPersonalDecisions,
     } = this.props;
 
-    // getCharacterParents();
-    // getCharacterSiblings();
-    // getCharacterFamilyAndFriends();
-    // getCharacterLifeEvents();
+    getCharacterParents();
+    getCharacterSiblings();
+    getCharacterFamilyAndFriends();
+    getCharacterLifeEvents();
     getCharacterPersonalDecisions();
   }
 
@@ -121,12 +107,12 @@ export default class About extends Component {
 
     console.log(formValues ? formValues.toJS() : 'narp');
     return (
-      <div className="container about aboutContainer">
+      <div className='container about aboutContainer'>
         <Button secondary disabled={ !randomToggle } onClick={ this.onSubmit }>
           Roll Random
         </Button>
         <Form
-          name="About"
+          name='About'
           onSubmit={ handleSubmit(this.onSubmit) }>
           <h1>About</h1>
           <Loader active inline='centered' />
@@ -149,10 +135,10 @@ export default class About extends Component {
             selection
           />
           <Field
-            name="Class"
+            name='Class'
             component={ SemanticFormField }
             as={ Form.Dropdown }
-            placeholder="Select Class"
+            placeholder='Select Class'
             options={ classOptions }
             validate={ [required] }
             disabled={ randomToggle }
@@ -160,10 +146,10 @@ export default class About extends Component {
             selection
           />
           <Field
-            name="Background"
+            name='Background'
             component={ SemanticFormField }
             as={ Form.Dropdown }
-            placeholder="Select Background"
+            placeholder='Select Background'
             options={ backgroundOptions }
             validate={ [required] }
             disabled={ randomToggle }
@@ -171,10 +157,10 @@ export default class About extends Component {
             selection
           />
           <Field
-            name="Charisma Modifer"
+            name='Charisma Modifer'
             component={ SemanticFormField }
             as={ Form.Dropdown }
-            placeholder="Select Charisma Modifer"
+            placeholder='Select Charisma Modifer'
             options={ charismaOptions }
             validate={ [required] }
             disabled={ randomToggle }
@@ -182,11 +168,11 @@ export default class About extends Component {
             selection
           />
           <Field
-            name="Age"
-            type="text"
+            name='Age'
+            type='text'
             as={ Form.Input }
             component={ SemanticFormField }
-            placeholder="Age"
+            placeholder='Age'
             validate={ [required, number, minValue1] }
             disabled={ randomToggle }
             toggleWarning={ randomToggle }
@@ -196,4 +182,3 @@ export default class About extends Component {
     )
   };
 }
-// <Button primary loading={submitting} disabled={pristine || submitting}>Submit</Button>

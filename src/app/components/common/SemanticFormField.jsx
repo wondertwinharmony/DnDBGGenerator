@@ -30,7 +30,9 @@ export default function SemanticFormField ({
         placeholder={ placeholder }
         onChange={ handleChange }
       />
-      { touched && !toggleWarning && ((error && <span><i>{ error }</i></span>) || (warning && <span><i>{ warning }</i></span>)) }
+      { touched && !toggleWarning &&
+        ((error && <span><i className='error'>{ error }</i></span>) ||
+        (warning && <span><i className='error'>{ warning }</i></span>)) }
     </Form.Field>
   );
 }
