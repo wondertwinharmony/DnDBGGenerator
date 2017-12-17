@@ -8,6 +8,7 @@ import {
 import {
   Input,
   Button,
+  Checkbox,
   Dropdown,
 } from 'semantic-ui-react';
 import { ReduxFormDropdown } from '../common/ReduxFormDropdown.jsx';
@@ -57,6 +58,16 @@ export default class About extends Component {
     getCharacterPersonalDecisions: PropTypes.func,
     formValues: PropTypes.list,
   }
+  constructor(props) {
+    super(props);
+    this.state = { randomToggle: false };
+  }
+
+  toggleRandom = () => {
+    const { randomToggle } = this.state;
+
+    this.setState({ randomToggle: !randomToggle });
+  }
 
   handleButtonClick = () => {
     const {
@@ -76,6 +87,9 @@ export default class About extends Component {
 
   render() {
     const { formValues } = this.props;
+    const { randomToggle } = this.state;
+
+    //TODO: fix validation using number
     const number = value => value && isNaN(Number(value)) ? 'Must be a number' : undefined;
     console.log(formValues ? formValues.toJS() : 'narp');
     return (
@@ -84,38 +98,41 @@ export default class About extends Component {
         <Button onClick={ this.handleButtonClick }>
           Click
         </Button>
+        <Checkbox
+          toggle
+          onChange={ this.toggleRandom }
+        />
         <Field
           name='Race'
           component={ ReduxFormDropdown }
           options={ raceOptions }
           placeholder='Select Race'
-          onChange={ () => {} }
-          disabled={ false }
+          disabled={ randomToggle }
           selection
         />
         <Field
-         name="Class"
-         component={ ReduxFormDropdown }
-         placeholder="Select Class"
-         options={ classOptions }
-         disabled={ false }
-         selection
+          name="Class"
+          component={ ReduxFormDropdown }
+          placeholder="Select Class"
+          options={ classOptions }
+          disabled={ randomToggle }
+          selection
         />
         <Field
-         name="Background"
-         component={ ReduxFormDropdown }
-         placeholder="Select Background"
-         options={ backgroundOptions }
-         disabled={ false }
-         selection
+          name="Background"
+          component={ ReduxFormDropdown }
+          placeholder="Select Background"
+          options={ backgroundOptions }
+          disabled={ randomToggle }
+          selection
         />
         <Field
-         name="Charisma Modifer"
-         component={ ReduxFormDropdown }
-         placeholder="Select Charisma Modifer"
-         options={ charismaOptions }
-         disabled={ false }
-         selection
+          name="Charisma Modifer"
+          component={ ReduxFormDropdown }
+          placeholder="Select Charisma Modifer"
+          options={ charismaOptions }
+          disabled={ randomToggle }
+          selection
         />
         <Field
           name="Age"
@@ -123,6 +140,7 @@ export default class About extends Component {
           component={ Input }
           label="Age"
           validate={ [number] }
+          disabled={ randomToggle }
         />
       </div>
     )
