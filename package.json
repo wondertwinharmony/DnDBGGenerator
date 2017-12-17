@@ -57,6 +57,7 @@
   "dependencies": {
     "express": "^4.13.4",
     "immutable": "^3.8.1",
+    "prop-types": "^15.6.0",
     "react": "^15.0.2",
     "react-dom": "^15.0.2",
     "react-redux": "^5.0.2",

@@ -1,17 +1,21 @@
 import React from 'react';
-import { Component, PropTypes } from 'react';
+import { Component } from 'react';
+import PropTypes from 'prop-types';
 import {
   formValues,
   Field,
   reduxForm,
 } from 'redux-form/immutable';
 import {
+  Form,
   Input,
   Button,
   Checkbox,
   Dropdown,
+  Loader,
 } from 'semantic-ui-react';
-import { ReduxFormDropdown } from '../common/ReduxFormDropdown.jsx';
+import SemanticFormField from '../common/SemanticFormField.jsx';
+import { required, number, minValue1 } from '../../utils/validation.js';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import {
@@ -57,6 +61,8 @@ export default class About extends Component {
     getCharacterLifeEvents: PropTypes.func,
     getCharacterPersonalDecisions: PropTypes.func,
     formValues: PropTypes.list,
+    submitting: PropTypes.bool,
+    pristine: PropTypes.bool,
   }
   constructor(props) {
     super(props);
@@ -87,62 +93,74 @@ export default class About extends Component {
   }
 
   render() {
-    const { formValues } = this.props;
+    const { formValues, submitting, pristine } = this.props;
     const { randomToggle } = this.state;
 
-    //TODO: fix validation using number
-    const number = value => value && isNaN(Number(value)) ? 'Must be a number' : undefined;
     console.log(formValues ? formValues.toJS() : 'narp');
     return (
-      <div className="container about">
-        <h1>About</h1>
-        <Button onClick={ this.handleButtonClick }>
-          Click
-        </Button>
-        <Checkbox
-          toggle
-          onChange={ this.toggleRandom }
-        />
-        <Field
-          name='Race'
-          component={ ReduxFormDropdown }
-          options={ raceOptions }
-          placeholder='Select Race'
-          disabled={ randomToggle }
-          selection
-        />
-        <Field
-          name="Class"
-          component={ ReduxFormDropdown }
-          placeholder="Select Class"
-          options={ classOptions }
-          disabled={ randomToggle }
-          selection
-        />
-        <Field
-          name="Background"
-          component={ ReduxFormDropdown }
-          placeholder="Select Background"
-          options={ backgroundOptions }
-          disabled={ randomToggle }
-          selection
-        />
-        <Field
-          name="Charisma Modifer"
-          component={ ReduxFormDropdown }
-          placeholder="Select Charisma Modifer"
-          options={ charismaOptions }
-          disabled={ randomToggle }
-          selection
-        />
-        <Field
-          name="Age"
-          type="number"
-          component={ Input }
-          label="Age"
-          validate={ [number] }
-          disabled={ randomToggle }
-        />
+      <div className="container about aboutContainer">
+        <Form
+          name="product">
+          <h1>About</h1>
+          <Loader active inline='centered' />
+          <Button onClick={ this.handleButtonClick }>
+            Click
+          </Button>
+          <Checkbox
+            toggle
+            onChange={ this.toggleRandom }
+          />
+          <Field
+            name='Race'
+            component={ SemanticFormField }
+            as={ Form.Dropdown }
+            placeholder='Select Race'
+            options={ raceOptions }
+            validate={ [required] }
+            disabled={ randomToggle }
+            selection
+          />
+          <Field
+            name="Class"
+            component={ SemanticFormField }
+            as={ Form.Dropdown }
+            placeholder="Select Class"
+            options={ classOptions }
+            validate={ [required] }
+            disabled={ randomToggle }
+            selection
+          />
+          <Field
+            name="Background"
+            component={ SemanticFormField }
+            as={ Form.Dropdown }
+            placeholder="Select Background"
+            options={ backgroundOptions }
+            validate={ [required] }
+            disabled={ randomToggle }
+            selection
+          />
+          <Field
+            name="Charisma Modifer"
+            component={ SemanticFormField }
+            as={ Form.Dropdown }
+            placeholder="Select Charisma Modifer"
+            options={ charismaOptions }
+            validate={ [required] }
+            disabled={ randomToggle }
+            selection
+          />
+          <Field
+            name="Age"
+            type="text"
+            as={ Form.Input }
+            component={ SemanticFormField }
+            placeholder="Age"
+            validate={ [required, number, minValue1] }
+            disabled={ randomToggle }
+          />
+          <Button primary loading={submitting} disabled={pristine || submitting}>Submit</Button>
+        </Form>
       </div>
     )
   };
