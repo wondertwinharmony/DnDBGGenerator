@@ -7,6 +7,7 @@ export default function SemanticFormField ({
   type,
   label,
   placeholder,
+  toggleWarning,
   meta: {
     touched,
     error,
@@ -17,18 +18,19 @@ export default function SemanticFormField ({
   function handleChange (e, { value }) {
     return input.onChange(value);
   }
+
   return (
     <Form.Field>
       <As
-        {...props}
-        {...input}
-        value={input.value}
-        type={type}
-        label={label}
-        placeholder={placeholder}
-        onChange={handleChange}
+        { ...props }
+        { ...input }
+        value={ input.value }
+        type={ type }
+        label={ label }
+        placeholder={ placeholder }
+        onChange={ handleChange }
       />
-      { touched && ((error && <span><i>{ error }</i></span>) || (warning && <span><i>{ warning }</i></span>)) }
+      { touched && !toggleWarning && ((error && <span><i>{ error }</i></span>) || (warning && <span><i>{ warning }</i></span>)) }
     </Form.Field>
   );
 }

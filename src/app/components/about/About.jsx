@@ -5,6 +5,10 @@ import {
   formValues,
   Field,
   reduxForm,
+  initialize,
+  destroy,
+  touch,
+  untouch,
 } from 'redux-form/immutable';
 import {
   Form,
@@ -42,6 +46,10 @@ function mapDispatchToProps(dispatch) {
     getCharacterFamilyAndFriends: bindActionCreators(getFamilyAndFriends, dispatch),
     getCharacterLifeEvents: bindActionCreators(getLifeEvents, dispatch),
     getCharacterPersonalDecisions: bindActionCreators(getPersonalDecisions, dispatch),
+    tryDestroy: bindActionCreators(destroy, dispatch),
+    tryTouch: bindActionCreators(touch, dispatch),
+    tryUntouch: bindActionCreators(untouch, dispatch),
+    tryInitialize: bindActionCreators(initialize, dispatch),
   };
 }
 
@@ -61,8 +69,13 @@ export default class About extends Component {
     getCharacterLifeEvents: PropTypes.func,
     getCharacterPersonalDecisions: PropTypes.func,
     formValues: PropTypes.list,
+    handleSubmit: PropTypes.func,
     submitting: PropTypes.bool,
-    pristine: PropTypes.bool,
+    invalid: PropTypes.bool,
+    tryDestroy: PropTypes.func,
+    tryTouch: PropTypes.func,
+    tryUntouch: PropTypes.func,
+    tryInitialize: PropTypes.func,
   }
   constructor(props) {
     super(props);
@@ -73,10 +86,15 @@ export default class About extends Component {
     const { randomToggle } = this.state;
 
     this.setState({ randomToggle: !randomToggle });
-    this.props.reset();
+    this.props.tryInitialize({form:'About', object:{}, keepDirty: false});
+    if (randomToggle) {
+      this.props.tryUntouch({form:'About', fields:['Race', 'Class', 'Background', 'Charisma Modifier', 'Age']});
+    } else {
+      this.props.tryTouch({form:'About', fields:['Race', 'Class', 'Background', 'Charisma Modifier', 'Age']});
+    }
   }
 
-  handleButtonClick = () => {
+  onSubmit = () => {
     const {
       getCharacterParents,
       getCharacterSiblings,
@@ -85,26 +103,35 @@ export default class About extends Component {
       getCharacterPersonalDecisions,
     } = this.props;
 
-    getCharacterParents();
-    getCharacterSiblings();
-    getCharacterFamilyAndFriends();
-    getCharacterLifeEvents();
+    // getCharacterParents();
+    // getCharacterSiblings();
+    // getCharacterFamilyAndFriends();
+    // getCharacterLifeEvents();
     getCharacterPersonalDecisions();
   }
 
   render() {
-    const { formValues, submitting, pristine } = this.props;
+    const {
+      formValues,
+      handleSubmit,
+      submitting,
+      invalid,
+    } = this.props;
     const { randomToggle } = this.state;
 
     console.log(formValues ? formValues.toJS() : 'narp');
     return (
       <div className="container about aboutContainer">
+        <Button secondary disabled={ !randomToggle } onClick={ this.onSubmit }>
+          Roll Random
+        </Button>
         <Form
-          name="product">
+          name="About"
+          onSubmit={ handleSubmit(this.onSubmit) }>
           <h1>About</h1>
           <Loader active inline='centered' />
-          <Button onClick={ this.handleButtonClick }>
-            Click
+          <Button primary disabled={ invalid || randomToggle } onClick={ handleSubmit(this.onSubmit) }>
+            Submit
           </Button>
           <Checkbox
             toggle
@@ -118,6 +145,7 @@ export default class About extends Component {
             options={ raceOptions }
             validate={ [required] }
             disabled={ randomToggle }
+            toggleWarning={ randomToggle }
             selection
           />
           <Field
@@ -128,6 +156,7 @@ export default class About extends Component {
             options={ classOptions }
             validate={ [required] }
             disabled={ randomToggle }
+            toggleWarning={ randomToggle }
             selection
           />
           <Field
@@ -138,6 +167,7 @@ export default class About extends Component {
             options={ backgroundOptions }
             validate={ [required] }
             disabled={ randomToggle }
+            toggleWarning={ randomToggle }
             selection
           />
           <Field
@@ -148,6 +178,7 @@ export default class About extends Component {
             options={ charismaOptions }
             validate={ [required] }
             disabled={ randomToggle }
+            toggleWarning={ randomToggle }
             selection
           />
           <Field
@@ -158,10 +189,11 @@ export default class About extends Component {
             placeholder="Age"
             validate={ [required, number, minValue1] }
             disabled={ randomToggle }
+            toggleWarning={ randomToggle }
           />
-          <Button primary loading={submitting} disabled={pristine || submitting}>Submit</Button>
         </Form>
       </div>
     )
   };
 }
+// <Button primary loading={submitting} disabled={pristine || submitting}>Submit</Button>
