@@ -5,6 +5,14 @@ export function siblingsResult({ numberOfSiblings }) {
   });
 };
 
+export function siblingsBirthOrderResult ({ siblingsBirthOrder, sibling }) {
+  return({
+    type: 'siblingsBirthOrderResult',
+    siblingsBirthOrder,
+    sibling
+  });
+};
+
 export function siblingsOccupationResult ({ siblingsOccupation, sibling }) {
   return({
     type: 'siblingsOccupationResult',
