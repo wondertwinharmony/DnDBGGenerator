@@ -19,16 +19,12 @@ export function getLifeEvents() {
 
       if (!eventResult.secondaryTable) {
         eventResultString = getState().getIn(['core', 'rollInfo', 'Life Events', 'Event', eventResult.outcome]);
-        // dispatch(actionCreators.eventResult({ lifeEvent: eventResultString, lifeEventId: i+1 }));
-        // console.log('Event: ', eventResult);
 
         if (!eventResult.characterEncounter && !eventResult.outcomeResult) {
-          console.log('You fell in love Event: ', eventResult, '\n Event Number: ', i+1);
           dispatch(actionCreators.eventResult({ lifeEvent: eventResultString, lifeEventId: i+1 }));
         }
 
         else if (!eventResult.characterEncounter) {
-          console.log('Non-encounter Event: ', eventResult, ' ', eventResult.outcomeResult, '\n Event Number: ', i+1);
           completeEventResultString = eventResultString + eventResult.outcomeResult;
           dispatch(actionCreators.eventResult({ lifeEvent: completeEventResultString, lifeEventId: i+1 }));
         }
@@ -41,9 +37,8 @@ export function getLifeEvents() {
           const supplementalCharacterStatusString = getState().getIn(['core', 'rollInfo', 'Supplemental Tables', 'Status', eventResult.characterEncounter.status]).toLowerCase();
           const supplementalCharacterBackgroundString = eventResult.characterEncounter.background.toLowerCase();
           const supplementalCharacterString = eventResult.outcomeResult + supplementalCharacterRaceString + ' ' + supplementalCharacterClassString + ' with a(n) ' + supplementalCharacterBackgroundString + ' background and a ' + supplementalCharacterAlignmentString + ' alignment. This supplemental character is ' + supplementalCharacterAttitudeString + ' towards you and is currently ' + supplementalCharacterStatusString + '.';
-          
+
           completeEventResultString = eventResultString + supplementalCharacterString;
-          console.log('Encounter Event: ', eventResult, ' ', eventResult.outcomeResult, '\n Complete String: ', completeEventResultString, '\n Event Number: ', i+1);
           dispatch(actionCreators.eventResult({ lifeEvent: completeEventResultString, lifeEventId: i+1 }));
         }
 
