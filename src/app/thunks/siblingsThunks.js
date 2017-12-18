@@ -1,11 +1,11 @@
 import * as actionCreators from '../actions/siblingsActionCreators.js';
 import { numberOfSiblings } from '../utils/origins/numberOfSiblings.js';
-import { birthOrder } from '../utils/origins/birthOrder.js';
 import { alignment } from '../utils/supplemental/alignment.js';
 import { occupation } from '../utils/supplemental/occupation.js';
 import { status } from '../utils/supplemental/status.js';
 import { attitude } from '../utils/supplemental/attitude.js';
 import { supplementalClass } from '../utils/supplemental/supplementalClass.js';
+import { birthOrder } from '../utils/origins/birthOrder.js';
 import Immutable from 'immutable';
 
 export function getSiblings() {
@@ -15,41 +15,12 @@ export function getSiblings() {
     dispatch(actionCreators.resetStore({}));
     dispatch(actionCreators.siblingsResult({ numberOfSiblings: numberOfSiblingsResults }));
 
-    // if (numberOfSiblingsResults >= 1) {
-    //   let birthOrderCount = 0;
-    //   let siblingsBirthOrder = birthOrder();
-    //   siblingsBirthOrder = '02'
-    //   if (siblingsBirthOrder === '02' && birthOrderCount < 3 ) {
-    //     birthOrderCount + 1;
-    //   } else {
-    //     const siblingsBirthDeterminer = Math.floor(Math.random() * 12) + 3;
-    //     siblingsBirthOrder === siblingsBirthDeterminer >= 8 && siblingsBirthDeterminer <= 12 ? '812' : '37';
-    //   }
-    //
-    //   const siblingsBirthOrderString = getState().getIn(['core', 'rollInfo', 'Origins', 'Birth Order', siblingsBirthOrder]);
-    //   dispatch(actionCreators.siblingsBirthOrderResult({ siblingsBirthOrder: siblingsBirthOrderString, sibling: i+1 }));
-
-      const getSiblingsBirthOrder = (numberOfSiblingsResults) => {
-        let birthOrderCount = 0;
-        let siblingsBirthOrder = birthOrder();
-        siblingsBirthOrder = '02'
-
-        for (let i = 0; i < numberOfSiblingsResults; i++) {
-          if (siblingsBirthOrder === '02' && birthOrderCount < 3 ) {
-            birthOrderCount + 1;
-          } else {
-            const siblingsBirthDeterminer = Math.floor(Math.random() * 12) + 3;
-            siblingsBirthOrder === siblingsBirthDeterminer >= 8 && siblingsBirthDeterminer <= 12 ? '812' : '37';
-          }
-          const siblingsBirthOrderString = getState().getIn(['core', 'rollInfo', 'Origins', 'Birth Order', siblingsBirthOrder]);
-          dispatch(actionCreators.siblingsBirthOrderResult({ siblingsBirthOrder: siblingsBirthOrderString, sibling: i+1 }));
-        }
-        return birthOrderCount;
-      };
-
-      getSiblingsBirthOrder(numberOfSiblingsResults);
+    if (numberOfSiblingsResults >= 1) {
+      const birthOrderArray = [];
 
       for (let i = 0; i < numberOfSiblingsResults; i++){
+        const birthOrderResult = birthOrder();
+        birthOrderArray.push(birthOrderResult);
 
         const siblingsOccupation = occupation();
         const siblingsOccupationString = getState().getIn(['core', 'rollInfo', 'Supplemental Tables', 'Occupation', siblingsOccupation]);
@@ -71,5 +42,27 @@ export function getSiblings() {
         const siblingsClassString = getState().getIn(['core', 'rollInfo', 'Supplemental Tables', 'Class', siblingsClass]);
         dispatch(actionCreators.siblingsClassResult({ siblingsClass: siblingsClassString, sibling: i+1 }));
       }
+
+      const checkForTwinsResult = function(arr, currentCount){
+        let count = 0 || currentCount;
+
+          const countTwinsResult = function(){
+
+            for(let i = 0; i < arr.length; i++){
+              if(arr[i] === '02' && count < 3) {
+                count++;
+              } else {
+                const siblingsOrderAlternative = Math.floor(Math.random() * 12) + 3;
+                arr[i] = siblingsOrderAlternative >= 8 && siblingsOrderAlternative <= 12 ? '812' : '37';
+              }
+              const siblingsBirthOrderString = getState().getIn(['core', 'rollInfo', 'Origins', 'Birth Order', arr[i]]);
+              dispatch(actionCreators.siblingsBirthOrderResult({ siblingsBirthOrder: siblingsBirthOrderString, sibling: i+1 }));
+            }
+            return count;
+          };
+        return countTwinsResult(arr);
+      };
+      checkForTwinsResult(birthOrderArray, 0);
     }
   };
+};

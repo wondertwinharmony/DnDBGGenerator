@@ -5,14 +5,6 @@ export function siblingsResult({ numberOfSiblings }) {
   });
 };
 
-export function siblingsBirthOrderResult ({ siblingsBirthOrder, sibling }) {
-  return({
-    type: 'siblingsBirthOrderResult',
-    siblingsBirthOrder,
-    sibling
-  });
-};
-
 export function siblingsOccupationResult ({ siblingsOccupation, sibling }) {
   return({
     type: 'siblingsOccupationResult',
@@ -49,6 +41,14 @@ export function siblingsClassResult ({ siblingsClass, sibling }) {
   return({
     type: 'siblingsClassResult',
     siblingsClass,
+    sibling
+  });
+};
+
+export function siblingsBirthOrderResult ({ siblingsBirthOrder, sibling }) {
+  return({
+    type: 'siblingsBirthOrderResult',
+    siblingsBirthOrder,
     sibling
   });
 };

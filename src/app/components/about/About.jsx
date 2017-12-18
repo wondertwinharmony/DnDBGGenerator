@@ -81,8 +81,6 @@ export default class About extends Component {
       getCharacterPersonalDecisions,
     } = this.props;
 
-    console.log('values: ', values && values.toJS());
-
     getCharacterParents();
     getCharacterSiblings();
     getCharacterFamilyAndFriends();
