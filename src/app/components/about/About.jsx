@@ -2,7 +2,6 @@ import React from 'react';
 import { Component } from 'react';
 import PropTypes from 'prop-types';
 import {
-  formValues,
   Field,
   reduxForm,
   initialize,
@@ -13,7 +12,6 @@ import {
   Button,
   Checkbox,
   Dropdown,
-  Loader,
 } from 'semantic-ui-react';
 import SemanticFormField from '../common/SemanticFormField.jsx';
 import { required, number, minValue1 } from '../../utils/validation.js';
@@ -47,13 +45,7 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-function mapStateToProps(state) {
-  return {
-    formValues: state.getIn(['form', 'About', 'values']),
-  };
-}
-
-@connect(mapStateToProps, mapDispatchToProps)
+@connect(null, mapDispatchToProps)
 @reduxForm(formObject)
 export default class About extends Component {
   static PropTypes = {
@@ -62,7 +54,6 @@ export default class About extends Component {
     getCharacterFamilyAndFriends: PropTypes.func,
     getCharacterLifeEvents: PropTypes.func,
     getCharacterPersonalDecisions: PropTypes.func,
-    formValues: PropTypes.list,
     handleSubmit: PropTypes.func,
     submitting: PropTypes.bool,
     invalid: PropTypes.bool,
@@ -75,12 +66,13 @@ export default class About extends Component {
 
   toggleRandom = () => {
     const { randomToggle } = this.state;
+    const { initializeForm } = this.props;
 
     this.setState({ randomToggle: !randomToggle });
-    this.props.initializeForm({form:'About', object:{}, keepDirty: false});
+    initializeForm({form:'About', object: {}, keepDirty: false});
   }
 
-  onSubmit = () => {
+  onSubmit = (values) => {
     const {
       getCharacterParents,
       getCharacterSiblings,
@@ -88,6 +80,8 @@ export default class About extends Component {
       getCharacterLifeEvents,
       getCharacterPersonalDecisions,
     } = this.props;
+
+    console.log('values: ', values && values.toJS());
 
     getCharacterParents();
     getCharacterSiblings();
@@ -98,14 +92,12 @@ export default class About extends Component {
 
   render() {
     const {
-      formValues,
       handleSubmit,
       submitting,
       invalid,
     } = this.props;
     const { randomToggle } = this.state;
 
-    console.log(formValues ? formValues.toJS() : 'narp');
     return (
       <div className='container about aboutContainer'>
         <Button secondary disabled={ !randomToggle } onClick={ this.onSubmit }>
@@ -115,7 +107,6 @@ export default class About extends Component {
           name='About'
           onSubmit={ handleSubmit(this.onSubmit) }>
           <h1>About</h1>
-          <Loader active inline='centered' />
           <Button primary disabled={ invalid || randomToggle } onClick={ handleSubmit(this.onSubmit) }>
             Submit
           </Button>
