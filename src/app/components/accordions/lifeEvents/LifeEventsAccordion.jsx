@@ -3,29 +3,27 @@ import { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Accordion, Icon, Segment } from 'semantic-ui-react';
+import LifeEventAccordion from './LifeEventAccordion.jsx';
 
 function mapStateToProps(state) {
   return {
-    background: state.getIn(['personalDecisions', 'Background']),
-    classTraining: state.getIn(['personalDecisions', 'ClassTraining']),
+    age: state.getIn(['lifeEvents', 'Age']),
+    numberOfLifeEvents: state.getIn(['lifeEvents', 'NumberOfLifeEvents']),
   };
 }
 
 @connect(mapStateToProps, null)
-export default class PersonalDecisionsAccordion extends Component {
+export default class LifeEventsAccordion extends Component {
   static PropTypes = {
-    background: PropTypes.String,
-    classTraining: PropTypes.String,
+    age: PropTypes.String,
+    numberOfLifeEvents: PropTypes.Number,
   }
 
   constructor(props) {
     super(props);
 
     this.state = {
-      activeIndex: {
-        0: false,
-        1: false,
-      },
+      activeIndex: { 0: false },
     };
   }
 
@@ -40,41 +38,36 @@ export default class PersonalDecisionsAccordion extends Component {
 
   render() {
     const {
-      background,
-      classTraining,
+      age,
+      numberOfLifeEvents,
     } = this.props;
 
     const { activeIndex } = this.state;
 
+    const lifeEvents = [];
+
+    for (let i = 1; i <= numberOfLifeEvents; i++) {
+      lifeEvents.push(<LifeEventAccordion id={ i } key={ i }/>);
+    }
+
     return (
       <div>
-        { classTraining.length &&
+        { numberOfLifeEvents > 0 &&
           <Segment inverted>
             <Accordion inverted>
               <Accordion.Title
                 active={ activeIndex[0] }
                 onClick={ this.handleClick }>
                 <Icon name='dropdown' />
-                Background
+                Age
               </Accordion.Title>
               <Accordion.Content active={ activeIndex[0] }>
                 <p>
-                  { background }
-                </p>
-              </Accordion.Content>
-
-              <Accordion.Title
-                active={ activeIndex[1] }
-                onClick={ this.handleClick }>
-                <Icon name='dropdown' />
-                Class Training
-              </Accordion.Title>
-              <Accordion.Content active={ activeIndex[1] }>
-                <p>
-                  { classTraining }
+                  { age }
                 </p>
               </Accordion.Content>
             </Accordion>
+            { lifeEvents }
           </Segment>
         }
       </div>

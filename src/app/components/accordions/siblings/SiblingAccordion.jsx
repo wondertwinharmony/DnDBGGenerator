@@ -18,7 +18,6 @@ function mapStateToProps(state, { id }) {
 @connect(mapStateToProps, null)
 export default class SiblingAccordion extends Component {
   static PropTypes = {
-    id: PropTypes.Number,
     birthOrder: PropTypes.Object,
     occupation: PropTypes.Object,
     alignment: PropTypes.Object,
@@ -53,7 +52,6 @@ export default class SiblingAccordion extends Component {
 
   render() {
     const {
-      id,
       birthOrder,
       occupation,
       alignment,
