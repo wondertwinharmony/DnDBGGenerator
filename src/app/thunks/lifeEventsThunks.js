@@ -5,7 +5,8 @@ import Immutable from 'immutable';
 
 export function getLifeEvents() {
   return function(dispatch, getState) {
-    const currentAgeAndLifeEventsResult = currentAgeAndLifeEvents();
+    //TODO: currentAgeAndLifeEvents needs to take an age input
+    const currentAgeAndLifeEventsResult = currentAgeAndLifeEvents(age);
     const currentAgeString = getState().getIn(['core', 'rollInfo', 'Life Events', 'Current Age', currentAgeAndLifeEventsResult.currentAge ]);
 
     dispatch(actionCreators.resetLifeEvents({}));

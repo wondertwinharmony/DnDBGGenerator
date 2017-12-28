@@ -6,8 +6,7 @@ import thunk from 'redux-thunk';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 
 import App from './components/App';
-import Home from './components/home/Home';
-import About from './components/about/About';
+import Main from './components/main/Main';
 
 import combinedReducers from './reducers/combineReducers.js';
 
@@ -22,10 +21,10 @@ const store = createStoreWithMiddleware(
 
 ReactDOM.render(
   <Provider store={store}>
-    <Router onUpdate={() => window.scrollTo(0, 0)} history={browserHistory}>
-      <Route path="/" component={App}>
-        <IndexRoute component={Home} />;
-        <Route path="/about" component={About} />
+    <Router onUpdate={() => window.scrollTo(0, 0)} history={ browserHistory }>
+      <Route path="/" component={ App }>
+        <IndexRoute component={ Main } />;
+        <Route path="/main" component={ Main } />
       </Route>
     </Router>
   </Provider>
