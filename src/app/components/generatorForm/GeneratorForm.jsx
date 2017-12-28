@@ -81,11 +81,30 @@ export default class GeneratorForm extends Component {
       getCharacterPersonalDecisions,
     } = this.props;
 
-    getCharacterParents();
-    getCharacterSiblings();
-    getCharacterFamilyAndFriends();
-    getCharacterLifeEvents();
-    getCharacterPersonalDecisions();
+    const {
+      randomToggle
+    } = this.state;
+
+    let ageInput = '',
+        backgroundInput = '',
+        charismaModifierInput = '',
+        classInput = '',
+        raceInput = '';
+
+    if (!randomToggle) {
+      console.log('Values from GeneratorForm: ', values.toJS());
+      ageInput = values.get('Age');
+      backgroundInput = values.get('Background');
+      charismaModifierInput = values.get('Charism Modifier');
+      classInput = values.get('Class');
+      raceInput = values.get('Race');
+    }
+
+    getCharacterParents({ Background: backgroundInput, CharacterClass: classInput });
+    getCharacterSiblings(raceInput);
+    getCharacterFamilyAndFriends(charismaModifierInput);
+    getCharacterLifeEvents(ageInput);
+    getCharacterPersonalDecisions({ Background: backgroundInput, CharacterClass: classInput });
   }
 
   render() {

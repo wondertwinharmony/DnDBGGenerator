@@ -3,10 +3,9 @@ import { currentAgeAndLifeEvents } from '../utils/lifeEvents/currentAgeAndLifeEv
 import { event } from '../utils/lifeEvents/event.js';
 import Immutable from 'immutable';
 
-export function getLifeEvents() {
+export function getLifeEvents(ageInput) {
   return function(dispatch, getState) {
-    //TODO: currentAgeAndLifeEvents needs to take an age input
-    const currentAgeAndLifeEventsResult = currentAgeAndLifeEvents(age);
+    const currentAgeAndLifeEventsResult = currentAgeAndLifeEvents(ageInput);
     const currentAgeString = getState().getIn(['core', 'rollInfo', 'Life Events', 'Current Age', currentAgeAndLifeEventsResult.currentAge ]);
 
     dispatch(actionCreators.resetLifeEvents({}));
