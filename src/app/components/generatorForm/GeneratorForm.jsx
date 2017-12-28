@@ -30,7 +30,7 @@ import { getFamilyAndFriends } from '../../thunks/familyAndFriendsThunks.js';
 import { getPersonalDecisions } from '../../thunks/personalDecisionsThunks.js'
 
 const formObject = {
-  form: 'About',
+  form: 'GeneratorForm',
   getFormState: state => state.get('form'),
 };
 
@@ -47,7 +47,7 @@ function mapDispatchToProps(dispatch) {
 
 @connect(null, mapDispatchToProps)
 @reduxForm(formObject)
-export default class About extends Component {
+export default class GeneratorForm extends Component {
   static PropTypes = {
     getCharacterParents: PropTypes.func,
     getCharacterSiblings: PropTypes.func,
@@ -69,7 +69,7 @@ export default class About extends Component {
     const { initializeForm } = this.props;
 
     this.setState({ randomToggle: !randomToggle });
-    initializeForm({form:'About', object: {}, keepDirty: false});
+    initializeForm({form:'GeneratorForm', object: {}, keepDirty: false});
   }
 
   onSubmit = (values) => {
@@ -97,14 +97,12 @@ export default class About extends Component {
     const { randomToggle } = this.state;
 
     return (
-      <div className='container about aboutContainer'>
+      <div>
         <Button secondary disabled={ !randomToggle } onClick={ this.onSubmit }>
           Roll Random
         </Button>
-        <Form
-          name='About'
-          onSubmit={ handleSubmit(this.onSubmit) }>
-          <h1>About</h1>
+        <Form name='GeneratorForm'>
+          <h1>GeneratorForm</h1>
           <Button primary disabled={ invalid || randomToggle } onClick={ handleSubmit(this.onSubmit) }>
             Submit
           </Button>
