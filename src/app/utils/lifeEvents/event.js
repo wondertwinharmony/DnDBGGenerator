@@ -14,9 +14,8 @@ import { causeOfDeath } from '../supplemental/causeOfDeath.js'
 
 export function event() {
   const roll = new Roll();
-  //TODO: remove this when done testing changes
-  // const eventRoll = roll.roll('d100');
-  const eventRoll = { result: 100 };
+  const eventRoll = roll.roll('d100');
+
   let adventureResult,
       boonId,
       crimeId,

@@ -108,7 +108,9 @@ export function getLifeEvents(ageInput) {
             const divinerResultString2 = getState().getIn(['core', 'rollInfo', 'Life Events', 'Event', divinerResult2.outcome]);
 
             eventResultString = `${getState().getIn(['core', 'rollInfo', 'Life Events', 'Event', eventResult.outcome])} Portent 1: ${divinerResultString1} Portent 2: ${divinerResultString2}`;
-          } else {
+          }
+
+          else {
             eventResultString = `${getState().getIn(['core', 'rollInfo', 'Life Events', 'Event', eventResult.outcome])} ${arcaneMattersResultString}`;
           }
 

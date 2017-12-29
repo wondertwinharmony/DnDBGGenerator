@@ -49,12 +49,12 @@ export function adventures() {
 
   if (adventuresRoll.result >= 81 && adventuresRoll.result <= 90) {
     const treasureShare = roll.roll('2d6').result;
-    return{ id: '8190', secondaryRollString: 'This event gives you an extra ' + treasureShare + ' gp.' };
+    return{ id: '8190', secondaryRollString: `This event gives you an extra ${treasureShare} gp.` };
   }
 
   if (adventuresRoll.result >= 91 && adventuresRoll.result <= 99) {
     const treasureShare = roll.roll('1d20+50').result;
-    return{ id: '9199', secondaryRollString: 'This event gives you an extra ' + treasureShare + ' gp.' };
+    return{ id: '9199', secondaryRollString: `This event gives you an extra ${treasureShare} gp.` };
   }
 
   if (adventuresRoll.result === 0) {
