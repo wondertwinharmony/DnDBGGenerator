@@ -3,16 +3,21 @@ import { parents } from '../utils/origins/parents.js';
 import { alignment } from '../utils/supplemental/alignment.js';
 import { birthplace } from '../utils/origins/birthplace.js';
 import { occupation } from '../utils/supplemental/occupation.js';
+import { parentsRace } from '../utils/origins/parentsRace.js';
 import { supplementalClass } from '../utils/supplemental/supplementalClass.js';
 import Immutable from 'immutable';
 
-export function getParents() {
+export function getParents(raceInput) {
   return function(dispatch, getState) {
+
     const parentsResult = parents();
     const parentsString = getState().getIn(['core', 'rollInfo', 'Origins', 'Parents', parentsResult]);
 
     const birthplaceResult = birthplace();
     const birthplaceString = getState().getIn(['core', 'rollInfo', 'Origins', 'Birthplace', birthplaceResult]);
+
+    const parentsRaceResult = parentsRace(raceInput);
+    const parentsRaceResultString = getState().getIn(['core', 'rollInfo', 'Origins', raceInput + ' Parents', parentsRaceResult]) || `Your parents were both of the ${raceInput} race.`;
 
     const parentsOneAlignment = alignment();
     const parentsOneAlignmentString = getState().getIn(['core', 'rollInfo', 'Supplemental Tables', 'Alignment', parentsOneAlignment]);
@@ -34,6 +39,7 @@ export function getParents() {
 
     dispatch(actionCreators.parentsResult({ parents: parentsString }));
     dispatch(actionCreators.birthplaceResult({ birthplace: birthplaceString }));
+    dispatch(actionCreators.parentsRaceResult({ parentsRace: parentsRaceResultString }));
 
     dispatch(actionCreators.parentsAlignmentResult({ parentAlignment: parentsOneAlignmentString, parent: 1 }));
     dispatch(actionCreators.parentsOccupationResult({ parentOccupation: parentsOneOccupationString, parent: 1 }));

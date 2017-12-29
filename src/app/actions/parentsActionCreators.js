@@ -12,6 +12,12 @@ export function birthplaceResult({ birthplace }) {
   });
 };
 
+export function parentsRaceResult({ parentsRace }) {
+  return({
+    type: 'parentsRaceResult',
+    parentsRace,
+  });
+};
 
 export function parentsAlignmentResult({ parentAlignment, parent }) {
   return({

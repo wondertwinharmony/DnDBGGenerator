@@ -100,7 +100,7 @@ export default class GeneratorForm extends Component {
       raceInput = values.get('Race');
     }
 
-    getCharacterParents({ Background: backgroundInput, CharacterClass: classInput });
+    getCharacterParents(raceInput);
     getCharacterSiblings(raceInput);
     getCharacterFamilyAndFriends(charismaModifierInput);
     getCharacterLifeEvents(ageInput);
