@@ -9,11 +9,14 @@ import { tragedies } from '../secondary/tragedies.js';
 import { war } from '../secondary/war.js';
 import { weirdStuff } from '../secondary/weirdStuff.js';
 import { createAdventurer } from '../creators/adventurerCreator.js';
+import { createCommoner } from '../creators/commonerCreator.js';
+import { causeOfDeath } from '../supplemental/causeOfDeath.js'
 
 export function event() {
   const roll = new Roll();
   const eventRoll = roll.roll('d100');
-  let adventureId,
+
+  let adventureResult,
       boonId,
       crimeId,
       arcaneMatterId,
@@ -24,18 +27,65 @@ export function event() {
       weirdStuffId,
       secondDieRoll,
       newAdventurer,
+      newCommoner,
       outcomeResultString;
 
   if (eventRoll.result >= 1 && eventRoll.result <= 10) {
     tragedyId = tragedies();
-    
-    return { outcome: '0110', outcomeResult: null, characterEncounter: null, secondaryTable: 'Tragedies', secondaryTableResult: tragedyId, multiTable: false };
+
+    if (tragedyId === '012') {
+      const familyFriendDeathId = causeOfDeath();
+
+      return { outcome: '0110', secondaryTable: 'Tragedies', secondaryTableResult: tragedyId, familyFriendDeathId, multiTable: false };
+    }
+
+    if (tragedyId === '5') {
+      const yearsImprisoned = roll.roll('d6').result;
+
+      return { outcome: '0110', secondaryTable: 'Tragedies', secondaryTableResult: tragedyId, yearsImprisoned, multiTable: false };
+    }
+
+    if (tragedyId === '11') {
+      const endedRelationshipRoll = roll.roll('d2').result;
+      const endedRelationship = endedRelationshipRoll === 1 ? 'It ended with bad feelings.' : 'It ended amicably.';
+
+      return { outcome: '0110', secondaryTable: 'Tragedies', secondaryTableResult: tragedyId, endedRelationship, multiTable: false };
+    }
+
+    if (tragedyId === '12') {
+      const romanticPartnerDeathId = causeOfDeath();
+      if (romanticPartnerDeathId === '2') {
+        const faultRoll = roll.roll('d12').result;
+        const fault = faultRoll === 1 ? 'You were directly or indirectly responsible for the murder.' : 'You were not responsible for the murder.';
+
+        return { outcome: '0110', secondaryTable: 'Tragedies', secondaryTableResult: tragedyId, romanticPartnerDeathId, fault, multiTable: false };
+      }
+
+      return { outcome: '0110', secondaryTable: 'Tragedies', secondaryTableResult: tragedyId, romanticPartnerDeathId, multiTable: false };
+    }
+
+    return { outcome: '0110', secondaryTable: 'Tragedies', secondaryTableResult: tragedyId, multiTable: false };
   }
 
   if (eventRoll.result >= 11 && eventRoll.result <= 20) {
+    const foundMoney = roll.roll('d20').result;
+    const stipend = roll.roll('d20').result;
     boonId = boons();
-    
-    return { outcome: '1120', outcomeResult: null, characterEncounter: null, secondaryTable: 'Boons', secondaryTableResult: boonId, multiTable: false };
+
+    if (boonId === '2') {
+      newCommoner = createCommoner();
+      return { outcome: '1120', commoner: newCommoner, secondaryTable: 'Boons', secondaryTableResult: boonId };
+    }
+
+    if (boonId === '4') {
+      return { outcome: '1120', foundMoney, secondaryTable: 'Boons', secondaryTableResult: boonId };
+    }
+
+    if (boonId === '10') {
+      return { outcome: '1120', stipend, secondaryTable: 'Boons', secondaryTableResult: boonId };
+    }
+
+    return { outcome: '1120', secondaryTable: 'Boons', secondaryTableResult: boonId };
   }
 
   if (eventRoll.result >= 21 && eventRoll.result <= 30) {
@@ -72,13 +122,39 @@ export function event() {
   }
 
   if (eventRoll.result >= 76 && eventRoll.result <= 80) {
-    adventureId = adventures();
+    adventureResult = adventures();
 
-    return { outcome: '7680', outcomeResult: null, characterEncounter: null, secondaryTable: 'Adventures', secondaryTableResult: adventureId, multiTable: false };
+    return { outcome: '7680', outcomeResult: null, characterEncounter: null, secondaryTable: 'Adventures', secondaryTableResult: adventureResult.id, secondaryRollString: adventureResult.secondaryRollString, multiTable: false };
   }
 
   if (eventRoll.result >= 81 && eventRoll.result <= 85) {
     supernaturalEventId = supernaturalEvents();
+
+    if (supernaturalEventId === '0105') {
+      const enslavedYears = roll.roll('d6').result;
+
+      return { outcome: '8185', outcomeResult: null, characterEncounter: null, secondaryTable: 'Supernatural Events', secondaryTableResult: supernaturalEventId, enslavedYears, multiTable: false };
+    }
+
+    if (supernaturalEventId === '1115') {
+      const additionalGold = roll.roll('d20+50').result;
+
+      return { outcome: '8185', outcomeResult: null, characterEncounter: null, secondaryTable: 'Supernatural Events', secondaryTableResult: supernaturalEventId, additionalGold, multiTable: false };
+    }
+
+    if (supernaturalEventId === '7175') {
+      const possessionType = {
+        1: 'celestial',
+        2: 'devil',
+        3: 'demon',
+        4: 'fey',
+        5: 'elemental',
+        6: 'undead',
+      };
+      const possession = possessionType[roll.roll('d6').result];
+
+      return { outcome: '8185', outcomeResult: null, characterEncounter: null, secondaryTable: 'Supernatural Events', secondaryTableResult: supernaturalEventId, possessionType, multiTable: false };
+    }
 
     return { outcome: '8185', outcomeResult: null, characterEncounter: null, secondaryTable: 'Supernatural Events', secondaryTableResult: supernaturalEventId, multiTable: false };
   }
@@ -90,8 +166,13 @@ export function event() {
   }
 
   if (eventRoll.result >= 91 && eventRoll.result <= 95) {
+    const sentenceYears = roll.roll('d4').result;
     crimeId = crime();
     punishmentId = punishment();
+
+    if (punishmentId === '912') {
+      return { outcome: '9195', outcomeResult: null, characterEncounter: null, secondaryTable: { one: 'Crime', two: 'Punishment' }, secondaryTableResult: { one: crimeId, two: punishmentId, sentenceYears }, multiTable: true };
+    }
 
     return { outcome: '9195', outcomeResult: null, characterEncounter: null, secondaryTable: { one: 'Crime', two: 'Punishment' }, secondaryTableResult: { one: crimeId, two: punishmentId }, multiTable: true };
   }
