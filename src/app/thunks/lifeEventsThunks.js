@@ -53,7 +53,12 @@ export function getLifeEvents() {
           const crimeResultString = getState().getIn(['core', 'rollInfo', 'Secondary Tables', eventResult.secondaryTable.one, eventResult.secondaryTableResult.one]);
           const punishmentResultString = getState().getIn(['core', 'rollInfo', 'Secondary Tables', eventResult.secondaryTable.two, eventResult.secondaryTableResult.two]);
 
-          eventResultString = getState().getIn(['core', 'rollInfo', 'Life Events', 'Event', eventResult.outcome]) + ' (Crime) ' + crimeResultString + ' (Punishment) ' + punishmentResultString;
+          if (eventResult.secondaryTableResult.sentenceYears) {
+            eventResultString = `${getState().getIn(['core', 'rollInfo', 'Life Events', 'Event', eventResult.outcome])} (Crime) ${crimeResultString} (Punishment) ${punishmentResultString} You served a sentence of ${eventResult.secondaryTableResult.sentenceYears} years or succeeded in escaping afer that time`;
+          } else {
+            eventResultString = `${getState().getIn(['core', 'rollInfo', 'Life Events', 'Event', eventResult.outcome])} (Crime) ${crimeResultString} (Punishment) ${punishmentResultString}`;
+          }
+
           dispatch(actionCreators.eventResult({ lifeEvent: eventResultString, lifeEventId: i+1 }));
         }
 

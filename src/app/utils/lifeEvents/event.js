@@ -14,8 +14,8 @@ import { createCommoner } from '../creators/commonerCreator.js';
 export function event() {
   const roll = new Roll();
   //TODO: remove this when done testing changes
-  const eventRoll = roll.roll('d100');
-  // const eventRoll = { result: 91 };
+  // const eventRoll = roll.roll('d100');
+  const eventRoll = { result: 91 };
   let adventureResult,
       boonId,
       crimeId,
@@ -109,8 +109,14 @@ export function event() {
   }
 
   if (eventRoll.result >= 91 && eventRoll.result <= 95) {
+    const sentenceYears = roll.roll('d4').result;
     crimeId = crime();
     punishmentId = punishment();
+
+    //TODO: 1d4 years
+    if (punishmentId === '912') {
+      return { outcome: '9195', outcomeResult: null, characterEncounter: null, secondaryTable: { one: 'Crime', two: 'Punishment' }, secondaryTableResult: { one: crimeId, two: punishmentId, sentenceYears }, multiTable: true };
+    }
 
     return { outcome: '9195', outcomeResult: null, characterEncounter: null, secondaryTable: { one: 'Crime', two: 'Punishment' }, secondaryTableResult: { one: crimeId, two: punishmentId }, multiTable: true };
   }
