@@ -92,7 +92,6 @@ export default class GeneratorForm extends Component {
         raceInput = '';
 
     if (!randomToggle) {
-      console.log('Values from GeneratorForm: ', values.toJS());
       ageInput = values.get('Age');
       backgroundInput = values.get('Background');
       charismaModifierInput = values.get('Charisma');

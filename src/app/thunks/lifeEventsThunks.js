@@ -180,7 +180,7 @@ export function getLifeEvents(ageInput) {
           else if (eventResult.secondaryTableResult === '3') {
             const yearsAsThrall = roll.roll('d6').result;
 
-            eventResultString = `${weirdStuffResultString} You live in that creature's thrall for ${yearsAsThrall} year(s).`;
+            eventResultString = `${weirdStuffResultString} You lived in that creature's thrall for ${yearsAsThrall} year(s).`;
           }
 
           else if (eventResult.secondaryTableResult === '4') {
