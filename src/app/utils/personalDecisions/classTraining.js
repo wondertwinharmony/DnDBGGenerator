@@ -4,7 +4,6 @@ import { supplementalClass } from '../supplemental/supplementalClass.js';
 export function classTraining(classInput) {
   const roll = new Roll();
   const classTrainingRoll = roll.roll('d6');
-  console.log('class from classTraining: ', classInput);
 
   if (classInput) {
     return ({ classTrainingRoll: classTrainingRoll.result.toString(), title: classInput });

@@ -21,9 +21,7 @@ export function background(backgroundInput) {
   const roll = new Roll();
   const backgroundRoll = roll.roll('d6');
   const randomBackgroundRoll = adventurerBackgrounds();
-  console.log('background from background function: ', backgroundInput);
   const title = backgroundInput || randomBackgroundRoll;
-  console.log('title from background: ', title);
 
   return ({ backgroundRoll: backgroundRoll.result.toString(), title });
 };
