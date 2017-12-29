@@ -5,10 +5,9 @@ import { createAdventurer } from '../utils/creators/adventurerCreator.js';
 import Roll from 'roll';
 import Immutable from 'immutable';
 
-export function getLifeEvents() {
+export function getLifeEvents(ageInput) {
   return function(dispatch, getState) {
-    const currentAgeAndLifeEventsResult = currentAgeAndLifeEvents(age);
-
+    const currentAgeAndLifeEventsResult = currentAgeAndLifeEvents(ageInput);
     const currentAgeString = getState().getIn(['core', 'rollInfo', 'Life Events', 'Current Age', currentAgeAndLifeEventsResult.currentAge ]);
 
     dispatch(actionCreators.resetLifeEvents({}));

@@ -94,13 +94,13 @@ export const raceOptions = [
   },
   {
     key: 7,
-    value: 'Half-elf',
-    text: 'Half-elf',
+    value: 'Half-Elf',
+    text: 'Half-Elf',
   },
   {
     key: 8,
-    value: 'Half-orc',
-    text: 'Half-orc',
+    value: 'Half-Orc',
+    text: 'Half-Orc',
   },
   {
     key: 9,
