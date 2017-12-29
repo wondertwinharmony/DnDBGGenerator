@@ -95,7 +95,7 @@ export default class GeneratorForm extends Component {
       console.log('Values from GeneratorForm: ', values.toJS());
       ageInput = values.get('Age');
       backgroundInput = values.get('Background');
-      charismaModifierInput = values.get('Charism Modifier');
+      charismaModifierInput = values.get('Charisma');
       classInput = values.get('Class');
       raceInput = values.get('Race');
     }
@@ -163,7 +163,7 @@ export default class GeneratorForm extends Component {
             selection
           />
           <Field
-            name='Charisma Modifer'
+            name='Charisma'
             component={ SemanticFormField }
             as={ Form.Dropdown }
             placeholder='Select Charisma Modifer'

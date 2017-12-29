@@ -11,7 +11,7 @@ import { race } from '../utils/supplemental/race.js';
 import { supplementalClass } from '../utils/supplemental/supplementalClass.js';
 import Immutable from 'immutable';
 
-export function getFamilyAndFriends() {
+export function getFamilyAndFriends(charismaModifierInput) {
   return function(dispatch, getState) {
     const familyResult = family();
     const familyString = getState().getIn(['core', 'rollInfo', 'Origins', 'Family and Friends', 'Family', familyResult]);
@@ -29,8 +29,7 @@ export function getFamilyAndFriends() {
     const childhoodHomeString = getState().getIn(['core', 'rollInfo', 'Origins', 'Family and Friends', 'Childhood Home', childhoodHomeResult]);
     dispatch(actionCreators.childhoodHomeResult({ childhoodHome: childhoodHomeString }));
 
-    //TODO charisma modifier hardcoded until inputs are implemented
-    const childhoodMemoriesResult = childhoodMemories(4);
+    const childhoodMemoriesResult = childhoodMemories(charismaModifierInput);
     const childhoodMemoriesString = getState().getIn(['core', 'rollInfo', 'Origins', 'Family and Friends', 'Childhood Memories', childhoodMemoriesResult]);
     dispatch(actionCreators.childhoodMemoriesResult({ childhoodMemories: childhoodMemoriesString }));
 
