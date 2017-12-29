@@ -6,8 +6,6 @@ export function numberOfSiblings(raceInput) {
   const numberOfSiblingsRollResult = (raceInput === 'Dwarf' || raceInput === 'Elf') ? numberOfSiblingsRoll - 2 : numberOfSiblingsRoll;
   let numberOfSiblingsResultRoll;
 
-
-  console.log(numberOfSiblingsRollResult);
   if (numberOfSiblingsRollResult <= 2) {
     return 0;
   }
