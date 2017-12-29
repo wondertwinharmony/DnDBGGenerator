@@ -9,11 +9,14 @@ import { tragedies } from '../secondary/tragedies.js';
 import { war } from '../secondary/war.js';
 import { weirdStuff } from '../secondary/weirdStuff.js';
 import { createAdventurer } from '../creators/adventurerCreator.js';
+import { createCommoner } from '../creators/commonerCreator.js';
 
 export function event() {
   const roll = new Roll();
+  //TODO: remove this when done testing changes
   const eventRoll = roll.roll('d100');
-  let adventureId,
+  // const eventRoll = { result: 91 };
+  let adventureResult,
       boonId,
       crimeId,
       arcaneMatterId,
@@ -24,18 +27,34 @@ export function event() {
       weirdStuffId,
       secondDieRoll,
       newAdventurer,
+      newCommoner,
       outcomeResultString;
 
   if (eventRoll.result >= 1 && eventRoll.result <= 10) {
     tragedyId = tragedies();
-    
+
     return { outcome: '0110', outcomeResult: null, characterEncounter: null, secondaryTable: 'Tragedies', secondaryTableResult: tragedyId, multiTable: false };
   }
 
   if (eventRoll.result >= 11 && eventRoll.result <= 20) {
+    const foundMoney = roll.roll('d20').result;
+    const stipend = roll.roll('d20').result;
     boonId = boons();
-    
-    return { outcome: '1120', outcomeResult: null, characterEncounter: null, secondaryTable: 'Boons', secondaryTableResult: boonId, multiTable: false };
+
+    if (boonId === '2') {
+      newCommoner = createCommoner();
+      return { outcome: '1120', commoner: newCommoner, secondaryTable: 'Boons', secondaryTableResult: boonId };
+    }
+
+    if (boonId === '4') {
+      return { outcome: '1120', foundMoney, secondaryTable: 'Boons', secondaryTableResult: boonId };
+    }
+
+    if (boonId === '10') {
+      return { outcome: '1120', stipend, secondaryTable: 'Boons', secondaryTableResult: boonId };
+    }
+
+    return { outcome: '1120', secondaryTable: 'Boons', secondaryTableResult: boonId };
   }
 
   if (eventRoll.result >= 21 && eventRoll.result <= 30) {
@@ -72,9 +91,9 @@ export function event() {
   }
 
   if (eventRoll.result >= 76 && eventRoll.result <= 80) {
-    adventureId = adventures();
+    adventureResult = adventures();
 
-    return { outcome: '7680', outcomeResult: null, characterEncounter: null, secondaryTable: 'Adventures', secondaryTableResult: adventureId, multiTable: false };
+    return { outcome: '7680', outcomeResult: null, characterEncounter: null, secondaryTable: 'Adventures', secondaryTableResult: adventureResult.id, secondaryRollString: adventureResult.secondaryRollString, multiTable: false };
   }
 
   if (eventRoll.result >= 81 && eventRoll.result <= 85) {

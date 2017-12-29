@@ -81,11 +81,11 @@ export default class GeneratorForm extends Component {
       getCharacterPersonalDecisions,
     } = this.props;
 
-    getCharacterParents();
-    getCharacterSiblings();
-    getCharacterFamilyAndFriends();
+    // getCharacterParents();
+    // getCharacterSiblings();
+    // getCharacterFamilyAndFriends();
     getCharacterLifeEvents();
-    getCharacterPersonalDecisions();
+    // getCharacterPersonalDecisions();
   }
 
   render() {
