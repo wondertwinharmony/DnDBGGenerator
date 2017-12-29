@@ -8,9 +8,9 @@ import { supplementalClass } from '../utils/supplemental/supplementalClass.js';
 import { birthOrder } from '../utils/origins/birthOrder.js';
 import Immutable from 'immutable';
 
-export function getSiblings() {
+export function getSiblings(raceInput) {
   return function(dispatch, getState) {
-    const numberOfSiblingsResults = numberOfSiblings();
+    const numberOfSiblingsResults = numberOfSiblings(raceInput);
 
     dispatch(actionCreators.resetStore({}));
     dispatch(actionCreators.siblingsResult({ numberOfSiblings: numberOfSiblingsResults }));

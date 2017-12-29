@@ -1,9 +1,10 @@
 import Roll from 'roll';
 
-export function childhoodMemories(charismaModifier) {
+export function childhoodMemories(charismaModifierInput) {
   const roll = new Roll();
-  const childhoodMemoriesRoll = roll.roll('3d6');
-  const childhoodMemoriesTotal = childhoodMemoriesRoll.result + charismaModifier;
+  const childhoodMemoriesRoll = roll.roll('3d6').result;
+  const charismaModifier = charismaModifierInput || 0;
+  const childhoodMemoriesTotal = childhoodMemoriesRoll + charismaModifier;
 
   if (childhoodMemoriesTotal <= 3) {
     return '3';
