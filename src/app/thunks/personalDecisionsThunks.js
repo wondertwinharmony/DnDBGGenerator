@@ -4,12 +4,12 @@ import { classTraining } from '../utils/personalDecisions/classTraining.js';
 import { supplementalClass } from '../utils/supplemental/supplementalClass.js';
 import Immutable from 'immutable';
 
-export function getPersonalDecisions() {
+export function getPersonalDecisions(backgroundAndClassInput) {
   return function(dispatch, getState) {
-    const backgroundResult = background();
+    const backgroundResult = background(backgroundAndClassInput.background);
     const backgroundString = getState().getIn(['core', 'rollInfo', 'Personal Decisions', 'Background', backgroundResult.title, backgroundResult.backgroundRoll]);
 
-    const classTrainingResult = classTraining();
+    const classTrainingResult = classTraining(backgroundAndClassInput.characterClass);
     const classTitle = classTrainingResult.randomTitle ? getState().getIn(['core', 'rollInfo', 'Supplemental Tables', 'Class', classTrainingResult.randomTitle]) :
     classTrainingResult.title;
 
