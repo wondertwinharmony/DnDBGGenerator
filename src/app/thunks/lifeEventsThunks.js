@@ -116,8 +116,59 @@ export function getLifeEvents() {
           dispatch(actionCreators.eventResult({ lifeEvent: eventResultString, lifeEventId: i+1 }));
         }
 
-        if (eventResult.secondaryTable === 'Tragedies' || eventResult.secondaryTable === 'Supernatural Events' ||
-        eventResult.secondaryTable === 'War' || eventResult.secondaryTable === 'Weird Stuff') {
+        if (eventResult.secondaryTable === 'Supernatural Events') {
+          const supernaturalEventsResultString = getState().getIn(['core', 'rollInfo', 'Secondary Tables', eventResult.secondaryTable, eventResult.secondaryTableResult]);
+
+          if (eventResult.enslavedYears) {
+            eventResultString = `${supernaturalEventsResultString} You were enslaved for ${eventResult.enslavedYears} years.`;
+          }
+
+          else if (eventResult.additionalGold) {
+            eventResultString = `${supernaturalEventsResultString} On a failed save you start with an additional ${eventResult.additionalGold} gp.`;
+          }
+
+          else if (eventResult.possession) {
+            eventResultString = `${supernaturalEventsResultString} You were possessed by a ${eventResult.possession}.`;
+          }
+
+          else {
+            eventResultString = `${supernaturalEventsResultString}`;
+          }
+
+          dispatch(actionCreators.eventResult({ lifeEvent: eventResultString, lifeEventId: i+1 }));
+        }
+
+        if (eventResult.secondaryTable === 'Tragedies') {
+          const tragediesResultString = getState().getIn(['core', 'rollInfo', 'Secondary Tables', eventResult.secondaryTable, eventResult.secondaryTableResult]);
+
+          if (eventResult.familyFriendDeathId) {
+            eventResultString = `${tragediesResultString} ${getState().getIn(['core', 'rollInfo', 'Supplemental Tables', 'Cause of Death', eventResult.familyFriendDeathId])}.`;
+          }
+
+          else if (eventResult.yearsImprisoned) {
+            eventResultString = `${tragediesResultString} You were imprisoned for ${eventResult.yearsImprisoned} years.`;
+          }
+
+          else if (eventResult.endedRelationship) {
+            eventResultString = `${tragediesResultString} ${eventResult.endedRelationship}`;
+          }
+
+          else if (eventResult.romanticPartnerDeathId && eventResult.fault) {
+            eventResultString = `${tragediesResultString} ${getState().getIn(['core', 'rollInfo', 'Supplemental Tables', 'Cause of Death', eventResult.romanticPartnerDeathId])}. ${eventResult.fault}`;
+          }
+
+          else if (eventResult.romanticPartnerDeathId) {
+            eventResultString = `${tragediesResultString} ${getState().getIn(['core', 'rollInfo', 'Supplemental Tables', 'Cause of Death', eventResult.romanticPartnerDeathId])}.`;
+          }
+
+          else {
+            eventResultString = `${tragediesResultString}`;
+          }
+
+          dispatch(actionCreators.eventResult({ lifeEvent: eventResultString, lifeEventId: i+1 }));
+        }
+
+        if (eventResult.secondaryTable === 'War' || eventResult.secondaryTable === 'Weird Stuff') {
           const secondaryTableResultString = getState().getIn(['core', 'rollInfo', 'Secondary Tables', eventResult.secondaryTable, eventResult.secondaryTableResult]);
 
           eventResultString = getState().getIn(['core', 'rollInfo', 'Life Events', 'Event', eventResult.outcome]) + ' (' + eventResult.secondaryTable + ') ' + secondaryTableResultString;
