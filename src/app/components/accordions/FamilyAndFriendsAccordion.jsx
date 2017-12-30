@@ -38,14 +38,6 @@ export default class FamilyAndFriendsAccordion extends Component {
     this.state = {
       activeIndex: {
         0: false,
-        1: false,
-        2: false,
-        3: false,
-        4: false,
-        5: false,
-        6: false,
-        7: false,
-        8: false,
       },
     };
   }
@@ -83,105 +75,54 @@ export default class FamilyAndFriendsAccordion extends Component {
                 active={ activeIndex[0] }
                 onClick={ this.handleClick }>
                 <Icon name='dropdown' />
-                Friends & Family Alignment
+                Family & Friends
               </Accordion.Title>
               <Accordion.Content active={ activeIndex[0] }>
+                <h4>Family & Friends Alignment</h4>
                 <p>
                   { alignment }
                 </p>
-              </Accordion.Content>
-
-              <Accordion.Title
-                active={ activeIndex[1] }
-                onClick={ this.handleClick }>
-                <Icon name='dropdown' />
-                Family
-              </Accordion.Title>
-              <Accordion.Content active={ activeIndex[1] }>
+                <h4>Family</h4>
                 <p>
                   { family }
                 </p>
-              </Accordion.Content>
-
-              <Accordion.Title
-                active={ activeIndex[2] }
-                onClick={ this.handleClick }>
-                <Icon name='dropdown' />
-                Friends & Family Attitude
-              </Accordion.Title>
-              <Accordion.Content active={ activeIndex[2] }>
+                <h4>Family & Friends Attitude</h4>
                 <p>
                   { attitude }
                 </p>
-              </Accordion.Content>
-
-              <Accordion.Title
-                active={ activeIndex[3] }
-                onClick={ this.handleClick }>
-                <Icon name='dropdown' />
-                Friends & Family Occupation
-              </Accordion.Title>
-              <Accordion.Content active={ activeIndex[3] }>
+                <h4>Family & Friends Alignment</h4>
+                <p>
+                  { alignment }
+                </p>
+                <h4>Family & Friends Occupation</h4>
                 <p>
                   { occupation }
                 </p>
-              </Accordion.Content>
-
-              <Accordion.Title
-                active={ activeIndex[4] }
-                onClick={ this.handleClick }>
-                <Icon name='dropdown' />
-                Absent Parent Fate
-              </Accordion.Title>
-              <Accordion.Content active={ activeIndex[4] }>
+                <h4>Family & Friends Alignment</h4>
+                <p>
+                  { alignment }
+                </p>
+                <h4>Absent Parent Fate</h4>
                 <p>
                   { absentParentFate }
                 </p>
-              </Accordion.Content>
-
-              <Accordion.Title
-                active={ activeIndex[5] }
-                onClick={ this.handleClick }>
-                <Icon name='dropdown' />
-                Friends & Family Race
-              </Accordion.Title>
-              <Accordion.Content active={ activeIndex[5] }>
+                <h4>Family & Friends Race</h4>
                 <p>
                   { race }
                 </p>
-              </Accordion.Content>
-
-              <Accordion.Title
-                active={ activeIndex[6] }
-                onClick={ this.handleClick }>
-                <Icon name='dropdown' />
-                Childhood Home
-              </Accordion.Title>
-              <Accordion.Content active={ activeIndex[6] }>
+                <h4>Childhood Home</h4>
                 <p>
                   { childhoodHome }
                 </p>
-              </Accordion.Content>
-
-              <Accordion.Title
-                active={ activeIndex[7] }
-                onClick={ this.handleClick }>
-                <Icon name='dropdown' />
-                Childhood Memories
-              </Accordion.Title>
-              <Accordion.Content active={ activeIndex[7] }>
+                <h4>Childhood Memories</h4>
                 <p>
                   { childhoodMemories }
                 </p>
-              </Accordion.Content>
-
-              <Accordion.Title
-                active={ activeIndex[8] }
-                onClick={ this.handleClick }>
-                <Icon name='dropdown' />
-                Friends & Family Class
-              </Accordion.Title>
-              <Accordion.Content active={ activeIndex[8] }>
+                <h4>Family & Friends Alignment</h4>
+                <p>
+                  { alignment }
+                </p>
+                <h4>Family & Friends Class</h4>
                 <p>
                   { familyClass }
                 </p>
