@@ -6,20 +6,24 @@ import { Image } from 'semantic-ui-react';
 
 function mapStateToProps(state) {
   return {
-
+    characterClass: state.getIn(['personalDecisions', 'CharacterClass']),
   };
 }
 
 @connect(mapStateToProps, null)
 export default class ClassImage extends Component {
   static PropTypes = {
-
+    characterClass: PropTypes.String,
   }
 
   render() {
+    const { characterClass } = this.props;
 
     return (
-      <div>
+      <div className='classImage'>
+        { characterClass.length &&
+          <Image src={ `/src/app/components/classImage/classSymbols/${characterClass}.png` } size='small'/>
+        }
       </div>
     )
   };
