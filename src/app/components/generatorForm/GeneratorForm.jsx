@@ -29,6 +29,18 @@ import { getLifeEvents } from '../../thunks/lifeEventsThunks.js';
 import { getFamilyAndFriends } from '../../thunks/familyAndFriendsThunks.js';
 import { getPersonalDecisions } from '../../thunks/personalDecisionsThunks.js'
 
+const race = {
+  1: 'Human',
+  2: 'Dwarf',
+  3: 'Elf',
+  4: 'Halfling',
+  5: 'Dragonborn',
+  6: 'Gnome',
+  7: 'Half-elf',
+  8: 'Half-orc',
+  9: 'Tiefling',
+};
+
 const formObject = {
   form: 'GeneratorForm',
   getFormState: state => state.get('form'),
@@ -89,7 +101,7 @@ export default class GeneratorForm extends Component {
         backgroundInput = '',
         charismaModifierInput = '',
         classInput = '',
-        raceInput = '';
+        raceInput = race[Math.floor(Math.random() * 9) + 1];
 
     if (!randomToggle) {
       ageInput = values.get('Age');
@@ -103,7 +115,7 @@ export default class GeneratorForm extends Component {
     getCharacterSiblings(raceInput);
     getCharacterFamilyAndFriends(charismaModifierInput);
     getCharacterLifeEvents(ageInput);
-    getCharacterPersonalDecisions({ background: backgroundInput, characterClass: classInput });
+    getCharacterPersonalDecisions({ background: backgroundInput, characterClass: classInput, characterRace: raceInput });
   }
 
   render() {
