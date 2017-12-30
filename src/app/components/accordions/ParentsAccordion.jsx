@@ -29,7 +29,7 @@ export default class ParentsAccordion extends Component {
 
     this.state = {
       activeIndex: {
-        0: false,
+        0: true,
       },
     };
   }
@@ -61,28 +61,26 @@ export default class ParentsAccordion extends Component {
             <Accordion inverted>
               <Accordion.Title
                 active={ activeIndex[0] }
-                onClick={ this.handleClick }>
-                <Icon name='dropdown' />
-                Parents
+                id='noClickAccordion'>
+                <h4>Parents</h4>
               </Accordion.Title>
               <Accordion.Content active={ activeIndex[0] }>
-                <h4>Parents</h4>
                 <p>
                   { parents }
                 </p>
-                <h4>Birthplace</h4>
+                <h5>Birthplace</h5>
                 <p>
                   { birthplace }
                 </p>
-                <h4>Parents' Alignment</h4>
+                <h5>Parents' Alignment</h5>
                 <p>
                   { alignment }
                 </p>
-                <h4>Parents' Occupation</h4>
+                <h5>Parents' Occupation</h5>
                 <p>
                   { occupation }
                 </p>
-                <h4>Parents' Class</h4>
+                <h5>Parents' Class</h5>
                 <p>
                   { parentsClass }
                 </p>

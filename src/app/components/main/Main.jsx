@@ -13,9 +13,8 @@ export default class Main extends Component {
 
   render() {
     return (
-      <div className='container main mainContainer'>
+      <div className='mainContainer'>
         <GeneratorForm/>
-        <ClassImage/>
         <ParentsAccordion/>
         <SiblingsAccordion/>
         <FamilyAndFriendsAccordion/>
@@ -25,3 +24,6 @@ export default class Main extends Component {
     )
   };
 }
+
+//TODO: figure out where to put this
+// <ClassImage/>

@@ -7,7 +7,6 @@ import LifeEventAccordion from './LifeEventAccordion.jsx';
 
 function mapStateToProps(state) {
   return {
-    age: state.getIn(['lifeEvents', 'Age']),
     numberOfLifeEvents: state.getIn(['lifeEvents', 'NumberOfLifeEvents']),
   };
 }
@@ -15,7 +14,6 @@ function mapStateToProps(state) {
 @connect(mapStateToProps, null)
 export default class LifeEventsAccordion extends Component {
   static PropTypes = {
-    age: PropTypes.String,
     numberOfLifeEvents: PropTypes.Number,
   }
 
@@ -37,10 +35,7 @@ export default class LifeEventsAccordion extends Component {
   }
 
   render() {
-    const {
-      age,
-      numberOfLifeEvents,
-    } = this.props;
+    const { numberOfLifeEvents } = this.props;
 
     const { activeIndex } = this.state;
 
@@ -56,16 +51,9 @@ export default class LifeEventsAccordion extends Component {
           <Segment inverted>
             <Accordion inverted>
               <Accordion.Title
-                active={ activeIndex[0] }
-                onClick={ this.handleClick }>
-                <Icon name='dropdown' />
-                Age
+                id='noClickAccordion'>
+                <h4>Life Events</h4>
               </Accordion.Title>
-              <Accordion.Content active={ activeIndex[0] }>
-                <p>
-                  { age }
-                </p>
-              </Accordion.Content>
             </Accordion>
             { lifeEvents }
           </Segment>

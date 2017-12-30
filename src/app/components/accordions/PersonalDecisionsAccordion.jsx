@@ -6,6 +6,7 @@ import { Accordion, Icon, Segment } from 'semantic-ui-react';
 
 function mapStateToProps(state) {
   return {
+    age: state.getIn(['lifeEvents', 'Age']),
     background: state.getIn(['personalDecisions', 'Background']),
     classTraining: state.getIn(['personalDecisions', 'ClassTraining']),
     characterBackground: state.getIn(['personalDecisions', 'CharacterBackground']),
@@ -17,6 +18,7 @@ function mapStateToProps(state) {
 @connect(mapStateToProps, null)
 export default class PersonalDecisionsAccordion extends Component {
   static PropTypes = {
+    age: PropTypes.String,
     background: PropTypes.String,
     classTraining: PropTypes.String,
     characterBackground: PropTypes.String,
@@ -29,7 +31,7 @@ export default class PersonalDecisionsAccordion extends Component {
 
     this.state = {
       activeIndex: {
-        0: false,
+        0: true,
       },
     };
   }
@@ -45,6 +47,7 @@ export default class PersonalDecisionsAccordion extends Component {
 
   render() {
     const {
+      age,
       background,
       classTraining,
       characterBackground,
@@ -61,23 +64,31 @@ export default class PersonalDecisionsAccordion extends Component {
             <Accordion inverted>
               <Accordion.Title
                 active={ activeIndex[0] }
-                onClick={ this.handleClick }>
-                <Icon name='dropdown' />
-                Personal Decisions
+                id='noClickAccordion'>
+                <h4>Personal Decisions</h4>
               </Accordion.Title>
               <Accordion.Content active={ activeIndex[0] }>
+                <h5>Character Age</h5>
+                <p>
+                  { age }
+                </p>
+                <h5>Character Race</h5>
                 <p>
                   { characterRace }
                 </p>
+                <h5>Character Background</h5>
                 <p>
                   { characterBackground }
                 </p>
+                <h5>Character chose background because...</h5>
                 <p>
                   { background }
                 </p>
+                <h5>Character Class</h5>
                 <p>
                   { characterClass }
                 </p>
+                <h5>Character chose class because...</h5>
                 <p>
                   { classTraining }
                 </p>

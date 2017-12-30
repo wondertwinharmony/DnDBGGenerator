@@ -1,12 +1,6 @@
 .mainContainer {
   height: 100%;
-  width: 200px;
-  margin-left: 30%;
-}
-
-.main {
-  background-color: #ceccc0;
-  h1 {
-    color: $light-green;
-  }
+  display: grid;
+  grid-template-columns: 200px 200px 200px 200px 200px 200px;
+  grid-gap: 10px 10px;
 }

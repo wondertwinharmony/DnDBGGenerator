@@ -37,7 +37,7 @@ export default class FamilyAndFriendsAccordion extends Component {
 
     this.state = {
       activeIndex: {
-        0: false,
+        0: true,
       },
     };
   }
@@ -73,36 +73,31 @@ export default class FamilyAndFriendsAccordion extends Component {
             <Accordion inverted>
               <Accordion.Title
                 active={ activeIndex[0] }
-                onClick={ this.handleClick }>
-                <Icon name='dropdown' />
-                Family & Friends
+                id='noClickAccordion'>
+                <h4>Family & Friends</h4>
               </Accordion.Title>
               <Accordion.Content active={ activeIndex[0] }>
-                <h4>Family & Friends Alignment</h4>
-                <p>
-                  { alignment }
-                </p>
-                <h4>Family</h4>
+                <h5>Family</h5>
                 <p>
                   { family }
                 </p>
-                <h4>Family & Friends Attitude</h4>
+                <h5>Family & Friends Attitude</h5>
                 <p>
                   { attitude }
                 </p>
-                <h4>Family & Friends Alignment</h4>
+                <h5>Family & Friends Alignment</h5>
                 <p>
                   { alignment }
                 </p>
-                <h4>Family & Friends Occupation</h4>
+                <h5>Family & Friends Occupation</h5>
                 <p>
                   { occupation }
                 </p>
-                <h4>Family & Friends Alignment</h4>
+                <h5>Family & Friends Alignment</h5>
                 <p>
                   { alignment }
                 </p>
-                <h4>Absent Parent Fate</h4>
+                <h5>Absent Parent Fate</h5>
                 <p>
                   { absentParentFate }
                 </p>
