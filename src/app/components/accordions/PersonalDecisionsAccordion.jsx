@@ -8,6 +8,9 @@ function mapStateToProps(state) {
   return {
     background: state.getIn(['personalDecisions', 'Background']),
     classTraining: state.getIn(['personalDecisions', 'ClassTraining']),
+    characterBackground: state.getIn(['personalDecisions', 'CharacterBackground']),
+    characterClass: state.getIn(['personalDecisions', 'CharacterClass']),
+    characterRace: state.getIn(['personalDecisions', 'CharacterRace']),
   };
 }
 
@@ -16,6 +19,9 @@ export default class PersonalDecisionsAccordion extends Component {
   static PropTypes = {
     background: PropTypes.String,
     classTraining: PropTypes.String,
+    characterBackground: PropTypes.String,
+    characterClass: PropTypes.String,
+    characterRace: PropTypes.String,
   }
 
   constructor(props) {
@@ -24,7 +30,6 @@ export default class PersonalDecisionsAccordion extends Component {
     this.state = {
       activeIndex: {
         0: false,
-        1: false,
       },
     };
   }
@@ -42,6 +47,9 @@ export default class PersonalDecisionsAccordion extends Component {
     const {
       background,
       classTraining,
+      characterBackground,
+      characterClass,
+      characterRace,
     } = this.props;
 
     const { activeIndex } = this.state;
@@ -55,21 +63,21 @@ export default class PersonalDecisionsAccordion extends Component {
                 active={ activeIndex[0] }
                 onClick={ this.handleClick }>
                 <Icon name='dropdown' />
-                Background
+                Personal Decisions
               </Accordion.Title>
               <Accordion.Content active={ activeIndex[0] }>
                 <p>
+                  { characterRace }
+                </p>
+                <p>
+                  { characterBackground }
+                </p>
+                <p>
                   { background }
                 </p>
-              </Accordion.Content>
-
-              <Accordion.Title
-                active={ activeIndex[1] }
-                onClick={ this.handleClick }>
-                <Icon name='dropdown' />
-                Class Training
-              </Accordion.Title>
-              <Accordion.Content active={ activeIndex[1] }>
+                <p>
+                  { characterClass }
+                </p>
                 <p>
                   { classTraining }
                 </p>
