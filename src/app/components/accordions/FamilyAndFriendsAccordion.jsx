@@ -93,33 +93,25 @@ export default class FamilyAndFriendsAccordion extends Component {
                 <p>
                   { occupation }
                 </p>
-                <h5>Family & Friends Alignment</h5>
+                <h5>Family & Friends Race</h5>
                 <p>
-                  { alignment }
+                  { race }
+                </p>
+                <h5>Family & Friends Class</h5>
+                <p>
+                  { familyClass }
                 </p>
                 <h5>Absent Parent Fate</h5>
                 <p>
                   { absentParentFate }
                 </p>
-                <h4>Family & Friends Race</h4>
-                <p>
-                  { race }
-                </p>
-                <h4>Childhood Home</h4>
+                <h5>Childhood Home</h5>
                 <p>
                   { childhoodHome }
                 </p>
-                <h4>Childhood Memories</h4>
+                <h5>Childhood Memories</h5>
                 <p>
                   { childhoodMemories }
-                </p>
-                <h4>Family & Friends Alignment</h4>
-                <p>
-                  { alignment }
-                </p>
-                <h4>Family & Friends Class</h4>
-                <p>
-                  { familyClass }
                 </p>
               </Accordion.Content>
             </Accordion>
