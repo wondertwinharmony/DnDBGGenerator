@@ -22,7 +22,7 @@ export default class ClassImage extends Component {
     return (
       <div>
         { characterClass.length &&
-          <Image src={ `/src/app/components/classImage/classSymbols/${characterClass}.png` } size='tiny'/>
+          <Image src={ `/src/app/components/classImage/classSymbols/${characterClass}.png` } size='large'/>
         }
       </div>
     )
