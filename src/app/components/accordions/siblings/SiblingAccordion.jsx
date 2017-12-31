@@ -30,14 +30,11 @@ export default class SiblingAccordion extends Component {
   constructor(props) {
     super(props);
 
+    const { id } = this.props;
+
     this.state = {
       activeIndex: {
-        0: false,
-        1: false,
-        2: false,
-        3: false,
-        4: false,
-        5: false,
+        0: id === 1 ? true : false,
       },
     };
   }
