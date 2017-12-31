@@ -5,7 +5,10 @@ import { birthplace } from '../utils/origins/birthplace.js';
 import { occupation } from '../utils/supplemental/occupation.js';
 import { parentsRace } from '../utils/origins/parentsRace.js';
 import { supplementalClass } from '../utils/supplemental/supplementalClass.js';
+import Roll from 'roll';
 import Immutable from 'immutable';
+
+const roll = new Roll();
 
 export function getParents(raceInput) {
   return function(dispatch, getState) {
@@ -20,7 +23,23 @@ export function getParents(raceInput) {
     const parentsRaceResultString = getState().getIn(['core', 'rollInfo', 'Origins', raceInput + ' Parents', parentsRaceResult]) || `Your parents were both of the ${raceInput} race.`;
 
     const parentsOneAlignment = alignment();
-    const parentsOneAlignmentString = getState().getIn(['core', 'rollInfo', 'Supplemental Tables', 'Alignment', parentsOneAlignment]);
+    let parentsOneAlignmentString = '';
+    const fiftyPercentOne = roll.roll('d2').result;
+    if (parentsOneAlignment === '3') {
+      parentsOneAlignmentString = fiftyPercentOne === 1 ? 'Chaotic evil' : 'Chaotic neutral';
+    }
+
+    else if (parentsOneAlignment === '1617') {
+      parentsOneAlignmentString = fiftyPercentOne === 1 ? 'Lawful good' : 'Lawful neutral';
+    }
+
+    else if (parentsOneAlignment === '18') {
+      parentsOneAlignmentString = fiftyPercentOne === 1 ? 'Chaotic good' : 'Chaotic neutral';
+    }
+
+    else {
+      parentsOneAlignmentString = getState().getIn(['core', 'rollInfo', 'Supplemental Tables', 'Alignment', parentsOneAlignment]);
+    }
 
     const parentsOneOccupation = occupation();
     const parentsOneOccupationString = getState().getIn(['core', 'rollInfo', 'Supplemental Tables', 'Occupation', parentsOneOccupation]);
@@ -29,7 +48,23 @@ export function getParents(raceInput) {
     const parentsOneClassString = getState().getIn(['core', 'rollInfo', 'Supplemental Tables', 'Class', parentsOneClass]);
 
     const parentsTwoAlignment = alignment();
-    const parentsTwoAlignmentString = getState().getIn(['core', 'rollInfo', 'Supplemental Tables', 'Alignment', parentsTwoAlignment]);
+    let parentsTwoAlignmentString = '';
+    const fiftyPercentTwo = roll.roll('d2').result;
+    if (parentsTwoAlignment === '3') {
+      parentsTwoAlignmentString = fiftyPercentTwo === 1 ? 'Chaotic evil' : 'Chaotic neutral';
+    }
+
+    else if (parentsTwoAlignment === '1617') {
+      parentsTwoAlignmentString = fiftyPercentTwo === 1 ? 'Lawful good' : 'Lawful neutral';
+    }
+
+    else if (parentsTwoAlignment === '18') {
+      parentsTwoAlignmentString = fiftyPercentTwo === 1 ? 'Chaotic good' : 'Chaotic neutral';
+    }
+
+    else {
+      parentsTwoAlignmentString = getState().getIn(['core', 'rollInfo', 'Supplemental Tables', 'Alignment', parentsTwoAlignment]);
+    }
 
     const parentsTwoOccupation = occupation();
     const parentsTwoOccupationString = getState().getIn(['core', 'rollInfo', 'Supplemental Tables', 'Occupation', parentsTwoOccupation]);

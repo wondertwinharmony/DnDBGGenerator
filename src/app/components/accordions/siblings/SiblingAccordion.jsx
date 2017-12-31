@@ -84,9 +84,16 @@ export default class SiblingAccordion extends Component {
               { birthOrder }
             </p>
             <h4>Sibling Occupation</h4>
-            <p>
-              { occupation }
-            </p>
+            { occupation === 'Adventurer' &&
+              <p>
+                { `${siblingClass} ${occupation.toLowerCase()}` }
+              </p>
+            }
+            { occupation !== 'Adventurer' &&
+              <p>
+                { occupation }
+              </p>
+            }
             <h4>Sibling Alignment</h4>
             <p>
               { alignment }
@@ -98,10 +105,6 @@ export default class SiblingAccordion extends Component {
             <h4>Sibling Attitude</h4>
             <p>
               { attitude }
-            </p>
-            <h4>Sibling Class</h4>
-            <p>
-              { siblingClass }
             </p>
           </Accordion.Content>
         </Accordion>
