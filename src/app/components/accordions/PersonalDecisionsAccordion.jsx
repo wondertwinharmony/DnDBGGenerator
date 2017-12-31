@@ -70,7 +70,7 @@ export default class PersonalDecisionsAccordion extends Component {
               <Accordion.Content active={ activeIndex[0] }>
                 <h5>Character Age</h5>
                 <p>
-                  { age }
+                  { `You are ${age}.` }
                 </p>
                 <h5>Character Race</h5>
                 <p>

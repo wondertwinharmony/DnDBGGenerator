@@ -26,7 +26,7 @@ export function getFamilyAndFriends(charismaModifierInput) {
 
     if (absentParentFateOneResult === '1') {
       const absentParentOneDeathResult = causeOfDeath();
-      const absentParentOneDeathString = getState().getIn(['core', 'rollInfo', 'Supplemental Tables', 'Cause of Death', absentParentOneDeathResult]);
+      const absentParentOneDeathString = `Your parent died. The cause of death was ${getState().getIn(['core', 'rollInfo', 'Supplemental Tables', 'Cause of Death', absentParentOneDeathResult])}`;
       dispatch(actionCreators.absentParentFateResult({ absentParentFate: absentParentOneDeathString, parent: 1 }));
     }
     else {
@@ -36,7 +36,7 @@ export function getFamilyAndFriends(charismaModifierInput) {
 
     if (absentParentFateTwoResult === '1') {
       const absentParentTwoDeathResult = causeOfDeath();
-      const absentParentTwoDeathString = getState().getIn(['core', 'rollInfo', 'Supplemental Tables', 'Cause of Death', absentParentTwoDeathResult]);
+      const absentParentTwoDeathString = `Your parent died. The cause of death was ${getState().getIn(['core', 'rollInfo', 'Supplemental Tables', 'Cause of Death', absentParentTwoDeathResult])}`;
       dispatch(actionCreators.absentParentFateResult({ absentParentFate: absentParentTwoDeathString, parent: 2 }))
     }
     else {
