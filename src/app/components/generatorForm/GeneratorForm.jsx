@@ -128,18 +128,18 @@ export default class GeneratorForm extends Component {
 
     return (
       <div>
-        <Button secondary disabled={ !randomToggle } onClick={ this.onSubmit }>
-          Roll Random
-        </Button>
         <Form name='GeneratorForm'>
-          <h1>GeneratorForm</h1>
-          <Button primary disabled={ invalid || randomToggle } onClick={ handleSubmit(this.onSubmit) }>
-            Submit
-          </Button>
-          <Checkbox
-            toggle
-            onChange={ this.toggleRandom }
-          />
+          <h2>Character Details</h2>
+          <p>Click the toggle to enable random character generation or input your character's details to generate background.</p>
+          <div className='randomRoll'>
+            <Checkbox
+              toggle
+              onChange={ this.toggleRandom }
+              />
+            <Button secondary disabled={ !randomToggle } onClick={ this.onSubmit }>
+              Roll Random
+            </Button>
+          </div>
           <Field
             name='Race'
             component={ SemanticFormField }
@@ -194,6 +194,9 @@ export default class GeneratorForm extends Component {
             disabled={ randomToggle }
             toggleWarning={ randomToggle }
           />
+        <Button primary disabled={ invalid || randomToggle } onClick={ handleSubmit(this.onSubmit) }>
+          Submit
+        </Button>
         </Form>
       </div>
     )

@@ -15,11 +15,11 @@ export default class Main extends Component {
     return (
       <div className='mainContainer'>
         <GeneratorForm/>
+        <PersonalDecisionsAccordion/>
         <ParentsAccordion/>
         <SiblingsAccordion/>
         <FamilyAndFriendsAccordion/>
         <LifeEventsAccordion/>
-        <PersonalDecisionsAccordion/>
       </div>
     )
   };
