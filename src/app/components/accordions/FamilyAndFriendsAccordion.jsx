@@ -79,7 +79,7 @@ export default class FamilyAndFriendsAccordion extends Component {
               <Accordion.Content active={ activeIndex[0] }>
                 <h5>Family</h5>
                 <p>
-                  { family }
+                  { family.get('familyString') }
                 </p>
                 <h5>Family & Friends Attitude</h5>
                 <p>
@@ -101,10 +101,28 @@ export default class FamilyAndFriendsAccordion extends Component {
                 <p>
                   { familyClass }
                 </p>
-                <h5>Absent Parent Fate</h5>
-                <p>
-                  { absentParentFate }
-                </p>
+                { family.get('familyKey') !== '7600' &&
+                  <h5>Absent Parent Fate</h5>
+                }
+                { (family.get('familyKey') === '3655' || family.get('familyKey') === '5675') &&
+                    <p>
+                      { `Other parent's fate: ${absentParentFate.get(1)}` }
+                    </p>
+                }
+                { (family.get('familyKey') !== '7600' &&
+                   family.get('familyKey') !== '3655' &&
+                   family.get('familyKey') !== '5675') &&
+                    <p>
+                      { `Mother's fate: ${absentParentFate.get(1)}` }
+                    </p>
+                }
+                { (family.get('familyKey') !== '7600' &&
+                   family.get('familyKey') !== '3655' &&
+                   family.get('familyKey') !== '5675') &&
+                    <p>
+                      { `Father's fate: ${absentParentFate.get(2)}` }
+                    </p>
+                }
                 <h5>Childhood Home</h5>
                 <p>
                   { childhoodHome }

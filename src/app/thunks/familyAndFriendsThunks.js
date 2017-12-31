@@ -18,7 +18,7 @@ export function getFamilyAndFriends(charismaModifierInput) {
   return function(dispatch, getState) {
     const familyResult = family();
     const familyString = getState().getIn(['core', 'rollInfo', 'Origins', 'Family and Friends', 'Family', familyResult]);
-    dispatch(actionCreators.familyResult({ family: familyString }));
+    dispatch(actionCreators.familyResult({ family: { familyString, familyKey: familyResult } }));
 
     const absentParentFateOneResult = absentParentFate();
     const absentParentFateOneString = getState().getIn(['core', 'rollInfo', 'Origins', 'Family and Friends', 'Absent Parent Fate', absentParentFateOneResult]);
