@@ -94,14 +94,16 @@ export function event() {
 
   if (eventRoll.result >= 31 && eventRoll.result <= 40) {
     secondDieRoll = roll.roll('1d6').result;
-    outcomeResultString = secondDieRoll%2 === 0 ? '\n\nEVENT SUPPLEMENTAL CHARACTER RESULTS: You did not cause the rift between you and the adventurer. Your enemy adventurer is a(n) ' : '\n\nEVENT SUPPLEMENTAL CHARACTER: You caused the rift between you and the adventurer.  Your enemy adventurer is a(n) '
     newAdventurer = createAdventurer();
+    newAdventurer.attitude = '34';
+    outcomeResultString = secondDieRoll%2 === 0 ? '\n\nEVENT SUPPLEMENTAL CHARACTER RESULTS: You did not cause the rift between you and the adventurer. Your enemy adventurer is a(n) ' : '\n\nEVENT SUPPLEMENTAL CHARACTER: You caused the rift between you and the adventurer.  Your enemy adventurer is a(n) '
 
     return { outcome: '3140', outcomeResult: outcomeResultString, characterEncounter: newAdventurer, secondaryTable: null, multiTable: false };
   }
 
   if (eventRoll.result >= 41 && eventRoll.result <= 50) {
     newAdventurer = createAdventurer();
+    newAdventurer.attitude = '510';
     outcomeResultString = '\n\nEVENT SUPPLEMENTAL CHARACTER: Your adventurer friend is a(n) ';
 
     return { outcome: '4150', outcomeResult: outcomeResultString, characterEncounter: newAdventurer, secondaryTable: null, multiTable: false };

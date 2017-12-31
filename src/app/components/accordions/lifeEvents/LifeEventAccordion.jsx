@@ -13,15 +13,28 @@ function mapStateToProps(state, { id }) {
 @connect(mapStateToProps, null)
 export default class LifeEventAccordion extends Component {
   static PropTypes = {
+    id: PropTypes.Number,
     lifeEvent: PropTypes.String,
   }
 
   constructor(props) {
     super(props);
 
+    const { id } = this.props;
+
     this.state = {
-      activeIndex: { 0: false },
+      activeIndex: {
+        0: id === 1 ? true : false,
+      },
     };
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const { id } = this.props;
+    this.setState({ activeIndex: {
+        0: id === 1 ? true : false,
+      },
+    });
   }
 
   handleClick = (e, titleProps) => {

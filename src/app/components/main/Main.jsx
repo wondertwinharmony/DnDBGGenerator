@@ -7,19 +7,23 @@ import SiblingsAccordion from '../accordions/siblings/SiblingsAccordion.jsx';
 import FamilyAndFriendsAccordion from '../accordions/FamilyAndFriendsAccordion.jsx';
 import LifeEventsAccordion from '../accordions/lifeEvents/LifeEventsAccordion.jsx';
 import PersonalDecisionsAccordion from '../accordions/PersonalDecisionsAccordion.jsx';
+import ClassImage from '../classImage/ClassImage.jsx';
 
 export default class Main extends Component {
 
   render() {
     return (
-      <div className='container main mainContainer'>
+      <div className='mainContainer'>
         <GeneratorForm/>
+        <PersonalDecisionsAccordion/>
         <ParentsAccordion/>
         <SiblingsAccordion/>
         <FamilyAndFriendsAccordion/>
         <LifeEventsAccordion/>
-        <PersonalDecisionsAccordion/>
       </div>
     )
   };
 }
+
+//TODO: figure out where to put this
+// <ClassImage/>

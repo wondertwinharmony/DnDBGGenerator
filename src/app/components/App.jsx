@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 function App({ children }) {
   return (
     <div className="container">
+      <h1 className='appHeader'>Dungeons & Dragons Character Background Generator</h1>
       {children}
     </div>
   );

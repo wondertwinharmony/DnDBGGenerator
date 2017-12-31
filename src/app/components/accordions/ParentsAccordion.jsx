@@ -30,10 +30,6 @@ export default class ParentsAccordion extends Component {
     this.state = {
       activeIndex: {
         0: true,
-        1: false,
-        2: false,
-        3: false,
-        4: false,
       },
     };
   }
@@ -65,59 +61,26 @@ export default class ParentsAccordion extends Component {
             <Accordion inverted>
               <Accordion.Title
                 active={ activeIndex[0] }
-                onClick={ this.handleClick }>
-                <Icon name='dropdown' />
-                Parents
+                id='noClickAccordion'>
+                <h4>Parents</h4>
               </Accordion.Title>
               <Accordion.Content active={ activeIndex[0] }>
                 <p>
                   { parents }
                 </p>
-              </Accordion.Content>
-
-              <Accordion.Title
-                active={ activeIndex[1] }
-                onClick={ this.handleClick }>
-                <Icon name='dropdown' />
-                Birthplace
-              </Accordion.Title>
-              <Accordion.Content active={ activeIndex[1] }>
+                <h5>Birthplace</h5>
                 <p>
                   { birthplace }
                 </p>
-              </Accordion.Content>
-
-              <Accordion.Title
-                active={ activeIndex[2] }
-                onClick={ this.handleClick }>
-                <Icon name='dropdown' />
-                Alignment
-              </Accordion.Title>
-              <Accordion.Content active={ activeIndex[2] }>
+                <h5>Parents' Alignment</h5>
                 <p>
                   { alignment }
                 </p>
-              </Accordion.Content>
-
-              <Accordion.Title
-                active={ activeIndex[3] }
-                onClick={ this.handleClick }>
-                <Icon name='dropdown' />
-                Occupation
-              </Accordion.Title>
-              <Accordion.Content active={ activeIndex[3] }>
+                <h5>Parents' Occupation</h5>
                 <p>
                   { occupation }
                 </p>
-              </Accordion.Content>
-
-              <Accordion.Title
-                active={ activeIndex[4] }
-                onClick={ this.handleClick }>
-                <Icon name='dropdown' />
-                Class
-              </Accordion.Title>
-              <Accordion.Content active={ activeIndex[4] }>
+                <h5>Parents' Class</h5>
                 <p>
                   { parentsClass }
                 </p>
