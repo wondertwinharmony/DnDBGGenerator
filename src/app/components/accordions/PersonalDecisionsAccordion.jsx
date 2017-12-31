@@ -76,14 +76,6 @@ export default class PersonalDecisionsAccordion extends Component {
                 <p>
                   { characterRace }
                 </p>
-                <h5>Character Background</h5>
-                <p>
-                  { characterBackground }
-                </p>
-                <h5>Character chose background because...</h5>
-                <p>
-                  { background }
-                </p>
                 <h5>Character Class</h5>
                 <p>
                   { characterClass }
@@ -91,6 +83,14 @@ export default class PersonalDecisionsAccordion extends Component {
                 <h5>Character chose class because...</h5>
                 <p>
                   { classTraining }
+                </p>
+                <h5>Character Background</h5>
+                <p>
+                  { characterBackground }
+                </p>
+                <h5>Character chose background because...</h5>
+                <p>
+                  { background }
                 </p>
               </Accordion.Content>
             </Accordion>
