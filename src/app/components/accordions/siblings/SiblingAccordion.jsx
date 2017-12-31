@@ -18,6 +18,7 @@ function mapStateToProps(state, { id }) {
 @connect(mapStateToProps, null)
 export default class SiblingAccordion extends Component {
   static PropTypes = {
+    id: PropTypes.Number,
     birthOrder: PropTypes.Object,
     occupation: PropTypes.Object,
     alignment: PropTypes.Object,
@@ -29,16 +30,21 @@ export default class SiblingAccordion extends Component {
   constructor(props) {
     super(props);
 
+    const { id } = this.props;
+
     this.state = {
       activeIndex: {
-        0: false,
-        1: false,
-        2: false,
-        3: false,
-        4: false,
-        5: false,
+        0: id === 1 ? true : false,
       },
     };
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const { id } = this.props;
+    this.setState({ activeIndex: {
+        0: id === 1 ? true : false,
+      },
+    });
   }
 
   handleClick = (e, titleProps) => {
@@ -52,6 +58,7 @@ export default class SiblingAccordion extends Component {
 
   render() {
     const {
+      id,
       birthOrder,
       occupation,
       alignment,
@@ -69,69 +76,30 @@ export default class SiblingAccordion extends Component {
             active={ activeIndex[0] }
             onClick={ this.handleClick }>
             <Icon name='dropdown' />
-            Birth Order
+            Sibling #{ id }
           </Accordion.Title>
           <Accordion.Content active={ activeIndex[0] }>
+            <h4>Birth Order</h4>
             <p>
               { birthOrder }
             </p>
-          </Accordion.Content>
-
-          <Accordion.Title
-            active={ activeIndex[1] }
-            onClick={ this.handleClick }>
-            <Icon name='dropdown' />
-            Occupation
-          </Accordion.Title>
-          <Accordion.Content active={ activeIndex[1] }>
+            <h4>Sibling Occupation</h4>
             <p>
               { occupation }
             </p>
-          </Accordion.Content>
-
-          <Accordion.Title
-            active={ activeIndex[2] }
-            onClick={ this.handleClick }>
-            <Icon name='dropdown' />
-            Alignment
-          </Accordion.Title>
-          <Accordion.Content active={ activeIndex[2] }>
+            <h4>Sibling Alignment</h4>
             <p>
               { alignment }
             </p>
-          </Accordion.Content>
-
-          <Accordion.Title
-            active={ activeIndex[3] }
-            onClick={ this.handleClick }>
-            <Icon name='dropdown' />
-            Status
-          </Accordion.Title>
-          <Accordion.Content active={ activeIndex[3] }>
+            <h4>Sibling Status</h4>
             <p>
               { status }
             </p>
-          </Accordion.Content>
-
-          <Accordion.Title
-            active={ activeIndex[4] }
-            onClick={ this.handleClick }>
-            <Icon name='dropdown' />
-            Attitude
-          </Accordion.Title>
-          <Accordion.Content active={ activeIndex[4] }>
+            <h4>Sibling Attitude</h4>
             <p>
               { attitude }
             </p>
-          </Accordion.Content>
-
-          <Accordion.Title
-            active={ activeIndex[5] }
-            onClick={ this.handleClick }>
-            <Icon name='dropdown' />
-            Sibling Class
-          </Accordion.Title>
-          <Accordion.Content active={ activeIndex[5] }>
+            <h4>Sibling Class</h4>
             <p>
               { siblingClass }
             </p>

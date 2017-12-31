@@ -11,7 +11,6 @@ import Immutable from 'immutable';
 export function getSiblings(raceInput) {
   return function(dispatch, getState) {
     const numberOfSiblingsResults = numberOfSiblings(raceInput);
-
     dispatch(actionCreators.resetStore({}));
     dispatch(actionCreators.siblingsResult({ numberOfSiblings: numberOfSiblingsResults }));
 

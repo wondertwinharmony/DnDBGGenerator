@@ -29,6 +29,18 @@ import { getLifeEvents } from '../../thunks/lifeEventsThunks.js';
 import { getFamilyAndFriends } from '../../thunks/familyAndFriendsThunks.js';
 import { getPersonalDecisions } from '../../thunks/personalDecisionsThunks.js'
 
+const race = {
+  1: 'Human',
+  2: 'Dwarf',
+  3: 'Elf',
+  4: 'Halfling',
+  5: 'Dragonborn',
+  6: 'Gnome',
+  7: 'Half-elf',
+  8: 'Half-orc',
+  9: 'Tiefling',
+};
+
 const formObject = {
   form: 'GeneratorForm',
   getFormState: state => state.get('form'),
@@ -89,7 +101,7 @@ export default class GeneratorForm extends Component {
         backgroundInput = '',
         charismaModifierInput = '',
         classInput = '',
-        raceInput = '';
+        raceInput = race[Math.floor(Math.random() * 9) + 1];
 
     if (!randomToggle) {
       ageInput = values.get('Age');
@@ -103,7 +115,7 @@ export default class GeneratorForm extends Component {
     getCharacterSiblings(raceInput);
     getCharacterFamilyAndFriends(charismaModifierInput);
     getCharacterLifeEvents(ageInput);
-    getCharacterPersonalDecisions({ background: backgroundInput, characterClass: classInput });
+    getCharacterPersonalDecisions({ background: backgroundInput, characterClass: classInput, characterRace: raceInput });
   }
 
   render() {
@@ -115,73 +127,79 @@ export default class GeneratorForm extends Component {
     const { randomToggle } = this.state;
 
     return (
-      <div>
-        <Button secondary disabled={ !randomToggle } onClick={ this.onSubmit }>
-          Roll Random
-        </Button>
+      <div className='generatorFormContainer'>
         <Form name='GeneratorForm'>
-          <h1>GeneratorForm</h1>
+          <h2>Character Details</h2>
+          <p>Click the toggle to enable random character generation or input your character's details to generate background.</p>
+          <div className='fieldContainer'>
+            <div className='randomRoll'>
+              <Checkbox
+                toggle
+                onChange={ this.toggleRandom }
+                />
+              <Button secondary disabled={ !randomToggle } onClick={ this.onSubmit }>
+                Roll Random
+              </Button>
+            </div>
+            <Field
+              name='Race'
+              component={ SemanticFormField }
+              as={ Form.Dropdown }
+              placeholder='Select Race'
+              options={ raceOptions }
+              validate={ [required] }
+              disabled={ randomToggle }
+              toggleWarning={ randomToggle }
+              selection
+              />
+            <Field
+              name='Class'
+              component={ SemanticFormField }
+              as={ Form.Dropdown }
+              placeholder='Select Class'
+              options={ classOptions }
+              validate={ [required] }
+              disabled={ randomToggle }
+              toggleWarning={ randomToggle }
+              selection
+              />
+            <Field
+              name='Background'
+              component={ SemanticFormField }
+              as={ Form.Dropdown }
+              placeholder='Select Background'
+              options={ backgroundOptions }
+              validate={ [required] }
+              disabled={ randomToggle }
+              toggleWarning={ randomToggle }
+              selection
+              />
+            <Field
+              name='Charisma'
+              component={ SemanticFormField }
+              as={ Form.Dropdown }
+              placeholder='Select CHA Modifer'
+              options={ charismaOptions }
+              validate={ [required] }
+              disabled={ randomToggle }
+              toggleWarning={ randomToggle }
+              selection
+              />
+            <Field
+              id='ageInputField'
+              name='Age'
+              type='text'
+              as={ Form.Input }
+              component={ SemanticFormField }
+              placeholder='Age'
+              validate={ [required, number, minValue1] }
+              disabled={ randomToggle }
+              toggleWarning={ randomToggle }
+              />
+          </div>
           <Button primary disabled={ invalid || randomToggle } onClick={ handleSubmit(this.onSubmit) }>
             Submit
           </Button>
-          <Checkbox
-            toggle
-            onChange={ this.toggleRandom }
-          />
-          <Field
-            name='Race'
-            component={ SemanticFormField }
-            as={ Form.Dropdown }
-            placeholder='Select Race'
-            options={ raceOptions }
-            validate={ [required] }
-            disabled={ randomToggle }
-            toggleWarning={ randomToggle }
-            selection
-          />
-          <Field
-            name='Class'
-            component={ SemanticFormField }
-            as={ Form.Dropdown }
-            placeholder='Select Class'
-            options={ classOptions }
-            validate={ [required] }
-            disabled={ randomToggle }
-            toggleWarning={ randomToggle }
-            selection
-          />
-          <Field
-            name='Background'
-            component={ SemanticFormField }
-            as={ Form.Dropdown }
-            placeholder='Select Background'
-            options={ backgroundOptions }
-            validate={ [required] }
-            disabled={ randomToggle }
-            toggleWarning={ randomToggle }
-            selection
-          />
-          <Field
-            name='Charisma'
-            component={ SemanticFormField }
-            as={ Form.Dropdown }
-            placeholder='Select Charisma Modifer'
-            options={ charismaOptions }
-            validate={ [required] }
-            disabled={ randomToggle }
-            toggleWarning={ randomToggle }
-            selection
-          />
-          <Field
-            name='Age'
-            type='text'
-            as={ Form.Input }
-            component={ SemanticFormField }
-            placeholder='Age'
-            validate={ [required, number, minValue1] }
-            disabled={ randomToggle }
-            toggleWarning={ randomToggle }
-          />
         </Form>
       </div>
     )
