@@ -27,7 +27,8 @@ import { getParents } from '../../thunks/parentsThunks.js';
 import { getSiblings } from '../../thunks/siblingsThunks.js';
 import { getLifeEvents } from '../../thunks/lifeEventsThunks.js';
 import { getFamilyAndFriends } from '../../thunks/familyAndFriendsThunks.js';
-import { getPersonalDecisions } from '../../thunks/personalDecisionsThunks.js'
+import { getPersonalDecisions } from '../../thunks/personalDecisionsThunks.js';
+import ClassImage from '../classImage/ClassImage.jsx';
 
 const race = {
   1: 'Human',
@@ -201,6 +202,10 @@ export default class GeneratorForm extends Component {
             Submit
           </Button>
         </Form>
+        <div className='classImage'>
+          <p><b>Class Symbol</b></p>
+          <ClassImage/>
+        </div>
       </div>
     )
   };

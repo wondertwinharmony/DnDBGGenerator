@@ -20,9 +20,9 @@ export default class ClassImage extends Component {
     const { characterClass } = this.props;
 
     return (
-      <div className='classImage'>
+      <div>
         { characterClass.length &&
-          <Image src={ `/src/app/components/classImage/classSymbols/${characterClass}.png` } size='small'/>
+          <Image src={ `/src/app/components/classImage/classSymbols/${characterClass}.png` } size='tiny'/>
         }
       </div>
     )

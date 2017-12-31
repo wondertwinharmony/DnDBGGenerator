@@ -48,7 +48,7 @@ export default class LifeEventsAccordion extends Component {
     return (
       <div>
         { numberOfLifeEvents > 0 &&
-          <Segment inverted>
+          <Segment className='segmentBottomMargin' inverted>
             <Accordion inverted>
               <Accordion.Title
                 id='noClickAccordion'>
