@@ -69,6 +69,8 @@ export default class SiblingAccordion extends Component {
 
     const { activeIndex } = this.state;
 
+    const siblingOccupation = occupation === 'Adventurer' ? `${siblingClass.toLowerCase()} ${occupation.toLowerCase()}` : occupation.toLowerCase();
+
     return (
       <div>
         <Accordion inverted>
@@ -79,32 +81,8 @@ export default class SiblingAccordion extends Component {
             Sibling #{ id }
           </Accordion.Title>
           <Accordion.Content active={ activeIndex[0] }>
-            <h4>Birth Order</h4>
             <p>
-              { birthOrder }
-            </p>
-            <h4>Sibling Occupation</h4>
-            { occupation === 'Adventurer' &&
-              <p>
-                { `${siblingClass} ${occupation.toLowerCase()}` }
-              </p>
-            }
-            { occupation !== 'Adventurer' &&
-              <p>
-                { occupation }
-              </p>
-            }
-            <h4>Sibling Alignment</h4>
-            <p>
-              { alignment }
-            </p>
-            <h4>Sibling Status</h4>
-            <p>
-              { status }
-            </p>
-            <h4>Sibling Attitude</h4>
-            <p>
-              { attitude }
+              { `${birthOrder} Sibling: This sibling is a ${alignment.toLowerCase()} ${siblingOccupation}. They are ${status.toLowerCase()}. They feel ${attitude.toLowerCase()} towards you.` }
             </p>
           </Accordion.Content>
         </Accordion>
@@ -112,3 +90,31 @@ export default class SiblingAccordion extends Component {
     )
   };
 }
+
+// <h5>Birth Order</h5>
+// <p>
+//   { birthOrder }
+// </p>
+// <h5>Sibling Occupation</h5>
+// { occupation === 'Adventurer' &&
+//   <p>
+//     { `${siblingClass} ${occupation.toLowerCase()}` }
+//   </p>
+// }
+// { occupation !== 'Adventurer' &&
+//   <p>
+//     { occupation }
+//   </p>
+// }
+// <h5>Sibling Alignment</h5>
+// <p>
+//   { alignment }
+// </p>
+// <h5>Sibling Status</h5>
+// <p>
+//   { status }
+// </p>
+// <h5>Sibling Attitude</h5>
+// <p>
+//   { attitude }
+// </p>

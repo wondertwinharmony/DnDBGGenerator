@@ -78,7 +78,7 @@ export default class FamilyAndFriendsAccordion extends Component {
                 <h4>Family & Friends</h4>
               </Accordion.Title>
               <Accordion.Content active={ activeIndex[0] }>
-                <h5>Family</h5>
+                <h5>Who Raised You</h5>
                 <p>
                   { family.get('familyString') }
                 </p>

@@ -8,9 +8,9 @@ export function adventures() {
     const fingersMissing = Math.floor(Math.random() * 3) + 1;
     const toesMissing = roll.roll('1d4').result;
     const injury = {
-      1: 'You are missing an ear.',
-      2: `You are missing ${fingersMissing} finger(s).`,
-      3: `You are missing ${toesMissing} toe(s).`,
+      1: 'you are missing an ear.',
+      2: `you are missing ${fingersMissing} finger(s).`,
+      3: `you are missing ${toesMissing} toe(s).`,
     };
 
     const injuryRoll = Math.floor(Math.random() * 3) + 1;
@@ -49,12 +49,12 @@ export function adventures() {
 
   if (adventuresRoll.result >= 81 && adventuresRoll.result <= 90) {
     const treasureShare = roll.roll('2d6').result;
-    return{ id: '8190', secondaryRollString: `This event gives you an extra ${treasureShare} gp.` };
+    return{ id: '8190', secondaryRollString: `Ypu have ${treasureShare} gp left from your share of it.` };
   }
 
   if (adventuresRoll.result >= 91 && adventuresRoll.result <= 99) {
     const treasureShare = roll.roll('1d20+50').result;
-    return{ id: '9199', secondaryRollString: `This event gives you an extra ${treasureShare} gp.` };
+    return{ id: '9199', secondaryRollString: `You have ${treasureShare} gp left from your share of it.` };
   }
 
   if (adventuresRoll.result === 0) {

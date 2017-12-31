@@ -96,7 +96,7 @@ export function event() {
     secondDieRoll = roll.roll('1d6').result;
     newAdventurer = createAdventurer();
     newAdventurer.attitude = '34';
-    outcomeResultString = secondDieRoll%2 === 0 ? '\n\nEVENT SUPPLEMENTAL CHARACTER RESULTS: You did not cause the rift between you and the adventurer. Your enemy adventurer is a(n) ' : '\n\nEVENT SUPPLEMENTAL CHARACTER: You caused the rift between you and the adventurer.  Your enemy adventurer is a(n) '
+    outcomeResultString = secondDieRoll%2 === 0 ? ' You did not cause the rift between you and the adventurer. Your enemy adventurer is a(n) ' : ' You caused the rift between you and the adventurer.  Your enemy adventurer is a(n) '
 
     return { outcome: '3140', outcomeResult: outcomeResultString, characterEncounter: newAdventurer, secondaryTable: null, multiTable: false };
   }
@@ -104,21 +104,21 @@ export function event() {
   if (eventRoll.result >= 41 && eventRoll.result <= 50) {
     newAdventurer = createAdventurer();
     newAdventurer.attitude = '510';
-    outcomeResultString = '\n\nEVENT SUPPLEMENTAL CHARACTER: Your adventurer friend is a(n) ';
+    outcomeResultString = ' Your adventurer friend is a(n) ';
 
     return { outcome: '4150', outcomeResult: outcomeResultString, characterEncounter: newAdventurer, secondaryTable: null, multiTable: false };
   }
 
   if (eventRoll.result >= 51 && eventRoll.result <= 70) {
     secondDieRoll = roll.roll('2d6').result;
-    outcomeResultString = ' (Roll Results) This event gives you an extra ' + secondDieRoll + ' gp.';
+    outcomeResultString = ` This event gives you an extra ${secondDieRoll} gp.`;
 
     return { outcome: '5170', outcomeResult: outcomeResultString, characterEncounter: null, secondaryTable: null, multiTable: false };
   }
 
   if (eventRoll.result >= 71 && eventRoll.result <= 75) {
     newAdventurer = createAdventurer();
-    outcomeResultString = '\n\nEVENT SUPPLEMENTAL CHARACTER: This important person is a(n) ';
+    outcomeResultString = ' This important person is a(n) ';
 
     return { outcome: '7175', outcomeResult: outcomeResultString , secondaryTable: null, characterEncounter: newAdventurer, multiTable: false };
   }

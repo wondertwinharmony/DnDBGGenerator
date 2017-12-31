@@ -51,12 +51,25 @@ export function getLifeEvents(ageInput) {
           else {
             supplementalCharacterAlignmentString = getState().getIn(['core', 'rollInfo', 'Supplemental Tables', 'Alignment', eventResult.characterEncounter.alignment]).toLowerCase();
           }
+
           const supplementalCharacterRaceString =  getState().getIn(['core', 'rollInfo', 'Supplemental Tables', 'Race', eventResult.characterEncounter.race]).toLowerCase();
           const supplementalCharacterClassString = getState().getIn(['core', 'rollInfo', 'Supplemental Tables', 'Class', eventResult.characterEncounter.class]).toLowerCase();
           const supplementalCharacterAttitudeString = getState().getIn(['core', 'rollInfo', 'Supplemental Tables', 'Attitude', eventResult.characterEncounter.attitude]).toLowerCase();
           const supplementalCharacterStatusString = getState().getIn(['core', 'rollInfo', 'Supplemental Tables', 'Status', eventResult.characterEncounter.status]).toLowerCase();
           const supplementalCharacterBackgroundString = eventResult.characterEncounter.background.toLowerCase();
-          const supplementalCharacterString = `${eventResult.outcomeResult} ${supplementalCharacterRaceString} ${supplementalCharacterClassString}  with a(n) ${supplementalCharacterBackgroundString} background and a ${supplementalCharacterAlignmentString} alignment. This supplemental character is ${supplementalCharacterAttitudeString} towards you and is currently ${supplementalCharacterStatusString}.`;
+          let supplementalCharacterString = '';
+
+          if (eventResult.outcome === '3140') {
+            supplementalCharacterString = `${eventResult.outcomeResult} ${supplementalCharacterRaceString} ${supplementalCharacterClassString}  with a(n) ${supplementalCharacterBackgroundString} background and a ${supplementalCharacterAlignmentString} alignment. This character is ${supplementalCharacterAttitudeString} towards you and is currently ${supplementalCharacterStatusString}.  Work with your DM to determine this hostile character’s identity and the danger this enemy poses to you.`;
+          }
+
+          if (eventResult.outcome === '4150') {
+            supplementalCharacterString = `${eventResult.outcomeResult} ${supplementalCharacterRaceString} ${supplementalCharacterClassString}  with a(n) ${supplementalCharacterBackgroundString} background and a ${supplementalCharacterAlignmentString} alignment. This character is ${supplementalCharacterAttitudeString} towards you and is currently ${supplementalCharacterStatusString}. Work with your DM to add more detail to this friendly character and establish how your friendship began.`;
+          }
+
+          if (eventResult.outcome === '7175') {
+            supplementalCharacterString = `${eventResult.outcomeResult} ${supplementalCharacterRaceString} ${supplementalCharacterClassString}  with a(n) ${supplementalCharacterBackgroundString} background and a ${supplementalCharacterAlignmentString} alignment. This character is ${supplementalCharacterAttitudeString} towards you and is currently ${supplementalCharacterStatusString}. Work out additional details with your DM as needed to fit this character into your backstory.`;
+          }
 
           completeEventResultString = eventResultString + supplementalCharacterString;
           dispatch(actionCreators.eventResult({ lifeEvent: completeEventResultString, lifeEventId: i+1 }));
@@ -71,9 +84,9 @@ export function getLifeEvents(ageInput) {
           const punishmentResultString = getState().getIn(['core', 'rollInfo', 'Secondary Tables', eventResult.secondaryTable.two, eventResult.secondaryTableResult.two]);
 
           if (eventResult.secondaryTableResult.sentenceYears) {
-            eventResultString = `${getState().getIn(['core', 'rollInfo', 'Life Events', 'Event', eventResult.outcome])} (Crime) ${crimeResultString} (Punishment) ${punishmentResultString} You served a sentence of ${eventResult.secondaryTableResult.sentenceYears} years or succeeded in escaping after that time.`;
+            eventResultString = `${getState().getIn(['core', 'rollInfo', 'Life Events', 'Event', eventResult.outcome])} The crime was ${crimeResultString}. ${punishmentResultString} You served a sentence of ${eventResult.secondaryTableResult.sentenceYears} year(s) or succeeded in escaping after that time.`;
           } else {
-            eventResultString = `${getState().getIn(['core', 'rollInfo', 'Life Events', 'Event', eventResult.outcome])} (Crime) ${crimeResultString} (Punishment) ${punishmentResultString}`;
+            eventResultString = `${getState().getIn(['core', 'rollInfo', 'Life Events', 'Event', eventResult.outcome])} The crime was ${crimeResultString}. ${punishmentResultString}`;
           }
 
           dispatch(actionCreators.eventResult({ lifeEvent: eventResultString, lifeEventId: i+1 }));
@@ -81,7 +94,7 @@ export function getLifeEvents(ageInput) {
 
         if (eventResult.secondaryTable === 'Adventures') {
           const adventureResultString = getState().getIn(['core', 'rollInfo', 'Secondary Tables', eventResult.secondaryTable, eventResult.secondaryTableResult]);
-          eventResultString = `${getState().getIn(['core', 'rollInfo', 'Life Events', 'Event', eventResult.outcome])} ${adventureResultString} ${eventResult.secondaryRollString}`;
+          eventResultString = `${getState().getIn(['core', 'rollInfo', 'Life Events', 'Event', eventResult.outcome])} ${adventureResultString} ${eventResult.secondaryRollString} Work with your DM to determine the nature of the adventure and the creatures you encountered.`;
 
           dispatch(actionCreators.eventResult({ lifeEvent: eventResultString, lifeEventId: i+1 }));
         }
@@ -117,11 +130,11 @@ export function getLifeEvents(ageInput) {
           }
 
           else if (eventResult.foundMoney) {
-            eventResultString = `${boonsResultString} You found ${eventResult.foundMoney} gp.`;
+            eventResultString = `${boonsResultString} You have ${eventResult.foundMoney} gp in addition to your regular starting funds.`;
           }
 
           else if (eventResult.stipend) {
-            eventResultString = `${boonsResultString} You inherited enough wealth to live a comfortable lifestyle for ${eventResult.stipend} year(s).`;
+            eventResultString = `A distant relative left you a stipend that enables you to live at the comfortable lifestyle for ${eventResult.stipend} year(s). ${boonsResultString}`;
           }
 
           else {
@@ -155,15 +168,15 @@ export function getLifeEvents(ageInput) {
           const supernaturalEventsResultString = getState().getIn(['core', 'rollInfo', 'Secondary Tables', eventResult.secondaryTable, eventResult.secondaryTableResult]);
 
           if (eventResult.enslavedYears) {
-            eventResultString = `${supernaturalEventsResultString} You were enslaved for ${eventResult.enslavedYears} year(s).`;
+            eventResultString = `${supernaturalEventsResultString} ${eventResult.enslavedYears} year(s).`;
           }
 
           else if (eventResult.additionalGold) {
-            eventResultString = `${supernaturalEventsResultString} On a failed save you start with an additional ${eventResult.additionalGold} gp.`;
+            eventResultString = `${supernaturalEventsResultString} ${eventResult.additionalGold} gp.`;
           }
 
           else if (eventResult.possession) {
-            eventResultString = `${supernaturalEventsResultString} You were possessed by a ${eventResult.possession}.`;
+            eventResultString = `${supernaturalEventsResultString} The type of creature that possessed you was a(n) ${eventResult.possession}.`;
           }
 
           else {
@@ -181,7 +194,7 @@ export function getLifeEvents(ageInput) {
           }
 
           else if (eventResult.yearsImprisoned) {
-            eventResultString = `${tragediesResultString} You were imprisoned for ${eventResult.yearsImprisoned} year(s).`;
+            eventResultString = `${tragediesResultString} ${eventResult.yearsImprisoned} year(s) at hard labor, in jail, or shackled to an oar in a slave galley.`;
           }
 
           else if (eventResult.endedRelationship) {
@@ -209,19 +222,19 @@ export function getLifeEvents(ageInput) {
           if (eventResult.secondaryTableResult === '1') {
             const weeksAsToad = roll.roll('d4').result;
 
-            eventResultString = `${weirdStuffResultString} You remained as a toad for ${weeksAsToad} week(s).`;
+            eventResultString = `${weirdStuffResultString} ${weeksAsToad} week(s).`;
           }
 
           else if (eventResult.secondaryTableResult === '3') {
             const yearsAsThrall = roll.roll('d6').result;
 
-            eventResultString = `${weirdStuffResultString} You lived in that creature's thrall for ${yearsAsThrall} year(s).`;
+            eventResultString = `${weirdStuffResultString} ${yearsAsThrall} year(s).`;
           }
 
           else if (eventResult.secondaryTableResult === '4') {
             const prisonerMonths = roll.roll('d4').result;
 
-            eventResultString = `${weirdStuffResultString} You were held as a prisoner for ${prisonerMonths} month(s).`;
+            eventResultString = `${weirdStuffResultString} ${prisonerMonths} month(s) until adventurers killed it.`;
           }
 
           else if (eventResult.secondaryTableResult === '6') {
@@ -249,7 +262,7 @@ export function getLifeEvents(ageInput) {
             const supplementalCharacterAttitudeString = getState().getIn(['core', 'rollInfo', 'Supplemental Tables', 'Attitude', adventurerEmployer.attitude]).toLowerCase();
             const supplementalCharacterStatusString = getState().getIn(['core', 'rollInfo', 'Supplemental Tables', 'Status', adventurerEmployer.status]).toLowerCase();
             const supplementalCharacterBackgroundString = adventurerEmployer.background.toLowerCase();
-            const supplementalCharacterString = `Your employer was a ${supplementalCharacterRaceString} ${supplementalCharacterClassString}  with a(n) ${supplementalCharacterBackgroundString} background and a ${supplementalCharacterAlignmentString} alignment. This supplemental character is ${supplementalCharacterAttitudeString} towards you and is currently ${supplementalCharacterStatusString}.`;
+            const supplementalCharacterString = `Your employer was a ${supplementalCharacterRaceString} ${supplementalCharacterClassString}  with a(n) ${supplementalCharacterBackgroundString} background and a ${supplementalCharacterAlignmentString} alignment. This character is ${supplementalCharacterAttitudeString} towards you and is currently ${supplementalCharacterStatusString}.`;
 
             eventResultString = `${weirdStuffResultString} ${supplementalCharacterString}`;
           }
@@ -257,7 +270,7 @@ export function getLifeEvents(ageInput) {
           else if (eventResult.secondaryTableResult === '7') {
             const yearsInsane = roll.roll('d6').result;
 
-            eventResultString = `${weirdStuffResultString} You were insane for ${yearsInsane} year(s).`;
+            eventResultString = `${weirdStuffResultString} ${yearsInsane} year(s) and recently regained your sanity. A tic or some other bit of odd behavior might linger.`;
           }
 
           else {
@@ -270,7 +283,7 @@ export function getLifeEvents(ageInput) {
         if (eventResult.secondaryTable === 'War') {
           const secondaryTableResultString = getState().getIn(['core', 'rollInfo', 'Secondary Tables', eventResult.secondaryTable, eventResult.secondaryTableResult]);
 
-          eventResultString = getState().getIn(['core', 'rollInfo', 'Life Events', 'Event', eventResult.outcome]) + ' (' + eventResult.secondaryTable + ') ' + secondaryTableResultString;
+          eventResultString = `${getState().getIn(['core', 'rollInfo', 'Life Events', 'Event', eventResult.outcome])} ${secondaryTableResultString}`;
           dispatch(actionCreators.eventResult({ lifeEvent: eventResultString, lifeEventId: i+1 }));
         }
       }
