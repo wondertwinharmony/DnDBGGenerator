@@ -39,6 +39,14 @@ export default class SiblingAccordion extends Component {
     };
   }
 
+  componentWillReceiveProps(nextProps) {
+    const { id } = this.props;
+    this.setState({ activeIndex: {
+        0: id === 1 ? true : false,
+      },
+    });
+  }
+
   handleClick = (e, titleProps) => {
     const { activeIndex } = this.state;
     const index = titleProps;
