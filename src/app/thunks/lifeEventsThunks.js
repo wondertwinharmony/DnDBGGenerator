@@ -5,6 +5,8 @@ import { createAdventurer } from '../utils/creators/adventurerCreator.js';
 import Roll from 'roll';
 import Immutable from 'immutable';
 
+const roll = new Roll();
+
 export function getLifeEvents(ageInput) {
   return function(dispatch, getState) {
     const currentAgeAndLifeEventsResult = currentAgeAndLifeEvents(ageInput);
@@ -32,7 +34,23 @@ export function getLifeEvents(ageInput) {
         }
 
         else {
-          const supplementalCharacterAlignmentString = getState().getIn(['core', 'rollInfo', 'Supplemental Tables', 'Alignment', eventResult.characterEncounter.alignment]).toLowerCase();
+          let supplementalCharacterAlignmentString = '';
+          const fiftyPercentSupplemental = roll.roll('d2').result;
+          if (eventResult.characterEncounter.alignment === '3') {
+            supplementalCharacterAlignmentString = fiftyPercentSupplemental === 1 ? 'chaotic evil' : 'chaotic neutral';
+          }
+
+          else if (eventResult.characterEncounter.alignment === '1617') {
+            supplementalCharacterAlignmentString = fiftyPercentSupplemental === 1 ? 'lawful good' : 'lawful neutral';
+          }
+
+          else if (eventResult.characterEncounter.alignment === '18') {
+            supplementalCharacterAlignmentString = fiftyPercentSupplemental === 1 ? 'chaotic good' : 'chaotic neutral';
+          }
+
+          else {
+            supplementalCharacterAlignmentString = getState().getIn(['core', 'rollInfo', 'Supplemental Tables', 'Alignment', eventResult.characterEncounter.alignment]).toLowerCase();
+          }
           const supplementalCharacterRaceString =  getState().getIn(['core', 'rollInfo', 'Supplemental Tables', 'Race', eventResult.characterEncounter.race]).toLowerCase();
           const supplementalCharacterClassString = getState().getIn(['core', 'rollInfo', 'Supplemental Tables', 'Class', eventResult.characterEncounter.class]).toLowerCase();
           const supplementalCharacterAttitudeString = getState().getIn(['core', 'rollInfo', 'Supplemental Tables', 'Attitude', eventResult.characterEncounter.attitude]).toLowerCase();
@@ -72,8 +90,24 @@ export function getLifeEvents(ageInput) {
           const boonsResultString = getState().getIn(['core', 'rollInfo', 'Secondary Tables', eventResult.secondaryTable, eventResult.secondaryTableResult]);
 
           if (eventResult.commoner) {
+            let supplementalCharacterAlignmentString = '';
+            const fiftyPercentSupplemental = roll.roll('d2').result;
+            if (eventResult.commoner.alignment === '3') {
+              supplementalCharacterAlignmentString = fiftyPercentSupplemental === 1 ? 'chaotic evil' : 'chaotic neutral';
+            }
+
+            else if (eventResult.commoner.alignment === '1617') {
+              supplementalCharacterAlignmentString = fiftyPercentSupplemental === 1 ? 'lawful good' : 'lawful neutral';
+            }
+
+            else if (eventResult.commoner.alignment === '18') {
+              supplementalCharacterAlignmentString = fiftyPercentSupplemental === 1 ? 'chaotic good' : 'chaotic neutral';
+            }
+
+            else {
+              supplementalCharacterAlignmentString = getState().getIn(['core', 'rollInfo', 'Supplemental Tables', 'Alignment', eventResult.commoner.alignment]).toLowerCase();
+            }
             const supplementalCharacterRaceString =  getState().getIn(['core', 'rollInfo', 'Supplemental Tables', 'Race', eventResult.commoner.race]);
-            const supplementalCharacterAlignmentString = getState().getIn(['core', 'rollInfo', 'Supplemental Tables', 'Alignment', eventResult.commoner.alignment]).toLowerCase();
             const supplementalCharacterAttitudeString = getState().getIn(['core', 'rollInfo', 'Supplemental Tables', 'Attitude', eventResult.commoner.attitude]).toLowerCase();
             const supplementalCharacterStatusString = getState().getIn(['core', 'rollInfo', 'Supplemental Tables', 'Status', eventResult.commoner.status]).toLowerCase();
             const supplementalCharacterBackgroundString = eventResult.commoner.background.toLowerCase();
@@ -171,7 +205,6 @@ export function getLifeEvents(ageInput) {
 
         if (eventResult.secondaryTable === 'Weird Stuff') {
           const weirdStuffResultString = getState().getIn(['core', 'rollInfo', 'Secondary Tables', eventResult.secondaryTable, eventResult.secondaryTableResult]);
-          const roll = new Roll();
 
           if (eventResult.secondaryTableResult === '1') {
             const weeksAsToad = roll.roll('d4').result;
@@ -194,7 +227,23 @@ export function getLifeEvents(ageInput) {
           else if (eventResult.secondaryTableResult === '6') {
             const adventurerEmployer = createAdventurer();
 
-            const supplementalCharacterAlignmentString = getState().getIn(['core', 'rollInfo', 'Supplemental Tables', 'Alignment', adventurerEmployer.alignment]).toLowerCase();
+            let supplementalCharacterAlignmentString = '';
+            const fiftyPercentSupplemental = roll.roll('d2').result;
+            if (adventurerEmployer.alignment === '3') {
+              supplementalCharacterAlignmentString = fiftyPercentSupplemental === 1 ? 'chaotic evil' : 'chaotic neutral';
+            }
+
+            else if (adventurerEmployer.alignment === '1617') {
+              supplementalCharacterAlignmentString = fiftyPercentSupplemental === 1 ? 'lawful good' : 'lawful neutral';
+            }
+
+            else if (adventurerEmployer.alignment === '18') {
+              supplementalCharacterAlignmentString = fiftyPercentSupplemental === 1 ? 'chaotic good' : 'chaotic neutral';
+            }
+
+            else {
+              supplementalCharacterAlignmentString = getState().getIn(['core', 'rollInfo', 'Supplemental Tables', 'Alignment', adventurerEmployer.alignment]).toLowerCase();
+            }
             const supplementalCharacterRaceString =  getState().getIn(['core', 'rollInfo', 'Supplemental Tables', 'Race', adventurerEmployer.race]).toLowerCase();
             const supplementalCharacterClassString = getState().getIn(['core', 'rollInfo', 'Supplemental Tables', 'Class', adventurerEmployer.class]).toLowerCase();
             const supplementalCharacterAttitudeString = getState().getIn(['core', 'rollInfo', 'Supplemental Tables', 'Attitude', adventurerEmployer.attitude]).toLowerCase();

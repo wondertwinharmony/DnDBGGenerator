@@ -45,7 +45,7 @@ export default class SiblingsAccordion extends Component {
           </Segment>
         }
         { numberOfSiblings > 0 &&
-          <Segment inverted>
+          <Segment className='segmentBottomMargin' inverted>
             <Accordion inverted>
               <Accordion.Title
                 id='noClickAccordion'>

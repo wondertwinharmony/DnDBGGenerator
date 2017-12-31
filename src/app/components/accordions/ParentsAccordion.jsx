@@ -74,16 +74,32 @@ export default class ParentsAccordion extends Component {
                 </p>
                 <h5>Parents' Alignment</h5>
                 <p>
-                  { alignment }
+                  { `Mother: ${alignment.get(1)}` }
+                </p>
+                <p>
+                  { `Father: ${alignment.get(2)}` }
                 </p>
                 <h5>Parents' Occupation</h5>
-                <p>
-                  { occupation }
-                </p>
-                <h5>Parents' Class</h5>
-                <p>
-                  { parentsClass }
-                </p>
+                { occupation.get(1) === 'Adventurer' &&
+                  <p>
+                    { `Mother: ${parentsClass.get(1)} ${occupation.get(1).toLowerCase()}` }
+                  </p>
+                }
+                { occupation.get(1) !== 'Adventurer' &&
+                  <p>
+                    { `Mother: ${occupation.get(1)}` }
+                  </p>
+                }
+                { occupation.get(2) === 'Adventurer' &&
+                  <p>
+                    { `Father: ${parentsClass.get(2)} ${occupation.get(2).toLowerCase()} ` }
+                  </p>
+                }
+                { occupation.get(2) !== 'Adventurer' &&
+                  <p>
+                    { `Father: ${occupation.get(2)}` }
+                  </p>
+                }
               </Accordion.Content>
             </Accordion>
           </Segment>

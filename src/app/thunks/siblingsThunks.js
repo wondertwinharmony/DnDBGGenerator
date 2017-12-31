@@ -6,7 +6,10 @@ import { status } from '../utils/supplemental/status.js';
 import { attitude } from '../utils/supplemental/attitude.js';
 import { supplementalClass } from '../utils/supplemental/supplementalClass.js';
 import { birthOrder } from '../utils/origins/birthOrder.js';
+import Roll from 'roll';
 import Immutable from 'immutable';
+
+const roll = new Roll();
 
 export function getSiblings(raceInput) {
   return function(dispatch, getState) {
@@ -26,7 +29,23 @@ export function getSiblings(raceInput) {
         dispatch(actionCreators.siblingsOccupationResult({ siblingsOccupation: siblingsOccupationString, sibling: i+1 }));
 
         const siblingsAlignment = alignment();
-        const siblingsAlignmentString = getState().getIn(['core', 'rollInfo', 'Supplemental Tables', 'Alignment', siblingsAlignment]);
+        let siblingsAlignmentString = '';
+        const fiftyPercent = roll.roll('d2').result;
+        if (siblingsAlignment === '3') {
+          siblingsAlignmentString = fiftyPercent === 1 ? 'Chaotic evil' : 'Chaotic neutral';
+        }
+
+        else if (siblingsAlignment === '1617') {
+          siblingsAlignmentString = fiftyPercent === 1 ? 'Lawful good' : 'Lawful neutral';
+        }
+
+        else if (siblingsAlignment === '18') {
+          siblingsAlignmentString = fiftyPercent === 1 ? 'Chaotic good' : 'Chaotic neutral';
+        }
+
+        else {
+          siblingsAlignmentString = getState().getIn(['core', 'rollInfo', 'Supplemental Tables', 'Alignment', siblingsAlignment]);
+        }
         dispatch(actionCreators.siblingsAlignmentResult({ siblingsAlignment: siblingsAlignmentString, sibling: i+1 }));
 
         const siblingsStatus = status();
