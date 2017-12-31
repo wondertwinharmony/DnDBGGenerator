@@ -104,11 +104,6 @@ export const raceOptions = [
   },
   {
     key: 9,
-    value: 'Dwarf',
-    text: 'Dwarf',
-  },
-  {
-    key: 10,
     value: 'Tiefling',
     text: 'Tiefling',
   },

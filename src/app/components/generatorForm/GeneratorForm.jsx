@@ -127,76 +127,79 @@ export default class GeneratorForm extends Component {
     const { randomToggle } = this.state;
 
     return (
-      <div>
+      <div className='generatorFormContainer'>
         <Form name='GeneratorForm'>
           <h2>Character Details</h2>
           <p>Click the toggle to enable random character generation or input your character's details to generate background.</p>
-          <div className='randomRoll'>
-            <Checkbox
-              toggle
-              onChange={ this.toggleRandom }
+          <div className='fieldContainer'>
+            <div className='randomRoll'>
+              <Checkbox
+                toggle
+                onChange={ this.toggleRandom }
+                />
+              <Button secondary disabled={ !randomToggle } onClick={ this.onSubmit }>
+                Roll Random
+              </Button>
+            </div>
+            <Field
+              name='Race'
+              component={ SemanticFormField }
+              as={ Form.Dropdown }
+              placeholder='Select Race'
+              options={ raceOptions }
+              validate={ [required] }
+              disabled={ randomToggle }
+              toggleWarning={ randomToggle }
+              selection
               />
-            <Button secondary disabled={ !randomToggle } onClick={ this.onSubmit }>
-              Roll Random
-            </Button>
+            <Field
+              name='Class'
+              component={ SemanticFormField }
+              as={ Form.Dropdown }
+              placeholder='Select Class'
+              options={ classOptions }
+              validate={ [required] }
+              disabled={ randomToggle }
+              toggleWarning={ randomToggle }
+              selection
+              />
+            <Field
+              name='Background'
+              component={ SemanticFormField }
+              as={ Form.Dropdown }
+              placeholder='Select Background'
+              options={ backgroundOptions }
+              validate={ [required] }
+              disabled={ randomToggle }
+              toggleWarning={ randomToggle }
+              selection
+              />
+            <Field
+              name='Charisma'
+              component={ SemanticFormField }
+              as={ Form.Dropdown }
+              placeholder='Select CHA Modifer'
+              options={ charismaOptions }
+              validate={ [required] }
+              disabled={ randomToggle }
+              toggleWarning={ randomToggle }
+              selection
+              />
+            <Field
+              id='ageInputField'
+              name='Age'
+              type='text'
+              as={ Form.Input }
+              component={ SemanticFormField }
+              placeholder='Age'
+              validate={ [required, number, minValue1] }
+              disabled={ randomToggle }
+              toggleWarning={ randomToggle }
+              />
           </div>
-          <Field
-            name='Race'
-            component={ SemanticFormField }
-            as={ Form.Dropdown }
-            placeholder='Select Race'
-            options={ raceOptions }
-            validate={ [required] }
-            disabled={ randomToggle }
-            toggleWarning={ randomToggle }
-            selection
-          />
-          <Field
-            name='Class'
-            component={ SemanticFormField }
-            as={ Form.Dropdown }
-            placeholder='Select Class'
-            options={ classOptions }
-            validate={ [required] }
-            disabled={ randomToggle }
-            toggleWarning={ randomToggle }
-            selection
-          />
-          <Field
-            name='Background'
-            component={ SemanticFormField }
-            as={ Form.Dropdown }
-            placeholder='Select Background'
-            options={ backgroundOptions }
-            validate={ [required] }
-            disabled={ randomToggle }
-            toggleWarning={ randomToggle }
-            selection
-          />
-          <Field
-            name='Charisma'
-            component={ SemanticFormField }
-            as={ Form.Dropdown }
-            placeholder='Select Charisma Modifer'
-            options={ charismaOptions }
-            validate={ [required] }
-            disabled={ randomToggle }
-            toggleWarning={ randomToggle }
-            selection
-          />
-          <Field
-            name='Age'
-            type='text'
-            as={ Form.Input }
-            component={ SemanticFormField }
-            placeholder='Age'
-            validate={ [required, number, minValue1] }
-            disabled={ randomToggle }
-            toggleWarning={ randomToggle }
-          />
-        <Button primary disabled={ invalid || randomToggle } onClick={ handleSubmit(this.onSubmit) }>
-          Submit
-        </Button>
+          <Button primary disabled={ invalid || randomToggle } onClick={ handleSubmit(this.onSubmit) }>
+            Submit
+          </Button>
         </Form>
       </div>
     )

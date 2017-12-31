@@ -1,15 +1,26 @@
-@import url(https://fonts.googleapis.com/css?family=Nunito:400,300);
+@import url('https://fonts.googleapis.com/css?family=Lora:400,700|Raleway');
 
 #noClickAccordion {
   cursor: default;
 }
 
+#ageInputField {
+  width: 197.64px;
+  margin-bottom: 14px;
+}
+
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Nunito', sans-serif;
+  font-family: 'Raleway', sans-serif;
   font-size: 16px;
-  background: rgb(220, 220, 220);
+  background-image: url("/src/app/backgroundImages/bg3.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+.appHeader {
+  font-family: 'Lora', serif;
 }
 
 .container {
@@ -17,7 +28,20 @@ body {
   text-align: center;
   display: grid;
   justify-items: center;
-  background: rgb(220, 220, 220);
+  background: transparent;
+}
+
+.generatorFormContainer {
+  background-color: rgba(220,220,220,0.6);
+  height: 499px;
+  border-radius: .28571429rem;
+}
+
+
+.fieldContainer {
+  display: grid;
+  justify-content: center;
+  justify-items: center;
 }
 
 .classImage {
@@ -28,7 +52,7 @@ body {
 .randomRoll {
     display: grid;
     grid-template-columns: 50px 126px;
-    grid-column-gap: 27px;
+    grid-column-gap: 5px;
     align-items: center;
     justify-items: center;
     padding-bottom: 15px;
