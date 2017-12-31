@@ -70,7 +70,7 @@ export default class FamilyAndFriendsAccordion extends Component {
     return (
       <div>
         { familyClass.length &&
-          <Segment inverted>
+          <Segment className='segmentBottomMargin' inverted>
             <Accordion inverted>
               <Accordion.Title
                 active={ activeIndex[0] }

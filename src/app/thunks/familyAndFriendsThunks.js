@@ -9,6 +9,7 @@ import { occupation } from '../utils/supplemental/occupation.js';
 import { attitude } from '../utils/supplemental/attitude.js';
 import { race } from '../utils/supplemental/race.js';
 import { supplementalClass } from '../utils/supplemental/supplementalClass.js';
+import { causeOfDeath } from '../utils/supplemental/causeOfDeath.js';
 import Roll from 'roll';
 import Immutable from 'immutable';
 
@@ -21,12 +22,27 @@ export function getFamilyAndFriends(charismaModifierInput) {
     dispatch(actionCreators.familyResult({ family: { familyString, familyKey: familyResult } }));
 
     const absentParentFateOneResult = absentParentFate();
-    const absentParentFateOneString = getState().getIn(['core', 'rollInfo', 'Origins', 'Family and Friends', 'Absent Parent Fate', absentParentFateOneResult]);
-    dispatch(actionCreators.absentParentFateResult({ absentParentFate: absentParentFateOneString, parent: 1 }));
-
     const absentParentFateTwoResult = absentParentFate();
-    const absentParentFateTwoString = getState().getIn(['core', 'rollInfo', 'Origins', 'Family and Friends', 'Absent Parent Fate', absentParentFateTwoResult]);
-    dispatch(actionCreators.absentParentFateResult({ absentParentFate: absentParentFateTwoString, parent: 2 }));
+
+    if (absentParentFateOneResult === '1') {
+      const absentParentOneDeathResult = causeOfDeath();
+      const absentParentOneDeathString = getState().getIn(['core', 'rollInfo', 'Supplemental Tables', 'Cause of Death', absentParentOneDeathResult]);
+      dispatch(actionCreators.absentParentFateResult({ absentParentFate: absentParentOneDeathString, parent: 1 }));
+    }
+    else {
+      const absentParentFateOneString = getState().getIn(['core', 'rollInfo', 'Origins', 'Family and Friends', 'Absent Parent Fate', absentParentFateOneResult]);
+      dispatch(actionCreators.absentParentFateResult({ absentParentFate: absentParentFateOneString, parent: 1 }));
+    }
+
+    if (absentParentFateTwoResult === '1') {
+      const absentParentTwoDeathResult = causeOfDeath();
+      const absentParentTwoDeathString = getState().getIn(['core', 'rollInfo', 'Supplemental Tables', 'Cause of Death', absentParentTwoDeathResult]);
+      dispatch(actionCreators.absentParentFateResult({ absentParentFate: absentParentTwoDeathString, parent: 2 }))
+    }
+    else {
+      const absentParentFateTwoString = getState().getIn(['core', 'rollInfo', 'Origins', 'Family and Friends', 'Absent Parent Fate', absentParentFateTwoResult]);
+      dispatch(actionCreators.absentParentFateResult({ absentParentFate: absentParentFateTwoString, parent: 2 }));
+    }
 
     const childhoodHomeResult = childhoodHome(familyLifestyle());
     const childhoodHomeString = getState().getIn(['core', 'rollInfo', 'Origins', 'Family and Friends', 'Childhood Home', childhoodHomeResult]);

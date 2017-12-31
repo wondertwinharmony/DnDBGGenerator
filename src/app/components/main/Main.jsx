@@ -24,6 +24,3 @@ export default class Main extends Component {
     )
   };
 }
-
-//TODO: figure out where to put this
-// <ClassImage/>
