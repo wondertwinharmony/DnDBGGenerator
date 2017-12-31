@@ -3,6 +3,7 @@ import { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Accordion, Icon, Segment } from 'semantic-ui-react';
+import Immutable from 'immutable';
 
 function mapStateToProps(state) {
   return {
@@ -81,26 +82,70 @@ export default class FamilyAndFriendsAccordion extends Component {
                 <p>
                   { family.get('familyString') }
                 </p>
-                <h5>Family & Friends Attitude</h5>
-                <p>
-                  { attitude }
-                </p>
-                <h5>Family & Friends Alignment</h5>
-                <p>
-                  { alignment }
-                </p>
-                <h5>Family & Friends Occupation</h5>
-                <p>
-                  { occupation }
-                </p>
-                <h5>Family & Friends Race</h5>
-                <p>
-                  { race }
-                </p>
-                <h5>Family & Friends Class</h5>
-                <p>
-                  { familyClass }
-                </p>
+                { (family.get('familyKey') !== '1' &&
+                   family.get('familyKey') !== '7600' &&
+                   family.get('familyKey') !== '3655' &&
+                   family.get('familyKey') !== '5675') &&
+                  <h5>Family & Friends Attitude</h5>
+                }
+                { (family.get('familyKey') !== '1' &&
+                   family.get('familyKey') !== '7600' &&
+                   family.get('familyKey') !== '3655' &&
+                   family.get('familyKey') !== '5675') &&
+                   <p>
+                     { attitude }
+                   </p>
+                }
+                { family.get('familyKey') !== '1' &&
+                  <h5>Family & Friends Alignment</h5>
+                }
+                { family.get('familyKey') !== '1' &&
+                  <p>
+                    { alignment }
+                  </p>
+                }
+                { (family.get('familyKey') !== '7600' &&
+                   family.get('familyKey') !== '1' &&
+                   family.get('familyKey') !== '2' &&
+                   family.get('familyKey') !== '45' &&
+                   family.get('familyKey') !== '3655' &&
+                   family.get('familyKey') !== '5675') &&
+                   <h5>Family & Friends Occupation</h5>
+                }
+                { (occupation !== 'Adventurer' &&
+                   family.get('familyKey') !== '7600' &&
+                   family.get('familyKey') !== '1' &&
+                   family.get('familyKey') !== '2' &&
+                   family.get('familyKey') !== '45' &&
+                   family.get('familyKey') !== '3655' &&
+                   family.get('familyKey') !== '5675') &&
+                    <p>
+                      { occupation }
+                    </p>
+                }
+                { (occupation === 'Adventurer' &&
+                   family.get('familyKey') !== '7600' &&
+                   family.get('familyKey') !== '1' &&
+                   family.get('familyKey') !== '2' &&
+                   family.get('familyKey') !== '45' &&
+                   family.get('familyKey') !== '3655' &&
+                   family.get('familyKey') !== '5675') &&
+                  <p>
+                    { `${familyClass.get(1)} ${occupation.toLowerCase()}` }
+                  </p>
+                }
+                { (family.get('familyKey') === '3' ||
+                   family.get('familyKey') === '67' ||
+                   family.get('familyKey') === '2635') &&
+                   <h5>Family & Friends Race</h5>
+                }
+                { (family.get('familyKey') === '3' ||
+                   family.get('familyKey') === '67' ||
+                   family.get('familyKey') === '2635') &&
+                   <p>
+                     { race }
+                   </p>
+                }
                 { family.get('familyKey') !== '7600' &&
                   <h5>Absent Parent Fate</h5>
                 }
