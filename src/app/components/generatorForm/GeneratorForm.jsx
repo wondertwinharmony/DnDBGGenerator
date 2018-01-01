@@ -129,7 +129,7 @@ export default class GeneratorForm extends Component {
 
     return (
       <div className='generatorFormContainer'>
-        <Form name='GeneratorForm'>
+        <Form name='GeneratorForm' className='generatorForm'>
           <h2>Character Details</h2>
           <p>Click the toggle to enable random character generation or input your character's details to generate background.</p>
           <div className='fieldContainer'>
@@ -198,7 +198,9 @@ export default class GeneratorForm extends Component {
               toggleWarning={ randomToggle }
               />
           </div>
-          <Button primary disabled={ invalid || randomToggle } onClick={ handleSubmit(this.onSubmit) }>
+          <Button
+            primary disabled={ invalid || randomToggle }
+            onClick={ handleSubmit(this.onSubmit) }>
             Submit
           </Button>
         </Form>
