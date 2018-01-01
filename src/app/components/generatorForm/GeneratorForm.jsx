@@ -114,7 +114,7 @@ export default class GeneratorForm extends Component {
 
     getCharacterParents(raceInput);
     getCharacterSiblings(raceInput);
-    getCharacterFamilyAndFriends(charismaModifierInput);
+    getCharacterFamilyAndFriends(charismaModifierInput === 'zero' ? 0 : charismaModifierInput);
     getCharacterLifeEvents(ageInput);
     getCharacterPersonalDecisions({ background: backgroundInput, characterClass: classInput, characterRace: raceInput });
   }
