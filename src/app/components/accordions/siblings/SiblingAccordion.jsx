@@ -90,31 +90,3 @@ export default class SiblingAccordion extends Component {
     )
   };
 }
-
-// <h5>Birth Order</h5>
-// <p>
-//   { birthOrder }
-// </p>
-// <h5>Sibling Occupation</h5>
-// { occupation === 'Adventurer' &&
-//   <p>
-//     { `${siblingClass} ${occupation.toLowerCase()}` }
-//   </p>
-// }
-// { occupation !== 'Adventurer' &&
-//   <p>
-//     { occupation }
-//   </p>
-// }
-// <h5>Sibling Alignment</h5>
-// <p>
-//   { alignment }
-// </p>
-// <h5>Sibling Status</h5>
-// <p>
-//   { status }
-// </p>
-// <h5>Sibling Attitude</h5>
-// <p>
-//   { attitude }
-// </p>
