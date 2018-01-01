@@ -1,18 +1,16 @@
 var Path = require('path');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var Webpack = require('webpack');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-var cssOutputPath = '/styles/app.css';
 var jsOutputPath = '/scripts/app.js';
-var ExtractSASS = new ExtractTextPlugin(cssOutputPath);
 
 // ------------------------------------------
 // Base
 // ------------------------------------------
 var webpackConfig = {
+  devtool: 'source-map',
   resolve: {
-    extensions: ['', '.js', '.jsx'],
+    extensions: ['', '.js', '.jsx', '.png', '.jpg'],
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -20,13 +18,21 @@ var webpackConfig = {
     }),
   ],
   module: {
-    loaders: [{
+    loaders: [
+      {
       test: /.jsx?$/,
       include: Path.join(__dirname, './src/app'),
       loader: 'babel',
-    }],
+      },
+      {
+      test: /\.(png|jpg|gif)$/,
+      include: Path.join(__dirname, './src/app/assets/'),
+      loader: 'file-loader',
+      },
+    ],
   },
 };
+
 
 // ------------------------------------------
 // Entry point
