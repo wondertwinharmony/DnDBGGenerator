@@ -205,7 +205,7 @@ export const charismaOptions = [
   },
   {
     key: 6,
-    value: 0,
+    value: 'zero',
     text: '0',
   },
   {
