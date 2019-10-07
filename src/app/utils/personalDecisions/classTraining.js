@@ -11,4 +11,4 @@ export function classTraining(classInput) {
     const randomClassResult = supplementalClass();
     return ({ classTrainingRoll: classTrainingRoll.result.toString(), randomTitle: randomClassResult });
   }
-};
+}

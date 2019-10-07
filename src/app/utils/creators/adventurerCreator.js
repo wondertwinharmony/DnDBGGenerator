@@ -1,4 +1,3 @@
-import Roll from 'roll';
 import { adventurerBackgrounds } from './adventurerBackgrounds.js';
 import { race } from '../supplemental/race.js';
 import { supplementalClass } from '../supplemental/supplementalClass.js';
@@ -17,4 +16,4 @@ export function createAdventurer() {
   };
 
   return adventurer;
-};
+}

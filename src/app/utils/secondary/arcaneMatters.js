@@ -5,4 +5,4 @@ export function arcaneMatters() {
   const arcaneMattersRoll = roll.roll('d10');
 
   return arcaneMattersRoll.result.toString();
-};
+}

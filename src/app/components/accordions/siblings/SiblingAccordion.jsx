@@ -15,8 +15,7 @@ function mapStateToProps(state, { id }) {
   };
 }
 
-@connect(mapStateToProps, null)
-export default class SiblingAccordion extends Component {
+class SiblingAccordion extends Component {
   static PropTypes = {
     id: PropTypes.Number,
     birthOrder: PropTypes.Object,
@@ -90,3 +89,5 @@ export default class SiblingAccordion extends Component {
     )
   };
 }
+
+export default connect(mapStateToProps, null)(SiblingAccordion);

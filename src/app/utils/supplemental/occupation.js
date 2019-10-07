@@ -68,4 +68,4 @@ export function occupation() {
   if (occupationRoll.result >= 96 && occupationRoll.result <= 100) {
     return '9600';
   }
-};
+}

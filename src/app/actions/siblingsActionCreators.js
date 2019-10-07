@@ -1,60 +1,60 @@
 export function siblingsResult({ numberOfSiblings }) {
-  return({
+  return ({
     type: 'siblingsResult',
     numberOfSiblings,
   });
-};
+}
 
-export function siblingsOccupationResult ({ siblingsOccupation, sibling }) {
-  return({
+export function siblingsOccupationResult({ siblingsOccupation, sibling }) {
+  return ({
     type: 'siblingsOccupationResult',
     siblingsOccupation,
-    sibling
+    sibling,
   });
-};
+}
 
-export function siblingsAlignmentResult ({ siblingsAlignment, sibling }) {
-  return({
+export function siblingsAlignmentResult({ siblingsAlignment, sibling }) {
+  return ({
     type: 'siblingsAlignmentResult',
     siblingsAlignment,
-    sibling
+    sibling,
   });
-};
+}
 
-export function siblingsStatusResult ({ siblingsStatus, sibling }) {
-  return({
+export function siblingsStatusResult({ siblingsStatus, sibling }) {
+  return ({
     type: 'siblingsStatusResult',
     siblingsStatus,
-    sibling
+    sibling,
   });
-};
+}
 
-export function siblingsAttitudeResult ({ siblingsAttitude, sibling }) {
-  return({
+export function siblingsAttitudeResult({ siblingsAttitude, sibling }) {
+  return ({
     type: 'siblingsAttitudeResult',
     siblingsAttitude,
-    sibling
+    sibling,
   });
-};
+}
 
-export function siblingsClassResult ({ siblingsClass, sibling }) {
-  return({
+export function siblingsClassResult({ siblingsClass, sibling }) {
+  return ({
     type: 'siblingsClassResult',
     siblingsClass,
-    sibling
+    sibling,
   });
-};
+}
 
-export function siblingsBirthOrderResult ({ siblingsBirthOrder, sibling }) {
-  return({
+export function siblingsBirthOrderResult({ siblingsBirthOrder, sibling }) {
+  return ({
     type: 'siblingsBirthOrderResult',
     siblingsBirthOrder,
-    sibling
+    sibling,
   });
-};
+}
 
-export function resetStore ({}) {
-  return({
+export function resetStore({}) {
+  return ({
     type: 'resetStore',
   });
-};
+}

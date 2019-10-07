@@ -1,27 +1,27 @@
 export function currentAgeResult({ currentAge }) {
-  return({
+  return ({
     type: 'currentAgeResult',
     currentAge,
   });
-};
+}
 
 export function numberOfLifeEventsResult({ numberOfLifeEvents }) {
-  return({
+  return ({
     type: 'numberOfLifeEventsResult',
     numberOfLifeEvents,
   });
-};
+}
 
 export function eventResult({ lifeEvent, lifeEventId }) {
-  return({
+  return ({
     type: 'eventResult',
     lifeEvent,
     lifeEventId,
   });
-};
+}
 
-export function resetLifeEvents ({}) {
-  return({
+export function resetLifeEvents({}) {
+  return ({
     type: 'resetLifeEvents',
   });
-};
+}

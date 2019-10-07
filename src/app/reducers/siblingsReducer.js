@@ -1,5 +1,4 @@
 import Immutable from 'immutable';
-import { rollInfo } from '../data/initialStateData.js';
 
 export const initialState = Immutable.fromJS({
   NumberOfSiblings: {},
@@ -9,11 +8,10 @@ export const initialState = Immutable.fromJS({
   Status: {},
   Attitude: {},
   Class: {},
-  BirthOrder: {},
 });
 
 export const siblingsReducer = (state = initialState, action) => {
-  switch(action.type) {
+  switch (action.type) {
     case ('siblingsResult'):
       return state.setIn(['NumberOfSiblings'], Immutable.fromJS(action.numberOfSiblings));
     case ('siblingsBirthOrderResult'):
@@ -28,10 +26,8 @@ export const siblingsReducer = (state = initialState, action) => {
       return state.setIn(['Attitude', action.sibling], Immutable.fromJS(action.siblingsAttitude));
     case ('siblingsClassResult'):
       return state.setIn(['Class', action.sibling], Immutable.fromJS(action.siblingsClass));
-    case ('siblingsBirthOrderResult'):
-        return state.setIn(['BirthOrder', action.sibling], Immutable.fromJS(action.siblingsBirthOrder));
     case ('resetStore'):
-      state = initialState;
+      return initialState;
     default: return state;
   }
 };

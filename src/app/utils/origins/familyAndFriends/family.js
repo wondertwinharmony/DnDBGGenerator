@@ -47,4 +47,4 @@ export function family() {
   if (familyRoll.result >= 76 && familyRoll.result <= 100) {
     return '7600';
   }
-};
+}

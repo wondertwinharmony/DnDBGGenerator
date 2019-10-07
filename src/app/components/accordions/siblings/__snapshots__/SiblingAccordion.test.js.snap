@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SiblingAccordion component renders correctly 1`] = `
+<div>
+  <div
+    className="ui inverted accordion"
+  >
+    <div
+      className="title"
+      onClick={[Function]}
+    >
+      <i
+        aria-hidden="true"
+        className="dropdown icon"
+      />
+      Sibling #
+      1
+    </div>
+    <div
+      className="content"
+    >
+      <p>
+        Younger Sibling: This sibling is a neutral laborer. They are missing or unknown. They feel friendly towards you.
+      </p>
+    </div>
+  </div>
+</div>
+`;

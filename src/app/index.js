@@ -13,18 +13,20 @@ import combinedReducers from './reducers/combineReducers.js';
 import './components/bundle.scss';
 
 const createStoreWithMiddleware = applyMiddleware()(createStore);
+/* eslint-disable no-underscore-dangle */
 const store = createStoreWithMiddleware(
   combinedReducers,
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
   applyMiddleware(thunk)
 );
+/* eslint-enable */
 
 ReactDOM.render(
   <Provider store={store}>
-    <Router onUpdate={() => window.scrollTo(0, 0)} history={ browserHistory }>
-      <Route path="/" component={ App }>
-        <IndexRoute component={ Main } />;
-        <Route path="/main" component={ Main } />
+    <Router onUpdate={() => window.scrollTo(0, 0)} history={browserHistory}>
+      <Route path="/" component={App}>
+        <IndexRoute component={Main} />;
+        <Route path="/main" component={Main} />
       </Route>
     </Router>
   </Provider>

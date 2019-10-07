@@ -95,4 +95,4 @@ export function birthplace() {
   if (birthplaceRoll.result === 100) {
     return '0';
   }
-};
+}

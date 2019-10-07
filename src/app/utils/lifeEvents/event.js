@@ -10,25 +10,25 @@ import { war } from '../secondary/war.js';
 import { weirdStuff } from '../secondary/weirdStuff.js';
 import { createAdventurer } from '../creators/adventurerCreator.js';
 import { createCommoner } from '../creators/commonerCreator.js';
-import { causeOfDeath } from '../supplemental/causeOfDeath.js'
+import { causeOfDeath } from '../supplemental/causeOfDeath.js';
 
 export function event() {
   const roll = new Roll();
   const eventRoll = roll.roll('d100');
 
-  let adventureResult,
-      boonId,
-      crimeId,
-      arcaneMatterId,
-      punishmentId,
-      supernaturalEventId,
-      tragedyId,
-      warId,
-      weirdStuffId,
-      secondDieRoll,
-      newAdventurer,
-      newCommoner,
-      outcomeResultString;
+  let adventureResult;
+  let boonId;
+  let crimeId;
+  let arcaneMatterId;
+  let punishmentId;
+  let supernaturalEventId;
+  let tragedyId;
+  let warId;
+  let weirdStuffId;
+  let secondDieRoll;
+  let newAdventurer;
+  let newCommoner;
+  let outcomeResultString;
 
   if (eventRoll.result >= 1 && eventRoll.result <= 10) {
     tragedyId = tragedies();
@@ -96,7 +96,7 @@ export function event() {
     secondDieRoll = roll.roll('1d6').result;
     newAdventurer = createAdventurer();
     newAdventurer.attitude = '34';
-    outcomeResultString = secondDieRoll%2 === 0 ? ' You did not cause the rift between you and the adventurer. Your enemy adventurer is a(n) ' : ' You caused the rift between you and the adventurer.  Your enemy adventurer is a(n) '
+    outcomeResultString = secondDieRoll % 2 === 0 ? ' You did not cause the rift between you and the adventurer. Your enemy adventurer is a(n) ' : ' You caused the rift between you and the adventurer.  Your enemy adventurer is a(n) ';
 
     return { outcome: '3140', outcomeResult: outcomeResultString, characterEncounter: newAdventurer, secondaryTable: null, multiTable: false };
   }
@@ -120,7 +120,7 @@ export function event() {
     newAdventurer = createAdventurer();
     outcomeResultString = ' This important person is a(n) ';
 
-    return { outcome: '7175', outcomeResult: outcomeResultString , secondaryTable: null, characterEncounter: newAdventurer, multiTable: false };
+    return { outcome: '7175', outcomeResult: outcomeResultString, secondaryTable: null, characterEncounter: newAdventurer, multiTable: false };
   }
 
   if (eventRoll.result >= 76 && eventRoll.result <= 80) {
@@ -155,7 +155,7 @@ export function event() {
       };
       const possession = possessionType[roll.roll('d6').result];
 
-      return { outcome: '8185', outcomeResult: null, characterEncounter: null, secondaryTable: 'Supernatural Events', secondaryTableResult: supernaturalEventId, possessionType, multiTable: false };
+      return { outcome: '8185', outcomeResult: null, characterEncounter: null, secondaryTable: 'Supernatural Events', secondaryTableResult: supernaturalEventId, possession, multiTable: false };
     }
 
     return { outcome: '8185', outcomeResult: null, characterEncounter: null, secondaryTable: 'Supernatural Events', secondaryTableResult: supernaturalEventId, multiTable: false };
@@ -190,4 +190,4 @@ export function event() {
 
     return { outcome: '0', outcomeResult: null, characterEncounter: null, secondaryTable: 'Weird Stuff', secondaryTableResult: weirdStuffId, multiTable: false };
   }
-};
+}

@@ -19,4 +19,4 @@ export function halfElfParents() {
   if (halfElfParentsRoll.result === 8) {
     return '8';
   }
-};
+}

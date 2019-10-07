@@ -31,4 +31,4 @@ export function alignment() {
   if (alignmentRoll.result === 18) {
     return '18';
   }
-};
+}

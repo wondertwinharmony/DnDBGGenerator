@@ -9,7 +9,7 @@ export const initialState = Immutable.fromJS({
 });
 
 export const personalDecisionsReducer = (state = initialState, action) => {
-  switch(action.type) {
+  switch (action.type) {
     case ('characterBackgroundResult'):
       return state.setIn(['CharacterBackground'], Immutable.fromJS(action.characterBackground));
     case ('characterClassResult'):

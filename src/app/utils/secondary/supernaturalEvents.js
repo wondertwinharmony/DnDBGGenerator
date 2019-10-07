@@ -63,4 +63,4 @@ export function supernaturalEvents() {
   if (supernaturalEventsRoll.result >= 96 && supernaturalEventsRoll.result <= 100) {
     return '9600';
   }
-};
+}

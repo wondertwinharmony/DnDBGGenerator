@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LifeEventAccordion component renders correctly 1`] = `
+<div>
+  <div
+    className="ui inverted accordion"
+  >
+    <div
+      className="title"
+      onClick={[Function]}
+    >
+      <i
+        aria-hidden="true"
+        className="dropdown icon"
+      />
+      Life Event
+    </div>
+    <div
+      className="content"
+    >
+      <p>
+        Some string
+      </p>
+    </div>
+  </div>
+</div>
+`;

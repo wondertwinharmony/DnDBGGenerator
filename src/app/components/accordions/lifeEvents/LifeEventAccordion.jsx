@@ -10,8 +10,7 @@ function mapStateToProps(state, { id }) {
   };
 }
 
-@connect(mapStateToProps, null)
-export default class LifeEventAccordion extends Component {
+class LifeEventAccordion extends Component {
   static PropTypes = {
     id: PropTypes.Number,
     lifeEvent: PropTypes.String,
@@ -70,3 +69,5 @@ export default class LifeEventAccordion extends Component {
     )
   };
 }
+
+export default connect(mapStateToProps, null)(LifeEventAccordion);

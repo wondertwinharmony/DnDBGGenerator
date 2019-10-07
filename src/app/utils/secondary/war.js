@@ -31,4 +31,4 @@ export function war() {
   if (warRoll.result === 12) {
     return '12';
   }
-};
+}
