@@ -19,4 +19,4 @@ export function adventurerBackgrounds() {
   const title = backgrounds[adventurerBackgroundsRoll];
 
   return title;
-};
+}

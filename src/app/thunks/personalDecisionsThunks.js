@@ -1,11 +1,9 @@
 import * as actionCreators from '../actions/personalDecisionsActionCreators.js';
 import { background } from '../utils/personalDecisions/background.js';
 import { classTraining } from '../utils/personalDecisions/classTraining.js';
-import { supplementalClass } from '../utils/supplemental/supplementalClass.js';
-import Immutable from 'immutable';
 
 export function getPersonalDecisions(backgroundClassRaceInput) {
-  return function(dispatch, getState) {
+  return function (dispatch, getState) {
     const backgroundResult = background(backgroundClassRaceInput.background);
     const backgroundString = getState().getIn(['core', 'rollInfo', 'Personal Decisions', 'Background', backgroundResult.title, backgroundResult.backgroundRoll]);
     const classTrainingResult = classTraining(backgroundClassRaceInput.characterClass);
@@ -21,4 +19,4 @@ export function getPersonalDecisions(backgroundClassRaceInput) {
     dispatch(actionCreators.backgroundResult({ background: backgroundString }));
     dispatch(actionCreators.classTrainingResult({ classTraining: classTrainingString }));
   };
-};
+}

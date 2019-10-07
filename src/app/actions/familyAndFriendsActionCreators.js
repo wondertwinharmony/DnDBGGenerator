@@ -1,63 +1,63 @@
 export function familyResult({ family }) {
-  return({
+  return ({
     type: 'familyResult',
     family,
   });
-};
+}
 
 export function absentParentFateResult({ absentParentFate, parent }) {
-  return({
+  return ({
     type: 'absentParentFateResult',
     absentParentFate,
     parent,
   });
-};
+}
 
 export function childhoodHomeResult({ childhoodHome }) {
-  return({
+  return ({
     type: 'childhoodHomeResult',
     childhoodHome,
   });
-};
+}
 
 export function childhoodMemoriesResult({ childhoodMemories }) {
-  return({
+  return ({
     type: 'childhoodMemoriesResult',
     childhoodMemories,
   });
-};
+}
 
 export function familyOccupationResult({ familyOccupation }) {
-  return({
+  return ({
     type: 'familyOccupationResult',
     familyOccupation,
   });
-};
+}
 
 export function familyAlignmentResult({ familyAlignment }) {
-  return({
+  return ({
     type: 'familyAlignmentResult',
     familyAlignment,
   });
-};
+}
 
 export function raceResult({ race }) {
-  return({
+  return ({
     type: 'raceResult',
     race,
   });
-};
+}
 
 export function familyAttitudeResult({ familyAttitude }) {
-  return({
+  return ({
     type: 'familyAttitudeResult',
     familyAttitude,
   });
-};
+}
 
 export function familyClassResult({ familyClass }) {
-  return({
+  return ({
     type: 'familyClassResult',
     familyClass,
   });
-};
+}

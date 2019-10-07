@@ -1,34 +1,34 @@
 export function characterBackgroundResult({ characterBackground }) {
-  return({
+  return ({
     type: 'characterBackgroundResult',
     characterBackground,
   });
-};
+}
 
 export function characterClassResult({ characterClass }) {
-  return({
+  return ({
     type: 'characterClassResult',
     characterClass,
   });
-};
+}
 
 export function characterRaceResult({ characterRace }) {
-  return({
+  return ({
     type: 'characterRaceResult',
     characterRace,
   });
-};
+}
 
 export function backgroundResult({ background }) {
-  return({
+  return ({
     type: 'backgroundResult',
     background,
   });
-};
+}
 
 export function classTrainingResult({ classTraining }) {
-  return({
+  return ({
     type: 'classTrainingResult',
     classTraining,
   });
-};
+}

@@ -5,4 +5,4 @@ export function absentParentFate() {
   const absentParentFateRoll = roll.roll('d4');
 
   return absentParentFateRoll.result.toString();
-};
+}

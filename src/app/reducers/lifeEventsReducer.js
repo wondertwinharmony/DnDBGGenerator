@@ -7,7 +7,7 @@ export const initialState = Immutable.fromJS({
 });
 
 export const lifeEventsReducer = (state = initialState, action) => {
-  switch(action.type) {
+  switch (action.type) {
     case ('currentAgeResult'):
       return state.setIn(['Age'], Immutable.fromJS(action.currentAge));
     case ('numberOfLifeEventsResult'):
@@ -15,7 +15,7 @@ export const lifeEventsReducer = (state = initialState, action) => {
     case ('eventResult'):
       return state.setIn(['LifeEvents', action.lifeEventId], Immutable.fromJS(action.lifeEvent));
     case ('resetLifeEvents'):
-      state = initialState;
+      return initialState;
     default: return state;
   }
 };

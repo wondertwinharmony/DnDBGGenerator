@@ -1,5 +1,4 @@
 import Immutable from 'immutable';
-import { rollInfo } from '../data/initialStateData.js';
 
 export const initialState = Immutable.fromJS({
   Family: {},
@@ -14,7 +13,7 @@ export const initialState = Immutable.fromJS({
 });
 
 export const familyAndFriendsReducer = (state = initialState, action) => {
-  switch(action.type) {
+  switch (action.type) {
     case ('familyResult'):
       return state.setIn(['Family'], Immutable.fromJS(action.family));
     case ('absentParentFateResult'):

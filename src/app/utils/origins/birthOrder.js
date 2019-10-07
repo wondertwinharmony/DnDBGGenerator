@@ -15,4 +15,4 @@ export function birthOrder() {
   if (birthOrderRoll.result >= 8 && birthOrderRoll.result <= 12) {
     return '812';
   }
-};
+}

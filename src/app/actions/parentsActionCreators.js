@@ -1,44 +1,44 @@
 export function parentsResult({ parents }) {
-  return({
+  return ({
     type: 'parentsResult',
     parents,
   });
-};
+}
 
 export function birthplaceResult({ birthplace }) {
-  return({
+  return ({
     type: 'birthplaceResult',
     birthplace,
   });
-};
+}
 
 export function parentsRaceResult({ parentsRace }) {
-  return({
+  return ({
     type: 'parentsRaceResult',
     parentsRace,
   });
-};
+}
 
 export function parentsAlignmentResult({ parentAlignment, parent }) {
-  return({
+  return ({
     type: 'parentsAlignmentResult',
     parentAlignment,
     parent,
   });
-};
+}
 
 export function parentsOccupationResult({ parentOccupation, parent }) {
-  return({
+  return ({
     type: 'parentsOccupationResult',
     parentOccupation,
     parent,
   });
-};
+}
 
 export function parentsClassResult({ parentClass, parent }) {
-  return({
+  return ({
     type: 'parentsClassResult',
     parentClass,
     parent,
   });
-};
+}

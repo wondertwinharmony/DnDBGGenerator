@@ -9,4 +9,4 @@ export function tragedies() {
   }
 
   return tragediesRoll.result.toString();
-};
+}

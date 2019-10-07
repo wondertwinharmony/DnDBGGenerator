@@ -33,4 +33,4 @@ export function childhoodMemories(charismaModifierInput) {
   if (childhoodMemoriesTotal >= 18) {
     return '18';
   }
-};
+}

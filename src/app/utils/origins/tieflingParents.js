@@ -19,4 +19,4 @@ export function tieflingParents() {
   if (tieflingParentsRoll.result === 8) {
     return '8';
   }
-};
+}

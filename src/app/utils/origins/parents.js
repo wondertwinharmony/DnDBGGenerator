@@ -11,4 +11,4 @@ export function parents() {
   if (parentsRoll.result > 95 && parentsRoll.result <= 100) {
     return '9600';
   }
-};
+}

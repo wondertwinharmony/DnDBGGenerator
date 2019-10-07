@@ -5,4 +5,4 @@ export function boons() {
   const boonsRoll = roll.roll('d10');
 
   return boonsRoll.result.toString();
-};
+}

@@ -1,4 +1,3 @@
-import Roll from 'roll';
 import { adventurerBackgrounds } from './adventurerBackgrounds.js';
 import { race } from '../supplemental/race.js';
 import { alignment } from '../supplemental/alignment.js';
@@ -15,4 +14,4 @@ export function createCommoner() {
   };
 
   return commoner;
-};
+}

@@ -2,8 +2,8 @@ import Roll from 'roll';
 
 export function currentAgeAndLifeEvents(ageInput) {
   const roll = new Roll();
-  let currentAge,
-      currentAgeRoll = { result: false };
+  let currentAge;
+  let currentAgeRoll = { result: false };
 
   if (ageInput) {
     currentAge = ageInput;
@@ -34,4 +34,4 @@ export function currentAgeAndLifeEvents(ageInput) {
   if ((currentAge >= 1 && currentAge <= 20) || (currentAgeRoll >= 0 && currentAgeRoll <= 20)) {
     return { currentAge: '0120', lifeEventsNumber: 1 };
   }
-};
+}

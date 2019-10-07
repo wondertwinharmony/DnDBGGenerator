@@ -51,4 +51,4 @@ export function supplementalClass() {
   if (supplementalClassRoll.result >= 95 && supplementalClassRoll.result <= 100) {
     return '9500';
   }
-};
+}

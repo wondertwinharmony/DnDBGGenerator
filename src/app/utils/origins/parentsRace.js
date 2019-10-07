@@ -3,8 +3,6 @@ import { halfOrcParents } from './halfOrcParents.js';
 import { tieflingParents } from './tieflingParents.js';
 
 export function parentsRace(raceInput) {
-  const parentsRace = '';
-
   if (raceInput === 'Half-Elf') {
     return halfElfParents();
   }
@@ -16,4 +14,4 @@ export function parentsRace(raceInput) {
   if (raceInput === 'Tiefling') {
     return tieflingParents();
   }
-};
+}

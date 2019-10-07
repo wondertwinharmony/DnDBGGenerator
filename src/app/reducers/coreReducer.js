@@ -6,7 +6,7 @@ export const initialState = Immutable.fromJS({
 });
 
 export const coreReducer = (state = initialState, action) => {
-  switch(action.type) {
+  switch (action.type) {
     default: return state;
   }
 };

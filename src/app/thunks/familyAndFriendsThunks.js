@@ -11,12 +11,11 @@ import { race } from '../utils/supplemental/race.js';
 import { supplementalClass } from '../utils/supplemental/supplementalClass.js';
 import { causeOfDeath } from '../utils/supplemental/causeOfDeath.js';
 import Roll from 'roll';
-import Immutable from 'immutable';
 
 const roll = new Roll();
 
 export function getFamilyAndFriends(charismaModifierInput) {
-  return function(dispatch, getState) {
+  return function (dispatch, getState) {
     const familyResult = family();
     const familyString = getState().getIn(['core', 'rollInfo', 'Origins', 'Family and Friends', 'Family', familyResult]);
     dispatch(actionCreators.familyResult({ family: { familyString, familyKey: familyResult } }));
@@ -28,8 +27,7 @@ export function getFamilyAndFriends(charismaModifierInput) {
       const absentParentOneDeathResult = causeOfDeath();
       const absentParentOneDeathString = `Your parent died. The cause of death was ${getState().getIn(['core', 'rollInfo', 'Supplemental Tables', 'Cause of Death', absentParentOneDeathResult])}`;
       dispatch(actionCreators.absentParentFateResult({ absentParentFate: absentParentOneDeathString, parent: 1 }));
-    }
-    else {
+    } else {
       const absentParentFateOneString = getState().getIn(['core', 'rollInfo', 'Origins', 'Family and Friends', 'Absent Parent Fate', absentParentFateOneResult]);
       dispatch(actionCreators.absentParentFateResult({ absentParentFate: absentParentFateOneString, parent: 1 }));
     }
@@ -37,9 +35,8 @@ export function getFamilyAndFriends(charismaModifierInput) {
     if (absentParentFateTwoResult === '1') {
       const absentParentTwoDeathResult = causeOfDeath();
       const absentParentTwoDeathString = `Your parent died. The cause of death was ${getState().getIn(['core', 'rollInfo', 'Supplemental Tables', 'Cause of Death', absentParentTwoDeathResult])}`;
-      dispatch(actionCreators.absentParentFateResult({ absentParentFate: absentParentTwoDeathString, parent: 2 }))
-    }
-    else {
+      dispatch(actionCreators.absentParentFateResult({ absentParentFate: absentParentTwoDeathString, parent: 2 }));
+    } else {
       const absentParentFateTwoString = getState().getIn(['core', 'rollInfo', 'Origins', 'Family and Friends', 'Absent Parent Fate', absentParentFateTwoResult]);
       dispatch(actionCreators.absentParentFateResult({ absentParentFate: absentParentFateTwoString, parent: 2 }));
     }
@@ -57,21 +54,16 @@ export function getFamilyAndFriends(charismaModifierInput) {
     dispatch(actionCreators.familyOccupationResult({ familyOccupation: familyOccupationString }));
 
     const familyAlignment = alignment();
-    let familyAlignmentString = '';
     const fiftyPercent = roll.roll('d2').result;
+    let familyAlignmentString = '';
+
     if (familyAlignment === '3') {
       familyAlignmentString = fiftyPercent === 1 ? 'Chaotic evil' : 'Chaotic neutral';
-    }
-
-    else if (familyAlignment === '1617') {
+    } else if (familyAlignment === '1617') {
       familyAlignmentString = fiftyPercent === 1 ? 'Lawful good' : 'Lawful neutral';
-    }
-
-    else if (familyAlignment === '18') {
+    } else if (familyAlignment === '18') {
       familyAlignmentString = fiftyPercent === 1 ? 'Chaotic good' : 'Chaotic neutral';
-    }
-
-    else {
+    } else {
       familyAlignmentString = getState().getIn(['core', 'rollInfo', 'Supplemental Tables', 'Alignment', familyAlignment]);
     }
 
@@ -89,4 +81,4 @@ export function getFamilyAndFriends(charismaModifierInput) {
     const familyClassString = getState().getIn(['core', 'rollInfo', 'Supplemental Tables', 'Class', familyClass]);
     dispatch(actionCreators.familyClassResult({ familyClass: familyClassString }));
   };
-};
+}

@@ -27,4 +27,4 @@ export function numberOfSiblings(raceInput) {
   }
 
   return numberOfSiblingsResultRoll;
-};
+}

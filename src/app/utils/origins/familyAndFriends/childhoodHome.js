@@ -40,4 +40,4 @@ export function childhoodHome({ familyLifestyleModifier }) {
   if (childhoodHomeRollTotal >= 111) {
     return '111';
   }
-};
+}

@@ -10,7 +10,7 @@ export const initialState = Immutable.fromJS({
 });
 
 export const parentsReducer = (state = initialState, action) => {
-  switch(action.type) {
+  switch (action.type) {
     case ('parentsResult'):
       return state.setIn(['Parents'], Immutable.fromJS(action.parents));
     case ('birthplaceResult'):
